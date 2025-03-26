@@ -1,0 +1,7 @@
+@inproceedings{ren2023masked,
+  title={Masked Jigsaw Puzzle: A Versatile Position Embedding for Vision Transformers},
+  author={Ren, Bin and Liu, Yahui and Song, Yue and Bi, Wei and Cucchiara, Rita and Sebe, Nicu and Wang, Wei},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={20382--20391},
+  year={2023}
+}

@@ -1,0 +1,7 @@
+@article{ren2021cloth,
+  title={Cloth Interactive Transformer for Virtual Try-On},
+  author={Ren, Bin and Tang, Hao and Meng, Fanyang and Ding, Runwei and Torr, Philip HS and Sebe, Nicu},
+  journal={ACM ToMM},
+  year={2023},
+  publisher={ACM}
+}

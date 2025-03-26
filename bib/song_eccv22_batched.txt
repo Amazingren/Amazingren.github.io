@@ -1,0 +1,6 @@
+@inproceedings{song2022improving,
+  title={Batch-efficient EigenDecomposition for Small and Medium Matrices},
+  author={Song, Yue and Sebe, Nicu and Wang, Wei},
+  booktitle={ECCV},
+  year={2022}
+}

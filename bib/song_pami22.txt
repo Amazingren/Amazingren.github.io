@@ -1,0 +1,7 @@
+@article{song2022eigenvalues,
+  title={On the Eigenvalues of Global Covariance Pooling for Fine-grained Visual Recognition},
+  author={Song, Yue and Sebe, Nicu and Wang, Wei},
+  journal={IEEE TPAMI},
+  year={2022},
+  publisher={IEEE}
+}
