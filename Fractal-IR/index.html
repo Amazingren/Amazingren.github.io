@@ -71,7 +71,7 @@
                 <a href="https://scholar.google.com/citations?user=stFCYOAAAAAJ&hl=en">Nicu Sebe<sup>3</sup></a>, 
               </span>
               <span class="author-block">
-                <a href="https://scholar.google.com/citations?user=p9-ohHsAAAAJ&hl=en">Ming-Hsuan Yang6<sup>6</sup></a>,
+                <a href="https://scholar.google.com/citations?user=p9-ohHsAAAAJ&hl=en">Ming-Hsuan Yang<sup>6</sup></a>,
               </span>
               <span class="author-block">
                 <a href="https://scholar.google.com/citations?user=8riq3sYAAAAJ&hl=en">Luca Benini<sup>1</sup></a>
@@ -266,7 +266,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Recent advancements in all-in-one image restoration models have revolutionized the ability to address diverse degradations through a unified framework. However, parameters tied to specific tasks often remain inactive for other tasks, making mixture-of-experts (MoE) architectures a natural extension. Despite this, MoEs often show inconsistent behavior, with some experts unexpectedly generalizing across tasks while others struggle within their intended scope. This hinders leveraging MoEs' computational benefits by bypassing irrelevant experts during inference. We attribute this undesired behavior to the uniform and rigid architecture of traditional MoEs. To address this, we introduce ``complexity experts" -- flexible expert blocks with varying computational complexity and receptive fields. A key challenge is assigning tasks to each expert, as degradation complexity is unknown in advance. Thus, we execute tasks with a simple bias toward lower complexity. To our surprise, this preference effectively drives task-specific allocation, assigning tasks to experts with the appropriate complexity. Extensive experiments validate our approach, demonstrating the ability to bypass irrelevant experts during inference while maintaining superior performance. The proposed MoCE-IR model outperforms state-of-the-art methods, affirming its efficiency and practical applicability.
+            While vision transformers achieve significant breakthroughs in various image restoration (IR) tasks, it is still challenging to efficiently scale them across multiple types of degradations and resolutions. In this paper, we propose Fractal-IR, a fractal-based design that progressively refines degraded images by repeatedly expanding local information into broader regions. This fractal architecture naturally captures local details at early stages and seamlessly transitions toward global context in deeper fractal stages, removing the need for computationally heavy long-range self-attention mechanisms. Moveover, we observe the challenge in scaling up vision transformers for IR tasks. Through a series of analyses, we identify a holistic set of strategies to effectively guide model scaling. Extensive experimental results show that Fractal-IR achieves state-of-the-art performance in seven common image restoration tasks, including super-resolution, denoising, JPEG artifact removal, IR in adverse weather conditions, motion deblurring, defocus deblurring, and demosaicking. For 2X SR on Manga109, Fractal-IR achieves a 0.21 dB PSNR gain. For grayscale image denoising on Urban100, Fractal-IR surpasses the previous method by 0.2 dB for $\sigma=50$.
           </p>
         </div>
       </div>
@@ -346,11 +346,13 @@
 <section class="section" id="Citation">
   <div class="container is-max-desktop content">
     <h2 class="title">Citation</h2>
-    <pre><code>@misc{zamfir2024complexityexperts,
-      title={Complexity Experts are Task-Discriminative Learners for Any Image Restoration}, 
-      author={Eduard Zamfir and Zongwei Wu and Nancy Mehta and Yuedong Tan and Danda Pani Paudel and Yulun Zhang and Radu Timofte},
+    <pre><code>@misc{li2025fractalir,
+      title={Fractal-IR: A Unified Framework for Efficient and Scalable Image Restoration}, 
+      author={Yawei Li and Bin Ren and Jingyun Liang and Rakesh Ranjan and Mengyuan Liu and Nicu Sebe and Ming-Hsuan Yang and Luca Benini},
       year={2025},
-      journal={CVPR},
+      eprint={2503.17825v1},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
 }
 </code></pre>
   </div>
@@ -360,10 +362,11 @@
 <footer class="footer">
   <div class="container">
     <div class="columns is-centered">
-      <div class="column is-8">
+      <div class="column is-9">
         <div class="content">
           <p>
-            This website is borrowed from <a rel="license" href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+            This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>. 
+            Website source code based on the <a rel="license" href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> project page
           </p>
         </div>
       </div>
