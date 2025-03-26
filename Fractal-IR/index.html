@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Fractal-IR: A Unified Framework for Efficient and Scalable Image Restoration">
+  <meta name="keywords" content="Mixture-of-Experts, Image Restoration, Efficiency">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fractal-IR: A Unified Framework for Efficient and Scalable Image Restoration</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./website/static/css/bulma.min.css">
+  <link rel="stylesheet" href="./website/static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./website/static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./website/static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./website/static/css/index.css">
+  <link rel="icon" href="./website/static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./website/static/js/fontawesome.all.min.js"></script>
+  <script src="./website/static/js/bulma-carousel.min.js"></script>
+  <script src="./website/static/js/bulma-slider.min.js"></script>
+  <script src="./website/static/js/index.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-2 publication-title">Complexity Experts are Task-Discriminative Learners for Any Image Restoration</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://eduardzamfir.github.io">Eduard Zamfir<sup>1</sup></a>
+            </span>
+              <span class="author-block">
+                <a href="https://sites.google.com/view/zwwu/accueil">Zongwei Wu<sup>1*</sup></a>
+              </span>
+              <span class="author-block">
+                <a href="https://scholar.google.co.in/citations?user=WwdYdlUAAAAJ&hl=en">Nancy Mehta<sup>1</sup></a>
+              </span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=p7fOQkUAAAAJ&hl=en">Yuedong Tan<sup>1</sup></a>
+              </span>
+          </div>
+          <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://insait.ai/dr-danda-paudel/">Danda Pani Paudel<sup>2</sup></a>
+              </span>
+              <span class="author-block">
+                <a href="https://yulunzhang.com">Yulun Zhang<sup>3</sup></a>
+              </span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=u3MwH5kAAAAJ&hl=en&oi=ao">Radu Timofte<sup>1</sup></a>
+              </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>University of Würzburg, Germany</span>
+            <span class="author-block"><sup>2</sup>INSAIT Sofia University, Bulgaria</span>
+            <span class="author-block"><sup>3</sup>Shanghai Jiao Tong University, China</span>
+            <br>
+            <span style="font-size: 1.5em; font-weight: bold;">CVPR 2025, Nashville</span>
+          </div>
+
+
+          <div class="is-size-5 publication-authors">
+            <span><span style="font-size: 0.75em"><sup>*</sup>Corresponding Author</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2411.18466"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/eduardzamfir/MoCE-IR"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              
+              <!-- Dataset Link. -->
+              <!--<span class="link-block">
+                <a href="https://github.com"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>-->
+                </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script defer src="https://unpkg.com/img-comparison-slider@7/dist/index.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/img-comparison-slider@7/dist/styles.css"/>
+
+<style>
+  .slider-example-split-line {
+    --divider-width: 4px;
+    --divider-color: #ffa658;
+    --default-handle-opacity: 0;
+  }
+
+  .before,
+  .after { margin: 0; }
+
+  .before figcaption,
+  .after figcaption {
+    background: #fff;
+    border: 1px solid #c0c0c0;
+    border-radius: 12px;
+    color: #2e3452;
+    opacity: 0.8;
+    padding: 12px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    line-height: 100%;
+  }
+
+  .before figcaption {left: 12px;}
+  .after figcaption { right: 12px;}
+
+  .image-sliders-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Adjust the gap between sliders as needed */
+  }
+
+  .image-slider {
+    flex: 1;
+    min-width: 200px; /* Minimum width for each slider */
+  }
+
+  .image-slider img {
+    height: 300px; /* Set a fixed height for the images */
+    width: 100%;
+    object-fit: cover; /* Crop the images to fit the fixed height */
+  }
+</style>
+
+<div class="image-sliders-container">
+  <img-comparison-slider tabindex="0" class="slider-example-split-line image-slider" hover="hover">
+    <figure slot="first" class="after">
+      <img src="./assets/ours/00074.png" alt="Ours">
+      <figcaption><strong>Ours</strong></figcaption>
+    </figure>
+    <figure slot="second" class="before">
+      <img src="./assets/lr/00074.png" alt="Before">
+      <figcaption><strong>Before</strong></figcaption>
+    </figure>
+  </img-comparison-slider>
+
+  <img-comparison-slider tabindex="0" class="slider-example-split-line image-slider" hover="hover">
+    <figure slot="first" class="after">
+      <img src="./assets/ours/01218.png" alt="Ours">
+      <figcaption><strong>Ours</strong></figcaption>
+    </figure>
+    <figure slot="second" class="before">
+      <img src="./assets/lr/01218.png" alt="Before">
+      <figcaption><strong>Before</strong></figcaption>
+    </figure>
+  </img-comparison-slider>
+
+  <img-comparison-slider tabindex="0" class="slider-example-split-line image-slider" hover="hover">
+    <figure slot="first" class="after">
+      <img src="./assets/ours/07087.png" alt="Ours">
+      <figcaption><strong>Ours</strong></figcaption>
+    </figure>
+    <figure slot="second" class="before">
+      <img src="./assets/lr/07087.png" alt="Before">
+      <figcaption><strong>Before</strong></figcaption>
+    </figure>
+  </img-comparison-slider>
+</div>
+
+<div class="image-sliders-container">
+  <img-comparison-slider tabindex="0" class="slider-example-split-line image-slider" hover="hover">
+    <figure slot="first" class="after">
+      <img src="./assets/ours/00072.png" alt="Ours">
+      <figcaption><strong>Ours</strong></figcaption>
+    </figure>
+    <figure slot="second" class="before">
+      <img src="./assets/lr/00072.png" alt="Before">
+      <figcaption><strong>Before</strong></figcaption>
+    </figure>
+  </img-comparison-slider>
+
+  <img-comparison-slider tabindex="0" class="slider-example-split-line image-slider" hover="hover">
+    <figure slot="first" class="after">
+      <img src="./assets/ours/00714.png" alt="Ours">
+      <figcaption><strong>Ours</strong></figcaption>
+    </figure>
+    <figure slot="second" class="before">
+      <img src="./assets/lr/00714.png" alt="Before">
+      <figcaption><strong>Before</strong></figcaption>
+    </figure>
+  </img-comparison-slider>
+
+  <img-comparison-slider tabindex="0" class="slider-example-split-line image-slider" hover="hover">
+    <figure slot="first" class="after">
+      <img src="./assets/ours/00374.png" alt="Ours">
+      <figcaption><strong>Ours</strong></figcaption>
+    </figure>
+    <figure slot="second" class="before">
+      <img src="./assets/lr/00374.png" alt="Before">
+      <figcaption><strong>Before</strong></figcaption>
+    </figure>
+  </img-comparison-slider>
+</div>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Recent advancements in all-in-one image restoration models have revolutionized the ability to address diverse degradations through a unified framework. However, parameters tied to specific tasks often remain inactive for other tasks, making mixture-of-experts (MoE) architectures a natural extension. Despite this, MoEs often show inconsistent behavior, with some experts unexpectedly generalizing across tasks while others struggle within their intended scope. This hinders leveraging MoEs' computational benefits by bypassing irrelevant experts during inference. We attribute this undesired behavior to the uniform and rigid architecture of traditional MoEs. To address this, we introduce ``complexity experts" -- flexible expert blocks with varying computational complexity and receptive fields. A key challenge is assigning tasks to each expert, as degradation complexity is unknown in advance. Thus, we execute tasks with a simple bias toward lower complexity. To our surprise, this preference effectively drives task-specific allocation, assigning tasks to experts with the appropriate complexity. Extensive experiments validate our approach, demonstrating the ability to bypass irrelevant experts during inference while maintaining superior performance. The proposed MoCE-IR model outperforms state-of-the-art methods, affirming its efficiency and practical applicability.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  <!-- Image. -->
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <figure>
+        <img src="./assets/method.png" style="width:100%; height:auto;">
+        <figcaption>Architecture Overview</figcaption>
+      </figure>
+    </div>
+  </div>
+  </div>
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <!-- Motivation. -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Motivation</h2>
+            <div class="content has-text-justified">
+              <p>
+                (a) Dense all-in-one restoration methods often inefficiently allocate parameters when handling multiple degradation types.
+              </p>
+              <p>
+                (b) While recent Mixture-of-Experts (MoE) approaches address this through sparse computation, their rigid routing mechanisms uniformly distribute inputs across experts without considering the natural relationships between degradations. 
+              </p>
+              <p>
+                (c) To overcome these limitations, we introduce Complexity Experts - adaptive processing blocks with size-varying computational units. Our framework dynamically allocates model capacity using a spring-inspired force mechanism that continuously guides routing decisions toward simpler experts when possible, with the force proportional to the complexity of the input degradation. 
+                While initially designed for computational efficiency, this approach naturally emerges as a task-discriminative learning framework, assigning degradations to the most suitable experts. This makes it particularly effective for all-in-one restoration methods, where both task-specific processing and cross-degradation knowledge sharing are crucial.
+              </p>
+            </div>
+          </div>
+        </div>
+
+            <!-- Image. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <figure>
+          <img src="./assets/teaser.png" style="width:55%; height:auto;">
+          <figcaption>Motivation</figcaption>
+        </figure>
+      </div>
+    </div>
+    </div>
+
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <!-- Motivation. -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Visual Comparison</h2>
+            <div class="content has-text-justified">
+
+          <figure>
+            <img src="./assets/aio3.png" style="width:100%; height:auto;">
+            <figcaption>Restoration Results on Three Degradations</figcaption>
+          </figure>
+
+          <figure>
+            <img src="./assets/aio5.png" style="width:100%; height:auto;">
+            <figcaption>Restoration Results on Five Degradations</figcaption>
+          </figure>
+
+          <figure>
+            <img src="./assets/composited.png" style="width:100%; height:auto;">
+            <figcaption>Restoration Results on Composited Degradations</figcaption>
+          </figure>
+        </div>
+      </div>
+      </div>
+
+
+<section class="section" id="Citation">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Citation</h2>
+    <pre><code>@misc{zamfir2024complexityexperts,
+      title={Complexity Experts are Task-Discriminative Learners for Any Image Restoration}, 
+      author={Eduard Zamfir and Zongwei Wu and Nancy Mehta and Yuedong Tan and Danda Pani Paudel and Yulun Zhang and Radu Timofte},
+      year={2025},
+      journal={CVPR},
+}
+</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is borrowed from <a rel="license" href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
