@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hero</title>
+  <style>
+    :root { --max:1100px; --avatar-size:166px;}
+    html,body{ margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif; color:#111; }
+    /* 全屏宽的封面 */
+    .hero-bleed{ width:100vw; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw); }
+    .cover{ width:100%; height:clamp(220px, 36vw, 460px); }
+    .cover img{ width:100%; height:100%; object-fit:cover; display:block; }
+    /* 内部内容仍居中 */
+    .inner{ max-width:var(--max); margin:0 auto; padding:0 20px; position:relative; }
+    /* 卡片上移覆盖一点封面；为了 iframe 高度准确，这里额外加底部内边距 */
+    .stage{
+      margin-top: calc(var(--avatar-size) * -0.56); /* 上移覆盖封面 */
+      padding-bottom: 8px;                           /* 0~12 之间按手感调 */
+      text-align:center;
+    }
+    .avatar{
+      width:166px; height:166px; 
+      border-radius:50%; 
+      object-fit:cover;
+      border:4px solid #fff; 
+      background:#fff; 
+      box-shadow:0 6px 20px rgba(0,0,0,.15);
+    }
+    h1{ font-size:28px; font-weight:800; margin:12px 0 6px; }
+    .subtitle{ font-weight:700; margin:2px 0; }
+    .affil{ color:#666; margin-bottom:10px; }
+    .icons{ display:flex; gap:14px; justify-content:center; margin:6px 0 14px; }
+    .icon{
+      display:inline-flex; width:44px; height:44px; border-radius:70%;
+      align-items:center; justify-content:center; border:1px solid #e5e7eb;
+      color:#374151; text-decoration:none; transition:.15s;
+      background:#fff;
+    }
+    .icon:hover{ transform:translateY(-1px); box-shadow:0 2px 8px rgba(0,0,0,.08); }
+    .lead{ max-width:800px; margin:0 auto 16px; color:#4b5563; line-height:1.7; }
+    .btn{
+      display:inline-flex; align-items:center; gap:8px; padding:10px 16px;
+      border:1px solid #e5e7eb; border-radius:10px; background:linear-gradient(#fff,#f9fafb);
+      color:#111; text-decoration:none; box-shadow:0 1px 0 rgba(0,0,0,.03);
+    }
+    .btn:hover{ transform:translateY(-1px); box-shadow:0 3px 12px rgba(0,0,0,.08); }
+    @media (max-width:600px){ h1{font-size:24px;} }
+  </style>
+</head>
+<body>
+  <!-- 全屏宽封面 -->
+  <section class="hero-bleed">
+    <div class="cover">
+      <!-- 替换为你的大图 -->
+      <img src="image/cover.jpeg" alt="Cover">
+    </div>
+  </section>
+
+  <!-- 内部内容（限制宽度居中） -->
+  <div class="inner">
+    <div class="stage">
+      <!-- 头像 -->
+      <img class="avatar" src="image/photo_binren.png" alt="Bin Ren">
+
+      <!-- 文本 -->
+      <h1>Bin Ren (任斌)</h1>
+      <div class="subtitle">Ph.D. Candidate </div>
+      <div class="affil">University of Pisa & University of Trento, Italy </div>
+
+      <!-- 社交图标（内置 SVG） -->
+      <div class="icons">
+        <a class="icon" href="mailto:bin.ren@unitn.it" title="Email" aria-label="Email">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M3 6.75A1.75 1.75 0 0 1 4.75 5h14.5A1.75 1.75 0 0 1 21 6.75v10.5A1.75 1.75 0 0 1 19.25 19H4.75A1.75 1.75 0 0 1 3 17.25V6.75Z" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a class="icon" href="https://scholar.google.com/citations?user=Md9maLYAAAAJ&hl=en" target="_blank" rel="noopener" title="Google Scholar" aria-label="Google Scholar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M3 9l9-4 9 4-9 4-9-4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            <path d="M7 11v3c0 1.66 4 3 5 3s5-1.34 5-3v-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </a>
+        <a class="icon" href="https://github.com/Amazingren" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56v-2.1c-3.22.7-3.9-1.55-3.9-1.55-.53-1.36-1.3-1.73-1.3-1.73-1.07-.74.08-.72.08-.72 1.18.08 1.8 1.22 1.8 1.22 1.05 1.8 2.76 1.28 3.43.98.11-.77.41-1.28.74-1.58-2.57-.29-5.27-1.3-5.27-5.78 0-1.28.46-2.33 1.22-3.15-.12-.3-.53-1.5.12-3.12 0 0 .99-.32 3.25 1.2a11.3 11.3 0 0 1 5.92 0c2.26-1.52 3.24-1.2 3.24-1.2.66 1.62.25 2.82.13 3.12.76.82 1.21 1.87 1.21 3.15 0 4.49-2.71 5.48-5.29 5.77.42.36.79 1.07.79 2.16v3.2c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/>
+          </svg>
+        </a>
+        <a class="icon" href="https://twitter.com/Hello_RenBin" target="_blank" rel="noopener" title="Twitter" aria-label="Twitter">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M18.9 3H21l-8.1 9.26L21.5 21H15l-5.1-6.05L4 21H1.9l8.7-9.9L2.5 3H9l4.6 5.46L18.9 3Zm-3.2 16h1.7L8.4 5H6.7l9 14Z"/>
+          </svg>
+        </a>
+        <a class="icon" href="https://www.linkedin.com/in/bin-ren-881243111/" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5ZM.5 8.5h4V23h-4V8.5Zm7.5 0h3.8v2h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V23h-4v-5.8c0-1.38-.02-3.16-1.93-3.16-1.94 0-2.24 1.5-2.24 3.06V23h-4V8.5Z"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- <p class="lead">I work on low-level vision, 3D Gaussian splatting, and multi-modal LLMs.</p> -->
+
+      <a class="btn" href="cv/Bin_Ren_CV.pdf">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M12 3v10m0 0 4-4m-4 4-4-4M4 17h16v3H4v-3Z"
+                stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Download Résumé
+      </a>
+    </div>
+  </div>
+</body>
+</html>

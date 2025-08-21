@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Research Overview</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root{
+      --bg:#ffffff; --text:#1a1a1a; --muted:#6b7280;
+      --stroke:#e5e7eb; --stroke-2:#d1d5db;
+      --accent:#2563eb; --chip:#eef2ff; --chip-hover:#e0e7ff;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --bg:#0b0f17; --text:#e5e7eb; --muted:#9aa4b2;
+        --stroke:#263042; --stroke-2:#2f3a4f;
+        --accent:#60a5fa; --chip:#182132; --chip-hover:#1d2740;
+      }
+    }
+    html,body{ margin:0; background:var(--bg); color:var(--text);
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif; }
+    .title{ font-weight:1000; font-size:22px; margin:14px 18px 6px; }
+    .hr{ height:1px; background:var(--stroke); margin:0 18px 8px; }
+    svg{ width:100%; height:auto; display:block; }
+    .link path{ fill:none; stroke:var(--stroke-2); stroke-width:1.6px; }
+    .link path.active{ stroke:var(--accent); stroke-width:2.4px; }
+    .node circle{ r:3.5; fill:var(--muted); }
+    .node.leaf circle{ fill:#8b949e; }
+    .label{ font-size:14px; fill:var(--text); }
+    .chip text{ font-size:14px; fill:var(--accent); }
+    .chip rect{ fill:var(--chip); rx:10; ry:10; }
+    .chip:hover rect{ fill:var(--chip-hover); }
+    .chip:hover text{ text-decoration:underline; }
+  </style>
+</head>
+<body>
+  <div class="title">🧠 Research Overview</div>
+  <div class="hr"></div>
+  <svg id="chart"></svg>
+
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script>
+  // ---------- The Meta Data of My Research Overview ----------
+  const data = {
+    name: "Representation Learning",
+    children: [
+      { name: "Low-Level Vision (2D)", children: [
+          { name: "Efficient Image Restoration", children: [
+              { name: "SemanIR (NeurIPS'24)" }
+          ]},
+          { name: "All-in-One Image Resolution", children: [
+              { name: "AnyIR (preprint'25)", url:"https://cvlai.net/ntire/2024/" },
+              { name: "MIRAGE (preprint'25)", url:"https://cvlai.net/ntire/2024/" }
+          ]},
+      ]},
+      { name: "Scene Understanding (3D)", children: [
+          { name: "3D Point Cloud", children: [
+              { name: "Point-CMAE (ACCV'24)", url:"https://cvlai.net/ntire/2024/" },
+              { name: "MaskClu (preprint'25)", url:"https://cvlai.net/ntire/2024/" },
+              { name: "S4Token (preprint'25)", url:"https://cvlai.net/ntire/2024/" }
+          ]},
+          { name: "3D Gaussian Splatting", children: [
+              { name: "ShapeSplat (3DV'25)", url:"https://cvlai.net/ntire/2024/" },
+              { name: "SceneSplat (ICCV'25)", url:"https://cvlai.net/ntire/2024/" },
+              { name: "SceneSplat++ (preprint'25)", url:"https://cvlai.net/ntire/2024/" }
+          ]},
+      ]},
+      { name: "Vision Transformers", children: [
+          { name: "Positon Embedding (CVPR'23)" },
+          { name: "Attention (preprint'25)" }
+      ]},
+      { name: "Others (Generative Models)", children: [
+          { name: "Image Translation",},
+          { name: "Fashion",}
+      ]},
+    ]
+  };
+
+  const svg = d3.select("#chart");
+  const margin = { top: 12, right: 24, bottom: 24, left: 160 };
+  let nodeId = 0;
+
+  function render(){
+    svg.selectAll("*").remove();
+
+    // 尺寸
+    const width = Math.min(1100, Math.max(820, document.documentElement.clientWidth - 40));
+    const dx = 28;         // 垂直行距
+    const dy = 230;        // 水平列距
+    const tree = d3.tree().nodeSize([dx, dy]);
+
+    const root = d3.hierarchy(data);
+    root.each(d => d.id = ++nodeId);
+    tree(root);
+
+    // 高度自适应
+    let x0 = Infinity, x1 = -x0;
+    root.each(d => { if (d.x > x1) x1 = d.x; if (d.x < x0) x0 = d.x; });
+    const height = Math.max(440, x1 - x0 + margin.top + margin.bottom + 40);
+
+    svg.attr("viewBox", [0, 0, width, height]);
+
+    const g = svg.append("g")
+      .attr("transform", `translate(${margin.left - 120},${margin.top - x0})`);
+
+    // 连接线
+    const linkSel = g.append("g").attr("class", "link")
+      .selectAll("path")
+      .data(root.links())
+      .join("path")
+      .attr("d", d3.linkHorizontal().x(d => d.y).y(d => d.x));
+
+    // 节点
+    const node = g.append("g")
+      .selectAll("g")
+      .data(root.descendants())
+      .join("g")
+      .attr("class", d => "node" + (d.children ? "" : " leaf"))
+      .attr("transform", d => `translate(${d.y},${d.x})`)
+      .on("mouseover", (e,d) => {
+        const set = new Set(d.ancestors().map(n => n.id));
+        linkSel.classed("active", L => set.has(L.target.id));
+      })
+      .on("mouseout", () => linkSel.classed("active", false));
+
+    node.append("circle");
+
+    // 文本/链接：普通标签 or chip
+    node.each(function(d){
+      const sel = d3.select(this);
+      const xPad = 10, yPad = 6, x0 = 10; // label 左偏移与内边距
+
+      if (d.data && d.data.url) {
+        const chip = sel.append("a").attr("xlink:href", d.data.url)
+                        .attr("target","_blank").attr("class","chip");
+        const text = chip.append("text")
+          .attr("dominant-baseline","middle")
+          .attr("x", x0 + xPad).attr("y", 0)
+          .text(d.data.name);
+
+        // 计算文本尺寸，绘制圆角底
+        const bb = text.node().getBBox();
+        chip.insert("rect", "text")
+          .attr("x", x0).attr("y", -bb.height/2 - yPad + 1)
+          .attr("width", bb.width + 2*xPad).attr("height", bb.height + 2*yPad);
+      } else {
+        sel.append("text")
+          .attr("class","label")
+          .attr("dominant-baseline","middle")
+          .attr("x", 10).attr("y", 0)
+          .text(d.data ? d.data.name : "");
+      }
+    });
+  }
+
+  render();
+  window.addEventListener("resize", render);
+  </script>
+</body>
+</html>

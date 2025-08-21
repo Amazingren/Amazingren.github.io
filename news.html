@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>News</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f9f9f9;
+    }
+
+    .news-card {
+      width: 700px;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      overflow: hidden; /* 让标题和内容保持一个整体 */
+    }
+
+    .news-heading {
+      font-size: 20px;
+      font-weight: bold;
+      padding: 12px;
+      text-align: center;
+      border-bottom: 1px solid #ccc;
+      background: #fafafa;
+    }
+
+    .news-container {
+      height: 200px;
+      overflow-y: auto;                /* 仅内容滚动 */
+      scrollbar-gutter: stable both-edges; /* 让两边对称 */
+      box-sizing: border-box;
+      padding: 15px;
+      font-size: 12px;
+    }
+
+    /* 兼容旧浏览器：预留滚动条宽度 */
+    @supports not (scrollbar-gutter: stable) {
+      .news-container { padding-right: 28px; }
+    }
+
+    .news-container ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .news-container li {
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .news-container li strong {
+      color: #b22222;
+    }
+  </style>
+</head>
+<body>
+  <div class="news-card">
+    <div class="news-heading">News</div>
+    <div class="news-container">
+      <ul>
+        <li>🍾2024/12: Our paper "HYRE: Hybrid Regressor for 3D Human Pose and Shape Estimation" has been accepted to <strong>TIP</strong>.</li>
+        <li>🍾2024/11: Our paper "ShapeSplat: A Large-scale Dataset of Gaussian Splats and Their Self-Supervised Pretraining" has been accepted to <strong>3DV2025</strong>.</li>
+        <li>🍾2024/09: Our paper "Sharing Key Semantics in Transformer Makes Efficient Image Restoration" has been accepted to <strong>NeurIPS2024</strong>.</li>
+        <li>🍾2024/09: Our paper "Bringing masked autoencoders explicit contrastive properties for point cloud self-supervised learning" has been accepted to <strong>ACCV2024</strong>.</li>
+        <li>🍾2024/08: Our paper "A Pure MLP-Mixer-based GAN Framework for Guided Image Translation" has been accepted to <strong>PR2024</strong>.</li>
+        <li>📌2024/03: I joined <a href="https://insait.ai/" target="_blank">INSAIT</a> in Sofia as a visiting Ph.D. student.</li>
+        <li>💥2024/02: We are organizing the NTIRE2024 Efficient Super-Resolution Challenge! Come and join via: <a href="https://cvlai.net/ntire/2024/" target="_blank">NTIRE2024</a></li>
+        <li>🍾2024/01: Our paper "A survey on 3d skeleton-based action recognition using learning method" has been accepted as oral by <strong>CBS2024</strong>.</li>
+        <li>🍾2023/11: Our paper "Modiff: Action-conditioned 3d motion generation with denoising diffusion probabilistic models" has been accepted as oral by <strong>ICASSP2024</strong>.</li>
+        <li>🍾2023/08: Our paper "Spatio-Temporal Graph Diffusion for Text-Driven Human Motion Generation" has been accepted as oral by <strong>BMVC2023</strong>.</li>
+        <li>🍾2023/08: Our paper "Cloth Interactive Transformer for Virtual Try-On" has been accepted by <strong>ACM ToMM 2023</strong>.</li>
+        <li>📌2023/08: I joined the <a href="https://vision.ee.ethz.ch/" target="_blank">Computer Vision Lab (CVL)</a> of <a href="https://ethz.ch/en.html" target="_blank">ETH Zürich</a> in Switzerland as a 6-month academic visiting Ph.D. Student.</li>
+        <li>🍾2023/03: Our paper "Masked Jigsaw Puzzle: A Versatile Position Embedding for Vision Transformers" has been accepted by <strong>CVPR2023</strong>.</li>
+        <li>🍾2023/02: Our paper "PI-Trans: Parallel-ConvMLP and Implicit-Transformation Based GAN for Cross-View Image Translation" has been accepted by <strong>ICASSP2023</strong>.</li>
+        <li>🍾2022/10: Our paper "Deep Unsupervised Key Frame Extraction for Efficient Video Classification" has been accepted by <strong>TOMM2022</strong>.</li>
+        <li>🍾2021/10: Our paper "Cascaded Cross MLP-Mixer GANs for Cross-View Image Translation" has been accepted by <strong>BMVC2021</strong> as oral.</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

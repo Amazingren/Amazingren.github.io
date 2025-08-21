@@ -43,69 +43,87 @@
 </script>
 
 <body>
-  <table style="width:100%;max-width:1000px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+  <table style="width:100%;max-width:900px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
     <tr style="padding:0px">
       <td style="padding:0px">
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
           <tr style="padding:0px">
 
+
 <script>
   function resizeIframe(el){
     try{
+      if (!el || !el.contentWindow) return;
       const doc = el.contentWindow.document;
-      // 取页面真实高度，考虑 transform 造成的覆盖，这里加一点安全余量
       const h = Math.max(
-        doc.body?.scrollHeight || 0,
-        doc.documentElement?.scrollHeight || 0
-      ) + 4;
+        doc.body ? doc.body.scrollHeight : 0,
+        doc.documentElement ? doc.documentElement.scrollHeight : 0
+      );
       el.style.height = h + 'px';
     }catch(e){}
   }
 </script>
 
-<!-- Full-bleed Hero (iframe 引入) -->
-<div style="width:100vw; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw);">
-  <iframe src="hero.html"
-          style="display:block; width:100vw; border:0;"
-          scrolling="no"
-          onload="resizeIframe(this)"></iframe>
-</div>
 
-
-
-<!-- Bio（text-only, no photo/links duplicated） -->
+<!-- Profile photo & Bio -->
 <tr>
-  <td style="padding:0.1%; width:100%; vertical-align:top;">
+  <!-- 左列：照片 + 链接 -->
+  <td style="padding:1%; width:38%; max-width:38%; vertical-align:middle;">
+    <div style="display:flex; flex-direction:column; align-items:center;">
+      <a href="image/photo_binren.png">
+        <img src="image/photo_binren.png"
+            alt="profile photo"
+            class="hoverZoomLink bio-photo">
+      </a>
+
+      <p style="text-align:center; margin:10px 0 0;">
+        <a href="mailto:bin.ren@unitn.it">Email</a> &nbsp;/&nbsp;
+        <a href="https://scholar.google.com/citations?user=Md9maLYAAAAJ&hl=en">Google Scholar</a> &nbsp;/&nbsp;
+        <a href="https://github.com/Amazingren">Github</a> &nbsp;/&nbsp;
+        <a href="https://twitter.com/Hello_RenBin">Twitter</a> &nbsp;/&nbsp;
+        <a href="https://www.linkedin.com/in/bin-ren-881243111/">LinkedIn</a>
+      </p>
+
+    </div>
+  </td>
+
+  <!-- 右列：个人简介 -->
+  <td style="padding:2.5%; width:62%; vertical-align:top;">
+    <p style="text-align:center; margin:0 0 8px 0;">
+      <name>Bin Ren (任斌)</name>
+    </p>
+
     <p class="justify-text">
       I am a third(last)-year Ph.D. student in the
       <a href="https://www.phd-ai.it/en/359-2/#">Italian National Artificial Intelligence Program</a>
       co-organized by <a href="https://www.unipi.it/index.php/english">the University of Pisa, Italy</a>, and
       <a href="https://www.unitn.it/en">the University of Trento, Italy</a>.
       I am in the <a href="http://mhug.disi.unitn.it/#">Multimedia and Human Understanding Group (MHUG)</a>
-      advised by <a href="https://scholar.google.com/citations?user=stFCYOAAAAAJ&hl=en">Prof. Dr. <strong>Nicu Sebe</strong></a> and
-      <a href="https://scholar.google.com/citations?user=OM3sZEoAAAAJ&hl=en">Prof. Dr. <strong>Rita Cucchiara</strong></a>.
-      During my Ph.D. time, I also spent time at ETH Zürich with 
-      <a href="https://scholar.google.com/citations?user=TwMib_QAAAAJ&hl=en">Prof. Dr. <strong>Luc Van Gool</strong></a> and
-      <a href="https://scholar.google.com/citations?user=IFLsTGsAAAAJ&hl=en">Dr. Yawei Li</a>,
-      and at INSAIT Sofia with 
-      <a href="https://scholar.google.com/citations?user=TwMib_QAAAAJ&hl=en">Prof. <strong>Luc Van Gool</strong></a> and
-      <a href="https://scholar.google.com/citations?user=W43pvPkAAAAJ&hl=en">Dr. Danda Pani Paudel</a>.
-      Prior to my Ph.D. studies, I received my master's degree under the supervision of
-      <a href="https://scholar.google.com/citations?user=4CQKG8oAAAAJ&hl=en">Prof. Dr. <strong>Hong Liu</strong></a> in computer science,
-      <a href="https://english.pku.edu.cn/">Peking University, China</a>, and received my B.Eng. degree (2016) in the College of Mechanical and Electrical Engineering,
-      <a href="https://en.csu.edu.cn/">Central South University, China</a>.
+      advised by <a href="https://scholar.google.com/citations?user=stFCYOAAAAAJ&hl=en">Prof. Dr. Nicu Sebe</a> and
+      <a href="https://scholar.google.com/citations?user=OM3sZEoAAAAJ&hl=en">Prof. Dr. Rita Cucchiara</a>.
+      Previously, I was an academic visiting student at the Computer Vision Lab (CVL) of ETH Zürich,
+      working closely with <a href="https://scholar.google.com/citations?user=IFLsTGsAAAAJ&hl=en">Dr. Yawei Li</a>
+      under the supervision of <a href="https://scholar.google.com/citations?user=TwMib_QAAAAJ&hl=en">Prof. Dr. Luc Van Gool</a>.
+      Currently, I am a visiting Ph.D. student at INSAIT, Sofia, working closely with
+      <a href="https://scholar.google.com/citations?user=W43pvPkAAAAJ&hl=en">Dr. Danda Pani Paudel</a> and
+      <a href="https://scholar.google.com/citations?user=TwMib_QAAAAJ&hl=en">Prof. Dr. Luc Van Gool</a> on LLMs.
     </p>
 
     <p class="justify-text">
       My research interests lie in the intersection of computer vision, and deep learning.
-      Motivated by exploring more informative deep representations by Vision Transformers (i.e, ViTs, and I really like Transformer!), I have worked mainly on tasks like:
-      <strong>Low-Level Vision (2D)</strong>, 
-      <strong>Scene Understanding (3D)</strong>,
-      and <strong>Multimodal Reasoning</strong> for various interesting applications.
+      Recently I have worked on <strong>Low-Level Vision</strong>, and <strong>3D Gaussian Splatting</strong>.
+      In addition, I've also begun exploring <strong>multi-modal LLMs</strong> like Llama and LLaVA.
     </p>
 
+    <p class="justify-text">
+      Prior to my Ph.D. studies, I received my master's degree (2021) under the supervision of
+      <a href="https://scholar.google.com/citations?user=4CQKG8oAAAAJ&hl=en">Prof. Hong Liu</a> in computer applied technology,
+      <a href="https://english.pku.edu.cn/">Peking University, China</a>, and received my B.Eng. degree (2016) in the College of Mechanical and Electrical Engineering,
+      <a href="https://en.csu.edu.cn/">Central South University, China</a>.
+    </p>
   </td>
 </tr>
+
 
 <!-- logos -->
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>

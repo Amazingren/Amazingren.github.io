@@ -129,3 +129,21 @@ name {
 span.highlight {
   background-color: #ffffd0;
 }
+
+/* 控制头像高度（等比缩小，不裁剪） */
+.bio-photo{
+  display:block;
+  max-width:66%;
+  height:auto;
+  max-height:500px;   /* 想更矮就调 260/280px */
+  border-radius:6px;
+  margin:0 auto;
+}
+
+/* 段落两端对齐（更自然的英文换行） */
+.justify-text{
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;      /* 需要 <html lang="en"> 才更有效 */
+  line-height: 1.5;
+}

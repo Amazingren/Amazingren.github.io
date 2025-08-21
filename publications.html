@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Publications</title>
+  <!-- 复用你现有样式，保持一致风格 -->
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <style>
+    body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif; }
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+    .section-title { font-size:24px; font-weight:700; margin: 10px 0 10px; }
+    table { width:100%; border:0; border-spacing:0; border-collapse:separate; margin:0 auto; }
+    td { vertical-align:middle; }
+    img { border:0; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="section-title">Publications</div>
+
+    <table>
+      <tbody>
+
+        <!-- pub 1 -->
+        <tr onmouseout="tomm1_stop()" onmouseover="tomm1_start()">
+          <td style="padding:20px;width:25%;vertical-align:middle">
+            <div class="one">
+              <div class="two" id='tomm1_image'>
+                <img src='image/cit_tomm23.jpg' width="120%" height="80%" alt="CIT alt view">
+              </div>
+              <img src='image/results_tomm23.jpg' width="120%" height="85%" alt="CIT preview">
+            </div>
+            <script type="text/javascript">
+              function tomm1_start() { document.getElementById('tomm1_image').style.opacity = "1"; }
+              function tomm1_stop()  { document.getElementById('tomm1_image').style.opacity = "0"; }
+              tomm1_stop();
+            </script>
+          </td>
+          <td style="padding:20px;width:75%;vertical-align:middle">
+            <a href="https://arxiv.org/pdf/2104.05519.pdf">
+              <papertitle>Cloth Interactive Transformer for Virtual Try-On</papertitle>
+            </a>
+            <br>
+            <strong>Bin Ren</strong>, 
+            <a href="https://scholar.google.com/citations?user=9zJkeEMAAAAJ&hl=en&oi=ao">Hao Tang</a>,   
+            <a href="https://scholar.google.com/citations?user=dv9BKcMAAAAJ&hl=en&oi=ao">Fanyang Meng</a>, 
+            <a href="https://scholar.google.com/citations?user=gU9chAwAAAAJ&hl=en&oi=ao">Runwei Ding</a>, 
+            <a href="https://scholar.google.com/citations?user=kPxa2w0AAAAJ&hl=en&oi=ao">Philip Hs Torr</a>, 
+            <a href="https://scholar.google.com/citations?user=stFCYOAAAAAJ&hl=en&oi=ao">Nicu Sebe</a>
+            <br>
+            <em>Transactions on Multimedia Computing Communications and Applications (ACM ToMM)</em>, 2023
+            <br>
+            <a href="https://arxiv.org/pdf/2104.05519.pdf">paper</a> /
+            <a href="https://github.com/Amazingren/CIT">code</a> /
+            <a href="bib/ren_tomm23_cit.txt">bibtex</a> 
+          </td>
+        </tr>	
+
+        <!-- pub 2 -->
+        <tr onmouseout="cvpr1_stop()" onmouseover="cvpr1_start()">
+          <td style="padding:20px;width:25%;vertical-align:middle">
+            <div class="one">
+              <div class="two" id='cvpr1_image'>
+                <img src='image/projection_cvpr23.jpeg' width="120%" height="85%" alt="MJP alt view">
+              </div>
+              <img src='image/mjp_cvpr23.jpeg' width="120%" height="85%" alt="MJP preview">
+            </div>
+            <script type="text/javascript">
+              function cvpr1_start() { document.getElementById('cvpr1_image').style.opacity = "1"; }
+              function cvpr1_stop()  { document.getElementById('cvpr1_image').style.opacity = "0"; }
+              cvpr1_stop();
+            </script>
+          </td>
+          <td style="padding:20px;width:75%;vertical-align:middle">
+            <a href="https://arxiv.org/pdf/2205.12551.pdf">
+              <papertitle>Masked Jigsaw Puzzle: A Versatile Position Embedding for Vision Transformers</papertitle>
+            </a>
+            <br>
+            <strong>Bin Ren</strong>, 
+            <a href="https://scholar.google.com/citations?user=P8qd0rEAAAAJ&hl=en&oi=ao">Yahui Liu</a>, 
+            <a href="https://scholar.google.com/citations?user=Uza2i10AAAAJ&hl=en&oi=ao">Yue Song</a>, 
+            <a href="https://scholar.google.com/citations?user=aSJcgQMAAAAJ&hl=en&oi=ao">Wei Bi</a>, 
+            <a href="https://scholar.google.com/citations?user=OM3sZEoAAAAJ&hl=en&oi=ao">Rita Cucchiara</a>, 
+            <a href="https://scholar.google.com/citations?user=stFCYOAAAAAJ&hl=en&oi=ao">Nicu Sebe</a>, 
+            <a href="https://scholar.google.com/citations?user=k4SdlbcAAAAJ&hl=en&oi=ao">Wei Wang</a>
+            <br>
+            <em>Computer Vision and Pattern Recognition (CVPR)</em>, 2023
+            <br>
+            <a href="https://arxiv.org/pdf/2205.12551.pdf">paper</a> /
+            <a href="https://github.com/yhlleo/MJP">code</a> /
+            <a href="bib/ren_cvpr23_mjp.txt">bibtex</a> 
+          </td>
+        </tr>	
+
+        <!-- pub 3 -->
+        <tr onmouseout="icassp1_stop()" onmouseover="icassp1_start()">
+          <td style="padding:20px;width:25%;vertical-align:middle">
+            <div class="one">
+              <div class="two" id='icassp1_image'>
+                <img src='image/framework_pitrans_icassp23.jpeg' width="120%" height="85%" alt="PI-Trans alt view">
+              </div>
+              <img src='image/simpleShow_pitrans_icassp23.jpeg' width="120%" height="85%" alt="PI-Trans preview">
+            </div>
+            <script type="text/javascript">
+              function icassp1_start() { document.getElementById('icassp1_image').style.opacity = "1"; }
+              function icassp1_stop()  { document.getElementById('icassp1_image').style.opacity = "0"; }
+              icassp1_stop();
+            </script>
+          </td>
+          <td style="padding:20px;width:75%;vertical-align:middle">
+            <a href="https://arxiv.org/pdf/2207.04242.pdf">
+              <papertitle>PI-Trans: Parallel-ConvMLP and Implicit-Transformation Based GAN for Cross-View Image Translation</papertitle>
+            </a>
+            <br>
+            <strong>Bin Ren</strong>, 
+            <a href="https://scholar.google.com/citations?user=9zJkeEMAAAAJ&hl=en&oi=ao">Hao Tang</a>, 
+            <a href="https://scholar.google.com/citations?user=KBZ3zrEAAAAJ&hl=en&oi=ao">Yiming Wang</a>, 
+            <a href="https://scholar.google.com/citations?user=XKGZhEcAAAAJ&hl=en&oi=ao">Xia Li</a>, 
+            <a href="https://scholar.google.com/citations?user=k4SdlbcAAAAJ&hl=en&oi=ao">Wei Wang</a>,
+            <a href="https://scholar.google.com/citations?user=stFCYOAAAAAJ&hl=en&oi=ao">Nicu Sebe</a> 
+            <br>
+            <em>International Conference on Acoustics, Speech and Signal Processing (ICASSP)</em>, 2023
+            <br>
+            <a href="https://arxiv.org/pdf/2207.04242.pdf">paper</a> /
+            <a href="https://github.com/Amazingren/PI-Trans">code</a> /
+            <a href="bib/ren_icassp23_pitrans.txt">bibtex</a> 
+          </td>
+        </tr>	
+
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
