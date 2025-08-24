@@ -147,3 +147,21 @@ span.highlight {
   hyphens: auto;      /* 需要 <html lang="en"> 才更有效 */
   line-height: 1.5;
 }
+
+.badge {
+  display: inline-block;
+  padding: 2px 6px;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 6px;
+  color: #fff;
+  margin-right: 6px;
+}
+
+.badge.journal {
+  background-color: #0d9488; /* 蓝绿色 */
+}
+
+.badge.conf {
+  background-color: #f97316; /* 橙色 */
+}
