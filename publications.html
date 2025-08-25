@@ -22,14 +22,55 @@
     </div>
     <table>
       <tbody>
+        <!-- pub NeurIPS'2024 -->
+        <tr onmouseout="neurips1_stop()" onmouseover="neurips1_start()">
+          <td style="padding:20px;width:25%;vertical-align:middle">
+            <div class="one">
+              <div class="two" id='neurips1_image'>
+                <img src='image/neurips24_semanir_framework.png' width="120%" height="80%" alt="SemanIR alt view">
+              </div>
+              <img src='image/neurips24_semanir_motivation.png' width="120%" height="85%" alt="SemanIR preview">
+            </div>
+            <script type="text/javascript">
+              function neurips1_start() { document.getElementById('neurips1_image').style.opacity = "0"; }
+              function neurips1_stop()  { document.getElementById('neurips1_image').style.opacity = "1"; }
+              neurips1_stop();
+            </script>
+          </td>
+          <td style="padding:20px;width:75%;vertical-align:middle">
+            <a href="https://proceedings.neurips.cc/paper_files/paper/2024/file/0e0a6539d1270ae8cd3a722eaff247ab-Paper-Conference.pdf">
+              <papertitle>
+                <span class="badge conf">Conference</span>
+                	Sharing Key Semantics in Transformer Makes Efficient Image Restoration
+              </papertitle>
+            </a>
+            <br>
+            <strong>Bin Ren</strong>,
+            <a href="https://scholar.google.com/citations?user=IFLsTGsAAAAJ&hl=en">Yawei Li</a>,
+            <a href="https://scholar.google.com/citations?user=3-Hz9BgAAAAJ&hl=en">Jingyun Liang</a>,
+            <a href="https://www.linkedin.com/in/rakesh-r-3848538/">Rakesh Ranjan</a>,
+            <a href="https://scholar.google.com/citations?user=woX_4AcAAAAJ&hl=en">Mengyuan Liu</a>, 
+            <a href="https://scholar.google.com/citations?user=OM3sZEoAAAAJ&hl=en">Rita Cucchiara</a>, 
+            <a href="https://scholar.google.com/citations?user=TwMib_QAAAAJ&hl=en">Luc Van Gool</a>,
+            <a href="https://scholar.google.com/citations?user=p9-ohHsAAAAJ&hl=en">Ming-Hsuan Yang</a>,
+            <a href="https://scholar.google.com/citations?user=stFCYOAAAAAJ&hl=en">Nicu Sebe</a>
+            <br>
+            <em>Advances in Neural Information Processing Systems (NeurIPS)</em>, 2024
+            <br>
+            <a href="https://proceedings.neurips.cc/paper_files/paper/2024/file/0e0a6539d1270ae8cd3a722eaff247ab-Paper-Conference.pdf">paper</a> /
+            <a href="https://github.com/Amazingren/SemanIR">code</a> /
+            <a href="bib/ren_accv24_pointcmae.txt">bibtex</a> 
+          </td>
+        </tr>	
+
         <!-- pub ACCV'2024 -->
         <tr onmouseout="accv1_stop()" onmouseover="accv1_start()">
           <td style="padding:20px;width:25%;vertical-align:middle">
             <div class="one">
               <div class="two" id='accv1_image'>
-                <img src='image/accv24_cmae_framework.png' width="120%" height="80%" alt="CIT alt view">
+                <img src='image/accv24_cmae_framework.png' width="120%" height="80%" alt="CMAE alt view">
               </div>
-              <img src='image/accv24_cmae_results.png' width="120%" height="85%" alt="CIT preview">
+              <img src='image/accv24_cmae_results.png' width="120%" height="85%" alt="CMAE preview">
             </div>
             <script type="text/javascript">
               function accv1_start() { document.getElementById('accv1_image').style.opacity = "1"; }
@@ -41,7 +82,7 @@
             <a href="https://openaccess.thecvf.com/content/ACCV2024/papers/Ren_Bringing_Masked_Autoencoders_Explicit_Contrastive_Properties_for_Point_Cloud_Self-Supervised_ACCV_2024_paper.pdf">
               <papertitle>
                 <span class="badge conf">Conference</span>
-                Bringing masked autoencoders explicit contrastive properties for point cloud self-supervised learning
+                Bringing Masked Autoencoders Explicit Contrastive Properties for Point Cloud Self-Supervised Learning
               </papertitle>
             </a>
             <br>

@@ -1,0 +1,8 @@
+@article{ren2024sharing,
+  title={Sharing key semantics in transformer makes efficient image restoration},
+  author={Ren, Bin and Li, Yawei and Liang, Jingyun and Ranjan, Rakesh and Liu, Mengyuan and Cucchiara, Rita and Gool, Luc V and Yang, Ming-Hsuan and Sebe, Nicu},
+  journal={Advances in Neural Information Processing Systems},
+  volume={37},
+  pages={7427--7463},
+  year={2024}
+}
