@@ -2,225 +2,246 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <!-- 所有链接默认新标签页打开，避免在 iframe 内被拦 -->
   <base target="_blank">
   <title>Selected Publications</title>
-  <!-- 复用你现有样式，保持一致风格 -->
-  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+
+  <!-- 你的全站样式（若有） -->
+  <link rel="stylesheet" href="stylesheet.css">
+
   <style>
+    /* 页面与容器 */
     body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif; }
     .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-    .section-title { font-size:24px; font-weight:700; margin: 10px 0 10px; }
-    table { width:100%; border:0; border-spacing:0; border-collapse:separate; margin:0 auto; }
-    td { vertical-align:middle; }
-    img { border:0; }
+    .section-title { font-size:24px; font-weight:700; margin: 10px 0; }
+
+    /* 表格更紧凑 + 隔行淡黄 */
+    table { width:100%; border-collapse: separate; border-spacing: 0; }
+    tbody tr td { padding: 12px 14px; } /* 比原来更紧凑 */
+    tbody tr:nth-of-type(even) {
+      background: #fff1d3; /* 淡黄 */
+    }
+    tbody tr:nth-of-type(even) td:first-child { border-top-left-radius: 10px; border-bottom-left-radius: 10px; }
+    tbody tr:nth-of-type(even) td:last-child  { border-top-right-radius: 10px; border-bottom-right-radius: 10px; }
+
+    /* 标题行更紧凑 */
+    papertitle { line-height: 1.25; display: inline-block; }
+
+    /* 缩略图容器：固定比例 + 防畸变 + 纯 CSS hover 切图 */
+    .thumb {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 3;     /* 需要 16:9 就改成 16/9 */
+      overflow: hidden;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,.06);
+    }
+    .thumb img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: contain;      /* 关键：不拉伸变形 */
+      transition: opacity .2s ease;
+    }
+    .thumb .alt { opacity: 0; }        /* 第二张（悬停显示） */
+    .thumb:hover .alt { opacity: 1; }  /* 悬停时显示第二张 */
+
+    /* 链接行（paper/code/bibtex）更紧凑 */
+    .links a { margin-right: 6px; }
   </style>
 </head>
+
 <body>
   <div class="container">
     <div class="section-title">
-      Selected Publications <span style="font-size:0.5em; font-weight:normal;">(*: Co-first author, †: Corresponding author)</span>
+      Selected Publications
+      <span style="font-size:0.55em; font-weight:normal; opacity:.8;">
+        (*: Co-first author, †: Corresponding author)
+      </span>
     </div>
+
     <table>
       <tbody>
-        <!-- pub NeurIPS'2024 -->
-        <tr onmouseout="neurips1_stop()" onmouseover="neurips1_start()">
-          <td style="padding:20px;width:25%;vertical-align:middle">
-            <div class="one">
-              <div class="two" id='neurips1_image'>
-                <img src='image/neurips24_semanir_framework.png' width="120%" height="80%" alt="SemanIR alt view">
-              </div>
-              <img src='image/neurips24_semanir_motivation.png' width="120%" height="85%" alt="SemanIR preview">
+
+        <!-- ===== NeurIPS 2024 ===== -->
+        <tr>
+          <td style="width:25%;">
+            <div class="thumb">
+              <img src="image/neurips24_semanir_motivation.png" alt="SemanIR preview">
+              <img class="alt" src="image/neurips24_semanir_framework.png" alt="SemanIR alt view">
             </div>
-            <script type="text/javascript">
-              function neurips1_start() { document.getElementById('neurips1_image').style.opacity = "0"; }
-              function neurips1_stop()  { document.getElementById('neurips1_image').style.opacity = "1"; }
-              neurips1_stop();
-            </script>
           </td>
-          <td style="padding:20px;width:75%;vertical-align:middle">
+          <td style="width:75%;">
             <a href="https://proceedings.neurips.cc/paper_files/paper/2024/file/0e0a6539d1270ae8cd3a722eaff247ab-Paper-Conference.pdf">
               <papertitle>
                 <span class="badge conf">Conference</span>
-                	Sharing Key Semantics in Transformer Makes Efficient Image Restoration
+                Sharing Key Semantics in Transformer Makes Efficient Image Restoration
               </papertitle>
-            </a>
-            <br>
+            </a><br>
             <strong>Bin Ren</strong>,
             <a href="https://scholar.google.com/citations?user=IFLsTGsAAAAJ&hl=en">Yawei Li</a>,
             <a href="https://scholar.google.com/citations?user=3-Hz9BgAAAAJ&hl=en">Jingyun Liang</a>,
             <a href="https://www.linkedin.com/in/rakesh-r-3848538/">Rakesh Ranjan</a>,
-            <a href="https://scholar.google.com/citations?user=woX_4AcAAAAJ&hl=en">Mengyuan Liu</a>, 
-            <a href="https://scholar.google.com/citations?user=OM3sZEoAAAAJ&hl=en">Rita Cucchiara</a>, 
+            <a href="https://scholar.google.com/citations?user=woX_4AcAAAAJ&hl=en">Mengyuan Liu</a>,
+            <a href="https://scholar.google.com/citations?user=OM3sZEoAAAAJ&hl=en">Rita Cucchiara</a>,
             <a href="https://scholar.google.com/citations?user=TwMib_QAAAAJ&hl=en">Luc Van Gool</a>,
             <a href="https://scholar.google.com/citations?user=p9-ohHsAAAAJ&hl=en">Ming-Hsuan Yang</a>,
             <a href="https://scholar.google.com/citations?user=stFCYOAAAAAJ&hl=en">Nicu Sebe</a>
             <br>
             <em>Advances in Neural Information Processing Systems (NeurIPS)</em>, 2024
             <br>
-            <a href="https://proceedings.neurips.cc/paper_files/paper/2024/file/0e0a6539d1270ae8cd3a722eaff247ab-Paper-Conference.pdf">paper</a> /
-            <a href="https://github.com/Amazingren/SemanIR">code</a> /
-            <a href="bib/ren_accv24_pointcmae.txt">bibtex</a> 
+            <span class="links">
+              <a href="https://proceedings.neurips.cc/paper_files/paper/2024/file/0e0a6539d1270ae8cd3a722eaff247ab-Paper-Conference.pdf">paper</a> /
+              <a href="https://github.com/Amazingren/SemanIR">code</a> /
+              <a href="bib/ren_accv24_pointcmae.txt">bibtex</a>
+            </span>
           </td>
-        </tr>	
+        </tr>
 
-        <!-- pub ACCV'2024 -->
-        <tr onmouseout="accv1_stop()" onmouseover="accv1_start()">
-          <td style="padding:20px;width:25%;vertical-align:middle">
-            <div class="one">
-              <div class="two" id='accv1_image'>
-                <img src='image/accv24_cmae_framework.png' width="120%" height="80%" alt="CMAE alt view">
-              </div>
-              <img src='image/accv24_cmae_results.png' width="120%" height="85%" alt="CMAE preview">
+        <!-- ===== ACCV 2024 ===== -->
+        <tr>
+          <td style="width:25%;">
+            <div class="thumb">
+              <img src="image/accv24_cmae_framework.png" alt="CMAE preview">
+              <img class="alt" src="image/accv24_cmae_results.png" alt="CMAE alt view">
             </div>
-            <script type="text/javascript">
-              function accv1_start() { document.getElementById('accv1_image').style.opacity = "1"; }
-              function accv1_stop()  { document.getElementById('accv1_image').style.opacity = "0"; }
-              accv1_stop();
-            </script>
           </td>
-          <td style="padding:20px;width:75%;vertical-align:middle">
+          <td style="width:75%;">
             <a href="https://openaccess.thecvf.com/content/ACCV2024/papers/Ren_Bringing_Masked_Autoencoders_Explicit_Contrastive_Properties_for_Point_Cloud_Self-Supervised_ACCV_2024_paper.pdf">
               <papertitle>
                 <span class="badge conf">Conference</span>
                 Bringing Masked Autoencoders Explicit Contrastive Properties for Point Cloud Self-Supervised Learning
               </papertitle>
-            </a>
-            <br>
-            <strong>Bin Ren</strong>, 
-            <a href="https://scholar.google.com/citations?user=VsmIGqsAAAAJ&hl=zh-CN">Guofeng Mei</a>,   
-            <a href="https://scholar.google.com/citations?user=W43pvPkAAAAJ&hl=en">Danda Pani Paudel</a>, 
-            <a href="https://scholar.google.com/citations?user=AtB0KFsAAAAJ&hl=en&oi=ao">Weijie Wang</a>, 
-            <a href="https://scholar.google.com/citations?user=IFLsTGsAAAAJ&hl=en">Yawei Li</a>, 
-            <a href="https://scholar.google.com/citations?user=woX_4AcAAAAJ&hl=en&oi=ao">Mengyuan Liu</a>, 
-            <a href="https://scholar.google.com/citations?user=OM3sZEoAAAAJ&hl=en&oi=ao">Rita Cucchiara</a>, 
-            <a href="https://scholar.google.com/citations?user=TwMib_QAAAAJ&hl=en">Luc Van Gool</a>, 
+            </a><br>
+            <strong>Bin Ren</strong>,
+            <a href="https://scholar.google.com/citations?user=VsmIGqsAAAAJ&hl=zh-CN">Guofeng Mei</a>,
+            <a href="https://scholar.google.com/citations?user=W43pvPkAAAAJ&hl=en">Danda Pani Paudel</a>,
+            <a href="https://scholar.google.com/citations?user=AtB0KFsAAAAJ&hl=en&oi=ao">Weijie Wang</a>,
+            <a href="https://scholar.google.com/citations?user=IFLsTGsAAAAJ&hl=en">Yawei Li</a>,
+            <a href="https://scholar.google.com/citations?user=woX_4AcAAAAJ&hl=en&oi=ao">Mengyuan Liu</a>,
+            <a href="https://scholar.google.com/citations?user=OM3sZEoAAAAJ&hl=en&oi=ao">Rita Cucchiara</a>,
+            <a href="https://scholar.google.com/citations?user=TwMib_QAAAAJ&hl=en">Luc Van Gool</a>,
             <a href="https://scholar.google.com/citations?user=stFCYOAAAAAJ&hl=en">Nicu Sebe</a>
             <br>
             <em>Asian Conference on Computer Vision (ACCV)</em>, 2024
             <br>
-            <a href="https://openaccess.thecvf.com/content/ACCV2024/papers/Ren_Bringing_Masked_Autoencoders_Explicit_Contrastive_Properties_for_Point_Cloud_Self-Supervised_ACCV_2024_paper.pdf">paper</a> /
-            <a href="https://github.com/Amazingren/Point-CMAE">code</a> /
-            <a href="bib/ren_accv24_pointcmae.txt">bibtex</a> 
+            <span class="links">
+              <a href="https://openaccess.thecvf.com/content/ACCV2024/papers/Ren_Bringing_Masked_Autoencoders_Explicit_Contrastive_Properties_for_Point_Cloud_Self-Supervised_ACCV_2024_paper.pdf">paper</a> /
+              <a href="https://github.com/Amazingren/Point-CMAE">code</a> /
+              <a href="bib/ren_accv24_pointcmae.txt">bibtex</a>
+            </span>
           </td>
-        </tr>	
+        </tr>
 
-        <!-- pub ToMM'2023 -->
-        <tr onmouseout="tomm1_stop()" onmouseover="tomm1_start()">
-          <td style="padding:20px;width:25%;vertical-align:middle">
-            <div class="one">
-              <div class="two" id='tomm1_image'>
-                <img src='image/cit_tomm23.jpg' width="120%" height="80%" alt="CIT alt view">
-              </div>
-              <img src='image/results_tomm23.jpg' width="120%" height="85%" alt="CIT preview">
+        <!-- ===== ToMM 2023 ===== -->
+        <tr>
+          <td style="width:25%;">
+            <div class="thumb">
+              <img src="image/results_tomm23.jpg" alt="CIT preview">
+              <img class="alt" src="image/cit_tomm23.jpg" alt="CIT alt view">
             </div>
-            <script type="text/javascript">
-              function tomm1_start() { document.getElementById('tomm1_image').style.opacity = "1"; }
-              function tomm1_stop()  { document.getElementById('tomm1_image').style.opacity = "0"; }
-              tomm1_stop();
-            </script>
           </td>
-          <td style="padding:20px;width:75%;vertical-align:middle">
+          <td style="width:75%;">
             <a href="https://arxiv.org/pdf/2104.05519.pdf">
               <papertitle>
                 <span class="badge journal">Journal</span>
                 Cloth Interactive Transformer for Virtual Try-On
               </papertitle>
-            </a>
-            <br>
-            <strong>Bin Ren</strong>, 
-            <a href="https://scholar.google.com/citations?user=9zJkeEMAAAAJ&hl=en&oi=ao">Hao Tang</a>,   
-            <a href="https://scholar.google.com/citations?user=dv9BKcMAAAAJ&hl=en&oi=ao">Fanyang Meng</a>, 
-            <a href="https://scholar.google.com/citations?user=gU9chAwAAAAJ&hl=en&oi=ao">Runwei Ding</a>, 
-            <a href="https://scholar.google.com/citations?user=kPxa2w0AAAAJ&hl=en&oi=ao">Philip Hs Torr</a>, 
+            </a><br>
+            <strong>Bin Ren</strong>,
+            <a href="https://scholar.google.com/citations?user=9zJkeEMAAAAJ&hl=en&oi=ao">Hao Tang</a>,
+            <a href="https://scholar.google.com/citations?user=dv9BKcMAAAAJ&hl=en&oi=ao">Fanyang Meng</a>,
+            <a href="https://scholar.google.com/citations?user=gU9chAwAAAAJ&hl=en&oi=ao">Runwei Ding</a>,
+            <a href="https://scholar.google.com/citations?user=kPxa2w0AAAAJ&hl=en&oi=ao">Philip Hs Torr</a>,
             <a href="https://scholar.google.com/citations?user=stFCYOAAAAAJ&hl=en&oi=ao">Nicu Sebe</a>
             <br>
             <em>Transactions on Multimedia Computing Communications and Applications (ACM ToMM)</em>, 2023
             <br>
-            <a href="https://arxiv.org/pdf/2104.05519.pdf">paper</a> /
-            <a href="https://github.com/Amazingren/CIT">code</a> /
-            <a href="bib/ren_tomm23_cit.txt">bibtex</a> 
+            <span class="links">
+              <a href="https://arxiv.org/pdf/2104.05519.pdf">paper</a> /
+              <a href="https://github.com/Amazingren/CIT">code</a> /
+              <a href="bib/ren_tomm23_cit.txt">bibtex</a>
+            </span>
           </td>
-        </tr>	
+        </tr>
 
-        <!-- pub CVPR'2023 -->
-        <tr onmouseout="cvpr1_stop()" onmouseover="cvpr1_start()">
-          <td style="padding:20px;width:25%;vertical-align:middle">
-            <div class="one">
-              <div class="two" id='cvpr1_image'>
-                <img src='image/projection_cvpr23.jpeg' width="120%" height="85%" alt="MJP alt view">
-              </div>
-              <img src='image/mjp_cvpr23.jpeg' width="120%" height="85%" alt="MJP preview">
+        <!-- ===== CVPR 2023 ===== -->
+        <tr>
+          <td style="width:25%;">
+            <div class="thumb">
+              <img src="image/mjp_cvpr23.jpeg" alt="MJP preview">
+              <img class="alt" src="image/projection_cvpr23.jpeg" alt="MJP alt view">
             </div>
-            <script type="text/javascript">
-              function cvpr1_start() { document.getElementById('cvpr1_image').style.opacity = "1"; }
-              function cvpr1_stop()  { document.getElementById('cvpr1_image').style.opacity = "0"; }
-              cvpr1_stop();
-            </script>
           </td>
-          <td style="padding:20px;width:75%;vertical-align:middle">
+          <td style="width:75%;">
             <a href="https://arxiv.org/pdf/2205.12551.pdf">
               <papertitle>
                 <span class="badge conf">Conference</span>
                 Masked Jigsaw Puzzle: A Versatile Position Embedding for Vision Transformers
               </papertitle>
-            </a>
-            <br>
-            <strong>Bin Ren</strong>, 
-            <a href="https://scholar.google.com/citations?user=P8qd0rEAAAAJ&hl=en&oi=ao">Yahui Liu</a>, 
-            <a href="https://scholar.google.com/citations?user=Uza2i10AAAAJ&hl=en&oi=ao">Yue Song</a>, 
-            <a href="https://scholar.google.com/citations?user=aSJcgQMAAAAJ&hl=en&oi=ao">Wei Bi</a>, 
-            <a href="https://scholar.google.com/citations?user=OM3sZEoAAAAJ&hl=en&oi=ao">Rita Cucchiara</a>, 
-            <a href="https://scholar.google.com/citations?user=stFCYOAAAAAJ&hl=en&oi=ao">Nicu Sebe</a>, 
+            </a><br>
+            <strong>Bin Ren</strong>,
+            <a href="https://scholar.google.com/citations?user=P8qd0rEAAAAJ&hl=en&oi=ao">Yahui Liu</a>,
+            <a href="https://scholar.google.com/citations?user=Uza2i10AAAAJ&hl=en&oi=ao">Yue Song</a>,
+            <a href="https://scholar.google.com/citations?user=aSJcgQMAAAAJ&hl=en&oi=ao">Wei Bi</a>,
+            <a href="https://scholar.google.com/citations?user=OM3sZEoAAAAJ&hl=en&oi=ao">Rita Cucchiara</a>,
+            <a href="https://scholar.google.com/citations?user=stFCYOAAAAAJ&hl=en&oi=ao">Nicu Sebe</a>,
             <a href="https://scholar.google.com/citations?user=k4SdlbcAAAAJ&hl=en&oi=ao">Wei Wang</a>
             <br>
             <em>Computer Vision and Pattern Recognition (CVPR)</em>, 2023
             <br>
-            <a href="https://arxiv.org/pdf/2205.12551.pdf">paper</a> /
-            <a href="https://github.com/yhlleo/MJP">code</a> /
-            <a href="bib/ren_cvpr23_mjp.txt">bibtex</a> 
+            <span class="links">
+              <a href="https://arxiv.org/pdf/2205.12551.pdf">paper</a> /
+              <a href="https://github.com/yhlleo/MJP">code</a> /
+              <a href="bib/ren_cvpr23_mjp.txt">bibtex</a>
+            </span>
           </td>
-        </tr>	
+        </tr>
 
-        <!-- pub ICASSP'2023 -->
-        <tr onmouseout="icassp1_stop()" onmouseover="icassp1_start()">
-          <td style="padding:20px;width:25%;vertical-align:middle">
-            <div class="one">
-              <div class="two" id='icassp1_image'>
-                <img src='image/framework_pitrans_icassp23.jpeg' width="120%" height="85%" alt="PI-Trans alt view">
-              </div>
-              <img src='image/simpleShow_pitrans_icassp23.jpeg' width="120%" height="85%" alt="PI-Trans preview">
+        <!-- ===== ICASSP 2023 ===== -->
+        <tr>
+          <td style="width:25%;">
+            <div class="thumb">
+              <img src="image/framework_pitrans_icassp23.jpeg" alt="PI-Trans preview">
+              <img class="alt" src="image/simpleShow_pitrans_icassp23.jpeg" alt="PI-Trans alt view">
             </div>
-            <script type="text/javascript">
-              function icassp1_start() { document.getElementById('icassp1_image').style.opacity = "1"; }
-              function icassp1_stop()  { document.getElementById('icassp1_image').style.opacity = "0"; }
-              icassp1_stop();
-            </script>
           </td>
-          <td style="padding:20px;width:75%;vertical-align:middle">
+          <td style="width:75%;">
             <a href="https://arxiv.org/pdf/2207.04242.pdf">
               <papertitle>
                 <span class="badge conf">Conference</span>
                 PI-Trans: Parallel-ConvMLP and Implicit-Transformation Based GAN for Cross-View Image Translation
               </papertitle>
-            </a>
-            <br>
-            <strong>Bin Ren</strong>, 
-            <a href="https://scholar.google.com/citations?user=9zJkeEMAAAAJ&hl=en&oi=ao">Hao Tang</a>, 
-            <a href="https://scholar.google.com/citations?user=KBZ3zrEAAAAJ&hl=en&oi=ao">Yiming Wang</a>, 
-            <a href="https://scholar.google.com/citations?user=XKGZhEcAAAAJ&hl=en&oi=ao">Xia Li</a>, 
+            </a><br>
+            <strong>Bin Ren</strong>,
+            <a href="https://scholar.google.com/citations?user=9zJkeEMAAAAJ&hl=en&oi=ao">Hao Tang</a>,
+            <a href="https://scholar.google.com/citations?user=KBZ3zrEAAAAJ&hl=en&oi=ao">Yiming Wang</a>,
+            <a href="https://scholar.google.com/citations?user=XKGZhEcAAAAJ&hl=en&oi=ao">Xia Li</a>,
             <a href="https://scholar.google.com/citations?user=k4SdlbcAAAAJ&hl=en&oi=ao">Wei Wang</a>,
-            <a href="https://scholar.google.com/citations?user=stFCYOAAAAAJ&hl=en&oi=ao">Nicu Sebe</a> 
+            <a href="https://scholar.google.com/citations?user=stFCYOAAAAAJ&hl=en&oi=ao">Nicu Sebe</a>
             <br>
             <em>International Conference on Acoustics, Speech and Signal Processing (ICASSP)</em>, 2023
             <br>
-            <a href="https://arxiv.org/pdf/2207.04242.pdf">paper</a> /
-            <a href="https://github.com/Amazingren/PI-Trans">code</a> /
-            <a href="bib/ren_icassp23_pitrans.txt">bibtex</a> 
+            <span class="links">
+              <a href="https://arxiv.org/pdf/2207.04242.pdf">paper</a> /
+              <a href="https://github.com/Amazingren/PI-Trans">code</a> /
+              <a href="bib/ren_icassp23_pitrans.txt">bibtex</a>
+            </span>
           </td>
-        </tr>	
+        </tr>
 
       </tbody>
     </table>
   </div>
+
+  <!-- 可选：把高度发给父页面，父页面若有监听就能自适应高度 -->
+  <script>
+    window.addEventListener('load', () => {
+      const h = document.documentElement.scrollHeight;
+      if (window.parent && window.parent !== window) {
+        try { window.parent.postMessage({ type: 'pub-iframe-height', height: h }, '*'); } catch(e){}
+      }
+    });
+  </script>
 </body>
 </html>
