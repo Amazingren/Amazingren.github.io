@@ -1,0 +1,6 @@
+@inproceedings{fu2025objectrelator,
+    title={Objectrelator: Enabling cross-view object relation understanding in ego-centric and exo-centric videos},
+    author={Fu, Yuqian and Wang, Runze and Bin, Ren and Guolei, Sun and Gong, Biao and Fu, Yanwei and Paudel, Danda Pani and Huang, Xuanjing and Van Gool, Luc},
+    booktitle={ICCV2025},
+    year={2025}
+}

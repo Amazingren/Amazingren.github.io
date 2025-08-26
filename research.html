@@ -44,34 +44,40 @@
   const data = {
     name: "Representation Learning",
     children: [
+      { name: "Vision Transformers (ViTs)", children: [
+          { name: "Positon Embedding", children:[
+              { name: "MJP (CVPR'23)", url:"https://arxiv.org/pdf/2205.12551" }
+          ]},
+          { name: "Attention", children:[
+              { name: "SemanIR (NeurIPS'24)", url:"https://proceedings.neurips.cc/paper_files/paper/2024/file/0e0a6539d1270ae8cd3a722eaff247ab-Paper-Conference.pdf" }
+          ] }
+      ]},
       { name: "Low-Level Vision (2D)", children: [
           { name: "Efficient Image Restoration", children: [
-              { name: "SemanIR (NeurIPS'24)" }
+              { name: "SemanIR (NeurIPS'24)", url:"https://proceedings.neurips.cc/paper_files/paper/2024/file/0e0a6539d1270ae8cd3a722eaff247ab-Paper-Conference.pdf" }
           ]},
           { name: "All-in-One Image Resolution", children: [
-              { name: "AnyIR (preprint'25)", url:"https://cvlai.net/ntire/2024/" },
-              { name: "MIRAGE (preprint'25)", url:"https://cvlai.net/ntire/2024/" }
+              { name: "AnyIR (preprint'25)", url:"https://arxiv.org/pdf/2504.14249?" },
+              { name: "MIRAGE (preprint'25)", url:"https://arxiv.org/pdf/2505.18679?" }
           ]},
       ]},
       { name: "Scene Understanding (3D)", children: [
           { name: "3D Point Cloud", children: [
-              { name: "Point-CMAE (ACCV'24)", url:"https://cvlai.net/ntire/2024/" },
-              { name: "MaskClu (preprint'25)", url:"https://cvlai.net/ntire/2024/" },
-              { name: "S4Token (preprint'25)", url:"https://cvlai.net/ntire/2024/" }
+              { name: "Point-CMAE (ACCV'24)", url:"https://openaccess.thecvf.com/content/ACCV2024/papers/Ren_Bringing_Masked_Autoencoders_Explicit_Contrastive_Properties_for_Point_Cloud_Self-Supervised_ACCV_2024_paper.pdf" },
+              { name: "MaskClu (preprint'25)", url:"https://arxiv.org/pdf/2508.08910" },
+              { name: "S4Token (preprint'25)", url:"https://arxiv.org/pdf/2505.18819" }
           ]},
           { name: "3D Gaussian Splatting", children: [
-              { name: "ShapeSplat (3DV'25)", url:"https://cvlai.net/ntire/2024/" },
-              { name: "SceneSplat (ICCV'25)", url:"https://cvlai.net/ntire/2024/" },
-              { name: "SceneSplat++ (preprint'25)", url:"https://cvlai.net/ntire/2024/" }
+              { name: "ShapeSplat (3DV'25)", url:"https://arxiv.org/pdf/2408.10906" },
+              { name: "SceneSplat (ICCV'25)", url:"https://arxiv.org/pdf/2503.18052" },
+              { name: "SceneSplat++ (preprint'25)", url:"https://arxiv.org/pdf/2506.08710?" }
           ]},
       ]},
-      { name: "Vision Transformers", children: [
-          { name: "Positon Embedding (CVPR'23)" },
-          { name: "Attention (preprint'25)" }
-      ]},
-      { name: "Others (Generative Models)", children: [
-          { name: "Image Translation",},
-          { name: "Fashion",}
+      { name: "Multimodal Reasoning", children: [
+          { name: "Earth Observation", children: [
+            { name: "EarthMind (preprint'25)", url: "https://arxiv.org/pdf/2506.01667" },
+          ]},
+          // { name: "Fashion",}
       ]},
     ]
   };

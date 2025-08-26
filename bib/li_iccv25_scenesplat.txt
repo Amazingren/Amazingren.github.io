@@ -1,0 +1,6 @@
+@inproceedings{li2025scenesplat,
+  title={SceneSplat: Gaussian Splatting-based Scene Understanding With Vision-Language Pretraining},
+  author={Li, Yue and Ma, Qi and Yang, Runyi and Li, Huapeng and Ma, Mengjiao and Ren, Bin and Popovic, Nikola and Sebe, Nicu and Konukoglu, Ender and Gevers, Theo and others},
+  booktitle = {ICCV},
+  year={2025}
+}

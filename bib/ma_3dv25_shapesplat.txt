@@ -1,0 +1,6 @@
+@inproceedings{ma2024shapesplat,
+  title={Shapesplat: A large-scale dataset of gaussian splats and their self-supervised pretraining},
+  author={Ma, Qi and Li, Yue and Ren, Bin and Sebe, Nicu and Konukoglu, Ender and Gevers, Theo and Van Gool, Luc and Paudel, Danda Pani},
+  booktitle={3D Vision},
+  year={2024}
+}
