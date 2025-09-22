@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GAIA 2025 Symposium - Geospatial AI and Applications with Foundation Models</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Cover Page -->
+    <div class="page cover-page">
+        <div class="cover-content">
+            <div class="cover-logo">
+                <img src="images/gaia-logo.png" alt="GAIA 2025 Main Logo" class="main-logo" onerror="this.style.display='none'">
+            </div>
+            <h1 class="workshop-title">GAIA 2025 Symposium</h1>
+            <div class="workshop-subtitle">Geospatial AI and Applications<br>with Foundation Models</div>
+            <div class="workshop-info">
+                <p class="date">Date: 24-25 September 2025</p>
+                <p class="venue">Venue: Grand Hotel Millennium Sofia, Bulgaria</p>
+                <p class="organizers">Organized by: INSAIT & ELLIS Unit Sofia</p>
+            </div>
+            <div class="logo-container">
+                <img src="images/insait-logo.png" alt="INSAIT Logo" class="logo" onerror="this.style.display='none'">
+            </div>
+            <div class="cover-image">
+                <!-- Placeholder for workshop logo or image -->
+                <div class="earth-observation-graphic">🌍 🛰️ 🤖</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Table of Contents -->
+    <div class="page toc-page">
+        <div class="page-content">
+            <h2>GAIA 2025 Program</h2>
+            <div class="toc-content">
+            <div class="toc-section">
+                <h3>Day 1 - Wednesday, 24 September 2025</h3>
+                <div class="schedule-grid">
+                    <div class="schedule-item">
+                        <span class="talk-time">9:15</span>
+                        <div class="talk-info">
+                            <div class="talk-title">Remote Sensing Geo Foundation Models at Google</div>
+                            <div class="speaker-name">George Leifman</div>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="talk-time">10:10</span>
+                        <div class="talk-info">
+                            <div class="talk-title">On the Path of Foundation Models for EO: Progress, Bottlenecks, and Possibilities</div>
+                            <div class="speaker-name">Alexandre Lacoste</div>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="talk-time">11:30</span>
+                        <div class="talk-info">
+                            <div class="talk-title">Rethinking space science with physics-inspired foundation models</div>
+                            <div class="speaker-name">Jeroen Audenaert</div>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="talk-time">12:30</span>
+                        <div class="talk-info">
+                            <div class="talk-title">GeoLab: From Switzerland to Space and Back</div>
+                            <div class="speaker-name">Thomas Zurbuchen</div>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="talk-time">15:00</span>
+                        <div class="talk-info">
+                            <div class="talk-title">A METEOR of SMARTIES</div>
+                            <div class="speaker-name">Devis Tuia</div>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="talk-time">15:50</span>
+                        <div class="talk-info">
+                            <div class="talk-title">Earth Observation with Large Multimodal Models</div>
+                            <div class="speaker-name">Danda Paudel</div>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="talk-time">16:40</span>
+                        <div class="talk-info">
+                            <div class="talk-title">From Space to Safety with AI</div>
+                            <div class="speaker-name">Ioannis Papoutsis</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Day 2 Program Page -->
+    <div class="page toc-page">
+        <div class="page-content">
+            <h2>GAIA 2025 Program</h2>
+            <div class="toc-content">
+                <div class="toc-section">
+                    <h3>Day 2 - Thursday, 25 September 2025</h3>
+                <div class="schedule-grid">
+                    <div class="schedule-item">
+                        <span class="talk-time">9:15</span>
+                        <div class="talk-info">
+                            <div class="talk-title">Advancing Geospatial AI for Real-World Challenges</div>
+                            <div class="speaker-name">Ferda Ofli</div>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="talk-time">10:10</span>
+                        <div class="talk-info">
+                            <div class="talk-title">Towards Robust Visual Perception via Auxiliary Information and Tasks</div>
+                            <div class="speaker-name">Yimian Dai</div>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="talk-time">11:30</span>
+                        <div class="talk-info">
+                            <div class="talk-title">Agentic Reasoning Models for Earth Observation</div>
+                            <div class="speaker-name">Salman Khan</div>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="talk-time">12:30</span>
+                        <div class="talk-info">
+                            <div class="talk-title">From Efficient Foundation Models to AI Agents for Foundation Model Recommendations</div>
+                            <div class="speaker-name">Begüm Demir</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>    
+    <!-- Talk Details Pages -->
+    <div class="page talk-page">
+        <div class="talk-header">
+            <span class="talk-number-large">Talk 1</span>
+            <h2>Remote Sensing Geo Foundation Models at Google</h2>
+            <div class="speaker-header">
+                <img src="images/george-leifman.png" alt="George Leifman" class="speaker-photo" onerror="this.style.display='none'">
+                <div class="speaker-details">
+                    <h3><a href="https://research.google/people/george-leifman-2/" target="_blank" class="speaker-link">George Leifman</a></h3>
+                    <p class="affiliation">Google Research</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="talk-content">
+            <div class="bio-section">
+                <h4>Speaker Bio</h4>
+                <p>George Leifman is a Senior Staff Software Engineer and Research Scientist at Google Research, where he leads initiatives in geospatial AI and foundation models. With over a decade of experience in computer vision and machine learning, he specializes in developing scalable solutions for remote sensing applications and multimodal data integration.</p>
+                <p>His current research focuses on building large-scale Geo Foundation Models that can process diverse geospatial data sources, contributing to Google's mission of organizing and making accessible the world's geographic information.</p>
+            </div>
+            
+            <div class="abstract-section">
+                <h4>Abstract</h4>
+                <p>At Google, our long-standing commitment to organizing and making accessible the world's information, exemplified by products like Google Maps and Earth, extends to harnessing the burgeoning wealth of remote sensing data. The explosion of sensors, from public sector programs like Sentinel and Landsat to high-resolution commercial satellites, presents both immense opportunity and significant challenges.</p>
+                
+                <p>Our vision is to address these by developing large-scale, multimodal Geo Foundation Models (Geo FMs) that can learn rich representations from diverse data sources, including satellite imagery, weather information, associated texts, and eventually, human behavioral data. These pre-trained models serve as powerful starting points for a wide array of downstream applications, from urban planning to agriculture and forestry, enabling project-specific fine-tuning and optimization.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="page talk-page">
+        <div class="talk-header">
+            <span class="talk-number-large">Talk 2</span>
+            <h2>On the Path of Foundation Models for EO: Progress, Bottlenecks, and Possibilities</h2>
+            <div class="speaker-header">
+                <img src="images/alexandre-lacoste.jpg" alt="Alexandre Lacoste" class="speaker-photo" onerror="this.style.display='none'">
+                <div class="speaker-details">
+                    <h3><a href="https://www.servicenow.com/research/author/alexandre-lacoste.html" target="_blank" class="speaker-link">Alexandre Lacoste</a></h3>
+                    <p class="affiliation">ServiceNow Research</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="talk-content">
+            <div class="bio-section">
+                <h4>Speaker Bio</h4>
+                <p>Alexandre is a Staff Research Manager leading the UI-Assist team at ServiceNow. Since his PhD in theoretical machine learning, he has published influential works on foundation models for EO, sequential decision-making, causality, and various works in collaboration with Yoshua Bengio. Prior to ServiceNow, he was the first research scientist to join Element AI and worked for three years at Google. He is also a founding member of ClimateChangeAI and an author of the seminal paper "Tackling Climate Change with Machine Learning."</p>
+            </div>
+            
+            <div class="abstract-section">
+                <h4>Abstract</h4>
+                <p>Foundation models are opening new possibilities for Earth Observation (EO), enabling tools that can support applications from agriculture to disaster response. As a community, we are building the foundations of this shift—but also confronting clear bottlenecks.</p>
+                
+                <p>This talk will map the current landscape: what today's EO benchmarks measure well, where blind spots remain, and which evaluations are still missing—such as temporality, multimodal sensor fusion, and robustness across regions. I will walk through the steps of developing and evaluating EO models, highlighting pain points we collectively face: limited access to permissively licensed (non-NC) imagery, missing metadata, scarce large-scale labeled datasets, and challenges in handling time and heterogeneous sensors.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="page talk-page">
+        <div class="talk-header">
+            <span class="talk-number-large">Talk 3</span>
+            <h2>Rethinking space science with physics-inspired foundation models</h2>
+            <div class="speaker-header">
+                <img src="images/jeroen-audenaert.jpeg" alt="Jeroen Audenaert" class="speaker-photo" onerror="this.style.display='none'">
+                <div class="speaker-details">
+                    <h3><a href="https://www.space.mit.edu/people/jeroen-audenaert/" target="_blank" class="speaker-link">Jeroen Audenaert</a></h3>
+                    <p class="affiliation">MIT</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="talk-content">
+            <div class="bio-section">
+                <h4>Speaker Bio</h4>
+                <p>Dr. Jeroen Audenaert is a Research Scientist at MIT, leading the development of machine learning and artificial intelligence techniques for NASA's Transiting Exoplanet Survey Satellite (TESS). He obtained his PhD from KU Leuven. Prior to joining MIT, he was the co-founder of the technology company Yellowleaf, which was acquired by an industry partner in the summer of 2023.</p>
+            </div>
+            
+            <div class="abstract-section">
+                <h4>Abstract</h4>
+                <p>Space science has entered the trillion-token data era, with missions like NASA's Transiting Exoplanet Survey Satellite (TESS) delivering millions of images and time-series each month. This unprecedented scale opens new frontiers, but also raises a key challenge: how can we automatically analyze such vast data streams in ways that remain interpretable and scientifically meaningful?</p>
+                
+                <p>In this talk, I will discuss how physics-inspired causal foundation models offer a transformative path forward. I will present our latest work on building a time series foundation model for space science that is capable of generalizing across satellites by learning instrument-agnostic representations and explore how it can bring us into the era of automated, interpretible scientific discovery.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="page talk-page">
+        <div class="talk-header">
+            <span class="talk-number-large">Talk 4</span>
+            <h2>GeoLab: From Switzerland to Space and Back</h2>
+            <div class="speaker-header">
+                <img src="images/thomas-zurbuchen.jpeg" alt="Thomas Zurbuchen" class="speaker-photo" onerror="this.style.display='none'">
+                <div class="speaker-details">
+                    <h3><a href="https://eaps.ethz.ch/en/people/profile.thomas-zurbuchen.html" target="_blank" class="speaker-link">Thomas Zurbuchen</a></h3>
+                    <p class="affiliation">ETH Zurich</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="talk-content">
+            <div class="bio-section">
+                <h4>Speaker Bio</h4>
+                <p>Professor Thomas Zurbuchen is a Professor of Space Science and Policy at ETH Zurich and former Associate Administrator for NASA's Science Mission Directorate (2016-2022). During his tenure at NASA, he led the agency's science programs including the James Webb Space Telescope, Perseverance Mars rover, and Parker Solar Probe missions.</p>
+                <p>Before joining NASA, he was a professor at the University of Michigan for over two decades. He holds a PhD in Physics from the University of Bern and has authored over 200 scientific publications. At ETH, he focuses on developing innovative approaches to Earth observation and space science applications.</p>
+            </div>
+            
+            <div class="abstract-section">
+                <h4>Abstract</h4>
+                <p>Earth is changing rapidly, and our ability to respond depends on how well we turn vast, diverse streams of data into insight. At ETH Zurich, we are building the GeoLab as a hub dedicated to Switzerland's urgent need for scalable solutions to pressing challenges — and to capturing the opportunities that arise from them.</p>
+                
+                <p>Because Switzerland is small, diverse, and highly instrumented, it offers a unique calibration ground for global data sets and models. GeoLab is designed as an integration point: bringing together satellite observations, drone imagery, in-situ sensors, and advanced AI — including foundation models — into a coherent system that not only describes Earth, but also drives action in Switzerland and beyond.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="page talk-page">
+        <div class="talk-header">
+            <span class="talk-number-large">Talk 5</span>
+            <h2>A METEOR of SMARTIES</h2>
+            <div class="speaker-header">
+                <img src="images/devis-tuia.jpg" alt="Devis Tuia" class="speaker-photo" onerror="this.style.display='none'">
+                <div class="speaker-details">
+                    <h3><a href="https://people.epfl.ch/devis.tuia" target="_blank" class="speaker-link">Devis Tuia</a></h3>
+                    <p class="affiliation">EPFL</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="talk-content">
+            <div class="bio-section">
+                <h4>Speaker Bio</h4>
+                <p>Prof. Devis Tuia is a Professor at EPFL leading the Environmental Computational Science and Earth Observation Laboratory. His research focuses on machine learning for remote sensing and environmental monitoring, with particular expertise in deep learning, domain adaptation, and active learning for Earth observation applications.</p>
+                <p>He has authored over 150 scientific publications and received several awards including the IEEE GRSS Early Career Award. His current work emphasizes developing foundation models for environmental applications and physics-aware machine learning approaches for remote sensing data analysis.</p>
+            </div>
+            
+            <div class="abstract-section">
+                <h4>Abstract</h4>
+                <p>In this talk, I will present recent investigations toward foundation models for Earth observation, with a focus on agile downstream task adaptation with meta-learning and spectrum-aware self-supervised pre-training. By making models aware of the physics of data, it becomes possible to be competitive with much larger foundation models and tackle tasks with very limited labels.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="page talk-page">
+        <div class="talk-header">
+            <span class="talk-number-large">Talk 6</span>
+            <h2>Advancing Geospatial AI for Real-World Challenges</h2>
+            <div class="speaker-header">
+                <img src="images/ferda-ofli.jpg" alt="Ferda Ofli" class="speaker-photo" onerror="this.style.display='none'">
+                <div class="speaker-details">
+                    <h3><a href="https://www.ferdaofli.com/" target="_blank" class="speaker-link">Ferda Ofli</a></h3>
+                    <p class="affiliation">Qatar Computing Research Institute (QCRI)</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="talk-content">
+            <div class="bio-section">
+            <h4>Speaker Bio</h4>
+            <p>Dr. Ferda Ofli is a Principal Scientist at the Qatar Computing Research Institute (QCRI). His research lies at the intersection of computer vision, machine learning, and remote sensing, with a strong emphasis on applications for social good—particularly in disaster response, crisis management, and sustainable development. He has authored more than 80 publications in top-tier venues and has received multiple awards including the AAAI Deployed Application Award (2024) and Outstanding Reviewer Awards from CVPR.</p>
+        </div>
+            
+            <div class="abstract-section">
+                <h4>Abstract</h4>
+            <p>The accelerating pace of disasters is testing the resilience of our societies and the capacity of humanitarian responders. At the same time, the explosion of multimodal data—from satellites and drones to social media and geospatial platforms—presents both unprecedented opportunities and daunting challenges. AI has the potential to transform this raw data into actionable insights, yet today's models often fail when faced with such chaotic real-world conditions like noisy data inputs, distribution shifts, and incomplete information.</p>
+            
+            <p>In this talk, I will present a vision for advancing geospatial AI that thrives in these high-stakes environments. Drawing from recent projects, I will share how we designed Flood Insights, a system that fuses satellite and social sensing data to map exposure, damage, and urgent needs during the 2022 Pakistan floods; how we benchmarked Large Language Models and Vision-Language Models to assess their robustness in handling disaster microblogs and scene understanding at unprecedented scale.</p>
+        </div>
+        
+        
+            </div>
+        </div>
+
+    <div class="page talk-page">
+        <div class="talk-header">
+            <span class="talk-number-large">Talk 7</span>
+            <h2>From Space to Safety with AI</h2>
+            <div class="speaker-header">
+                <img src="images/Ioannis-Papoutsis.jpg" alt="Ioannis Papoutsis" class="speaker-photo" onerror="this.style.display='none'">
+                <div class="speaker-details">
+                    <h3><a href="https://orionlab.space.noa.gr/author/ioannis-papoutsis/" target="_blank" class="speaker-link">Ioannis Papoutsis</a></h3>
+                    <p class="affiliation">National Technical University of Athens (NTUA)</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="talk-content">
+            <div class="bio-section">
+            <h4>Speaker Bio</h4>
+            <p>Ioannis Papoutsis is an Assistant Professor of Remote Sensing and Artificial Intelligence at NTUA, and an Adjunct Researcher at both the National Observatory of Athens and the Archimedes/Athena Research Center. He leads the OrionLab research group, focusing on big satellite data analytics and machine learning for Earth Observation, with emphasis on natural disaster management and climate change impact monitoring.</p>
+        </div>
+            
+            <div class="abstract-section">
+                <h4>Abstract</h4>
+            <p>Advances in Earth Observation and Deep Learning are transforming the way we monitor, forecast, and manage natural disasters. This talk will explore recent progress in applying AI to critical hazards such as wildfires, floods, landslides, and volcanic unrest, highlighting the role of large-scale datasets, spatiotemporal datacubes, and emerging learning paradigms such as self-supervised and uncertainty-aware models.</p>
+            
+            <p>By examining real-world applications and the challenges of data scarcity, class imbalance, and generalization across diverse environments, the talk will showcase how AI-driven methods can enhance disaster preparedness and response, while outlining key research directions for the future.</p>
+        </div>
+        
+        
+            </div>
+        </div>
+
+    <div class="page talk-page">
+        <div class="talk-header">
+            <span class="talk-number-large">Talk 8</span>
+            <h2>Towards Robust Visual Perception via Auxiliary Information and Tasks</h2>
+            <div class="speaker-header">
+                <img src="images/yiming-dai.jpg" alt="Yimian Dai" class="speaker-photo" onerror="this.style.display='none'">
+                <div class="speaker-details">
+                    <h3><a href="https://yimian.grokcv.ai/" target="_blank" class="speaker-link">Yimian Dai</a></h3>
+                    <p class="affiliation">Nankai University</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="talk-content">
+            <div class="bio-section">
+            <h4>Speaker Bio</h4>
+            <p>Yimian Dai is currently an Associate Professor with the College of Computer Science, Nankai University. His research interests include computer vision, deep learning, and their applications in remote sensing, with a recent focus on infrared small target detection and multi-modal visual perception. He has published in leading journals and conferences such as IJCV, TGRS, and ICCV.</p>
+        </div>
+            
+            <div class="abstract-section">
+                <h4>Abstract</h4>
+            <p>Visual perception has recently achieved remarkable success in diverse tasks, including object detection, image segmentation, and image restoration. However, models trained on single-modality data or single-task objectives often fail to maintain reliable performance once deployed in complex real-world scenarios. These limitations arise not only from the incomplete feature extraction driven by a single task, but also from the inherent information loss within a single data modality.</p>
+            
+            <p>To address these challenges, introducing auxiliary information and auxiliary tasks has become a promising strategy. By integrating additional modalities at the input stage, or by incorporating carefully designed auxiliary objectives through multitask learning, models can acquire more comprehensive and robust feature representations.</p>
+        </div>
+        
+        
+            </div>
+        </div>
+
+    <div class="page talk-page">
+        <div class="talk-header">
+            <span class="talk-number-large">Talk 9</span>
+            <h2>Agentic Reasoning Models for Earth Observation</h2>
+            <div class="speaker-header">
+                <img src="images/salman-khan.png" alt="Salman Khan" class="speaker-photo" onerror="this.style.display='none'">
+                <div class="speaker-details">
+                    <h3><a href="https://salman-h-khan.github.io/" target="_blank" class="speaker-link">Salman Khan</a></h3>
+                    <p class="affiliation">MBZUAI</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="talk-content">
+            <div class="bio-section">
+            <h4>Speaker Bio</h4>
+            <p>Salman Khan is an Associate Professor at the MBZUAI, where he leads large-scale initiatives at the intersection of artificial intelligence, climate resilience, and Earth observation. He has co-authored over 200 papers in top AI venues, regularly serves as Area Chair at leading AI conferences. His work has been recognized with awards including Best Paper Award at ICML TerraBytes 2025.</p>
+        </div>
+            
+            <div class="abstract-section">
+                <h4>Abstract</h4>
+            <p>Earth Observation (EO) satellites are continuously capturing vast streams of multimodal data, offering an unprecedented view of our planet's dynamics at both global scale and fine resolution. Turning this raw information into actionable knowledge for addressing urgent challenges, such as climate extremes, disaster management, and food security, requires moving beyond pattern recognition toward AI systems that can reason, adapt, and interact with scientific tools.</p>
+            
+            <p>In this talk, I will present recent advances in agentic AI for EO, highlighting how reasoning models can connect satellite observations with domain knowledge and physical simulators. This talk will introduce foundation models such as TerraFM and EarthDial, and show how simple agentic pipelines can help integrate multi-sensor imagery, reanalysis products, and hydrological or agricultural models to provide trustworthy and actionable insights.</p>
+        </div>
+        
+        
+            </div>
+        </div>
+
+    <div class="page talk-page">
+        <div class="talk-header">
+            <span class="talk-number-large">Talk 11</span>
+            <h2>Earth Observation with Large Multimodal Models</h2>
+            <div class="speaker-header">
+                <img src="images/danda-paudel.jpg" alt="Danda Paudel" class="speaker-photo" onerror="this.style.display='none'">
+                <div class="speaker-details">
+                    <h3>Danda Paudel</h3>
+                    <p class="affiliation">INSAIT</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="talk-content">
+            <div class="bio-section">
+            <h4>Speaker Bio</h4>
+            <p>Dr. Danda Pani Paudel is an Assistant Professor at INSAIT, Sofia University. His research focuses on computer vision, machine learning, and their applications to Earth observation and remote sensing. He has extensive experience in developing multimodal AI systems for environmental monitoring and geospatial analysis.</p>
+            <p>Before joining INSAIT, he worked as a research scientist in industry and academia, contributing to advances in foundation models and their applications to satellite imagery analysis. He is actively involved in the ELLIS network and collaborates internationally on projects related to AI for climate and Earth observation.</p>
+        </div>
+            
+            <div class="abstract-section">
+                <h4>Abstract</h4>
+            <p>I will present our ongoing work on the foundation model framework for Earth observation data from satellites and aerial sensors. By teaching the system to handle both spatial and temporal information, our model can now track changes over time—such as shifting landscapes, crop growth, or early signs of natural hazards.</p>
+            
+            <p>This progress brings us closer to building a flexible co-pilot platform where people can interact with massive, complex datasets simply by asking questions in natural language. However, challenges remain: the diversity of sensor types, the enormous scale of data, and the need for strong performance under different conditions make the task difficult. Our results so far show great promise, paving the way for more accessible and powerful Earth observation tools.</p>
+            
+            <p>Application scenarios like wildfire prediction and temporal data analysis will also be presented, along with the immediate challenges and opportunities in the domain.</p>
+        </div>
+        
+        
+            </div>
+        </div>
+
+    <div class="page talk-page">
+        <div class="talk-header">
+            <span class="talk-number-large">Talk 12</span>
+            <h2>From Efficient Foundation Models to AI Agents for Foundation Model Recommendations</h2>
+            <div class="speaker-header">
+                <img src="images/begum-demir.webp" alt="Begüm Demir" class="speaker-photo" onerror="this.style.display='none'">
+                <div class="speaker-details">
+                    <h3><a href="https://rsim.berlin/team/members/begum-demir" target="_blank" class="speaker-link">Begüm Demir</a></h3>
+                    <p class="affiliation">TU Berlin, BIFOLD</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="talk-content">
+            <div class="bio-section">
+            <h4>Speaker Bio</h4>
+            <p>Prof. Begüm Demir is a Professor at TU Berlin and the Head of the Remote Sensing Image Analysis group at BIFOLD. Her research focuses on developing advanced machine learning and signal processing algorithms for the analysis of multi-modal remote sensing data. She has authored over 150 scientific publications and received numerous awards including the IEEE GRSS Transactions Prize Paper Award.</p>
+            <p>She serves as an Associate Editor for IEEE Transactions on Geoscience and Remote Sensing and has been involved in organizing major conferences including IEEE IGARSS. Her current work emphasizes foundation models for Earth observation and AI agents for automated model selection and recommendation systems.</p>
+        </div>
+            
+            <div class="abstract-section">
+                <h4>Abstract</h4>
+            <p>Earth observation (EO) is increasingly used for mapping and monitoring processes occurring at the surface of Earth. Data acquired by satellites nowadays allow us to have a global view, consistent in time, of the state of our forests, oceans, and growing urban areas. However, such a wealth of data has little value without appropriate processing chains able to convert the pixel values to information useful for decision makers.</p>
+            
+            <p>Recently, machine learning has seen fast advances—especially thanks to the rise of deep learning methodologies—and is increasingly deployed in EO image processing systems. In this talk, our recent developments in the context of foundation models for EO will be presented.</p>
+        </div>
+        
+        
+            </div>
+        </div>
+
+    <!-- Schedule Pages -->
+    <div class="page schedule-page">
+        <div class="page-content">
+            <h2 style="text-align: center; color: var(--primary-color);">Detailed Schedule</h2>
+        
+        <div>
+            <h3 style="color: var(--secondary-color); margin-bottom: 1rem; text-align: center;">Wednesday, 24 September 2025</h3>
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+                <thead>
+                    <tr style="background: var(--background-light);">
+                        <th style="padding: 0.75rem; text-align: left; border: 1px solid var(--border-light); font-weight: 600;">Time</th>
+                        <th style="padding: 0.75rem; text-align: left; border: 1px solid var(--border-light); font-weight: 600;">Speaker</th>
+                        <th style="padding: 0.75rem; text-align: left; border: 1px solid var(--border-light); font-weight: 600;">Title</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">9:00 – 9:15</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);"><strong>Dr. Danda Pani Paudel</strong><br><small>INSAIT</small></td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">Opening</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">9:15 – 10:00</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);"><strong>Dr. George Leifman</strong><br><small>Google Research</small></td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">Remote Sensing Geo Foundation Models at Google</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">10:10 – 11:00</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);"><strong>Alexandre Lacoste</strong><br><small>ServiceNow Research</small></td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">On the Path of Foundation Models for EO: Progress, Bottlenecks, and Possibilities</td>
+                    </tr>
+                    <tr style="background: var(--background-light);">
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">11:00 – 11:30</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);" colspan="2"><em>Coffee Break</em></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">11:30 – 12:15</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);"><strong>Jeroen Audenaert</strong><br><small>MIT</small></td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">Rethinking space science with physics-inspired foundation models</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">12:30 – 13:15</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);"><strong>Prof. Thomas Zurbuchen</strong><br><small>ETH Zurich</small></td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">GeoLab: From Switzerland to Space and Back</td>
+                    </tr>
+                    <tr style="background: var(--background-light);">
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">13:30 – 15:00</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);" colspan="2"><em>Lunch Break</em></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">15:00 – 15:45</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);"><strong>Prof. Devis Tuia</strong><br><small>EPFL</small></td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">A METEOR of SMARTIES</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">15:50 – 16:15</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);"><strong>Dr. Danda Pani Paudel</strong><br><small>INSAIT</small></td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">Earth Observation with Large Multimodal Models</td>
+                    </tr>
+                    <tr style="background: var(--background-light);">
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">16:15 – 16:40</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);" colspan="2"><em>Coffee Break</em></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">16:40 – 17:30</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);"><strong>Prof. Ioannis Papoutsis</strong><br><small>NTUA & National Observatory of Athens</small></td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">From Space to Safety with AI</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+
+    <!-- Schedule Page 2 - Thursday -->
+    <div class="page schedule-page">
+        <div class="page-content">
+            <h2 style="text-align: center; color: var(--primary-color);">Detailed Schedule</h2>
+        
+        <div>
+            <h3 style="color: var(--secondary-color); margin-bottom: 1rem; text-align: center;">Thursday, 25 September 2025</h3>
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+                <thead>
+                    <tr style="background: var(--background-light);">
+                        <th style="padding: 0.75rem; text-align: left; border: 1px solid var(--border-light); font-weight: 600;">Time</th>
+                        <th style="padding: 0.75rem; text-align: left; border: 1px solid var(--border-light); font-weight: 600;">Speaker</th>
+                        <th style="padding: 0.75rem; text-align: left; border: 1px solid var(--border-light); font-weight: 600;">Title</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">9:15 – 10:00</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);"><strong>Dr. Ferda Ofli</strong><br><small>HBKU</small></td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">Advancing Geospatial AI for Real-World Challenges</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">10:10 – 11:00</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);"><strong>Prof. Yimian Dai</strong><br><small>Nankai University</small></td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">Towards Robust Visual Perception via Auxiliary Information and Tasks</td>
+                    </tr>
+                    <tr style="background: var(--background-light);">
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">11:00 – 11:30</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);" colspan="2"><em>Coffee Break</em></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">11:30 – 12:15</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);"><strong>Prof. Salman Khan</strong><br><small>MBZUAI & ANU</small></td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">Agentic Reasoning Models for Earth Observation</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">12:30 – 13:15</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);"><strong>Prof. Begüm Demir</strong><br><small>TU Berlin, BIFOLD</small></td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">From Efficient Foundation Models to AI Agents for Foundation Model Recommendations</td>
+                    </tr>
+                    <tr style="background: var(--background-light);">
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">13:30 – 15:00</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);" colspan="2"><em>Lunch Break</em></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">15:00 – 17:00</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);"><strong>Various Speakers</strong></td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">Spotlight Talks</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+
+    <!-- Workshop Information Page -->
+    <div class="page info-page">
+        <div class="page-content">
+            <h2 style="text-align: center; color: var(--primary-color);">GAIA 2025 Symposium Information</h2>
+        
+        <div style="background: var(--background-light); padding: 1.5rem; border-radius: 12px;">
+            <h3 style="color: var(--secondary-color); margin-bottom: 0.8rem;">About GAIA 2025</h3>
+            <p style="text-align: justify;">The first GAIA Symposium on Geospatial AI and Applications with Foundation Models, hosted by INSAIT and ELLIS Unit Sofia, brings together leading researchers and practitioners in artificial intelligence, geospatial science, weather and climate, and Earth observation to explore the rapidly evolving intersection of machine learning, foundation models, and geospatial data.</p>
+            <p style="text-align: justify;">The symposium aims to foster interdisciplinary collaboration, highlight recent scientific and technical advances, and catalyze the development of next-generation foundation models tailored for spatial and multimodal applications.</p>
+        </div>
+
+        <div style="background: var(--background-light); padding: 1.5rem; border-radius: 12px;">
+            <h3 style="color: var(--secondary-color); margin-bottom: 0.8rem;">Key Topics</h3>
+            <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                <li>Multimodal foundation models for remote sensing</li>
+                <li>Self-supervised learning for Earth observation</li>
+                <li>Physics-informed AI for geospatial applications</li>
+                <li>Large-scale dataset development and benchmarking</li>
+                <li>Real-world deployment and robustness challenges</li>
+                <li>Applications in disaster response and climate science</li>
+            </ul>
+        </div>
+
+        <div style="background: var(--background-light); padding: 1.5rem; border-radius: 12px;">
+            <h3 style="color: var(--secondary-color); margin-bottom: 0.8rem;">Contact Information</h3>
+            <p style="text-align: justify;"><strong>Organizers:</strong> INSAIT & ELLIS Unit Sofia</p>
+            <p style="text-align: justify;"><strong>Email:</strong> gaiasymposium@insait.ai</p>
+            <p style="text-align: justify;"><strong>Website:</strong> https://gaia.insait.ai/</p>
+            <p style="text-align: justify;"><strong>Venue:</strong> Grand Hotel Millennium Sofia<br>
+               Vitosha Blvd 89B, 1463 Sofia, Bulgaria</p>
+            <img src="images/venue-hotel.jpg" alt="Grand Hotel Millennium Sofia" class="venue-image" onerror="this.style.display='none'">
+            <p class="image-caption">Grand Hotel Millennium Sofia - Conference Venue</p>
+            <p style="text-align: justify;"><strong>Registration:</strong> <a href="https://forms.gle/Lcfty4vXWoLPazDM6">https://forms.gle/Lcfty4vXWoLPazDM6</a></p>
+        </div>
+        </div>
+    </div>
+    
+</body>
+</html>
