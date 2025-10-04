@@ -1,0 +1,6 @@
+@inproceedings{ma2025scenesplat++,
+  title={SceneSplat++: A Large Dataset and Comprehensive Benchmark for Language Gaussian Splatting},
+  author={Ma, Mengjiao and Ma, Qi and Li, Yue and Cheng, Jiahuan and Yang, Runyi and Ren, Bin and Popovic, Nikola and Wei, Mingqiang and Sebe, Nicu and Van Gool, Luc and others},
+  journal={NeurIPS},
+  year={2025}
+}
