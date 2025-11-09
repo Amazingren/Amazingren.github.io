@@ -1,6 +1,0 @@
-@inproceedings{song2022improving,
-  title={Improving Covariance Conditioning of the SVD Meta-layer by Orthogonality},
-  author={Song, Yue and Sebe, Nicu and Wang, Wei},
-  booktitle={ECCV},
-  year={2022}
-}

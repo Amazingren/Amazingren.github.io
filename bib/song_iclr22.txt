@@ -1,6 +1,0 @@
-@inproceedings{song2022fast,
-  title={Fast Differentiable Matrix Square Root},
-  author={Song, Yue and Sebe, Nicu and Wang, Wei},
-  booktitle={ICLR},
-  year={2022}
-}

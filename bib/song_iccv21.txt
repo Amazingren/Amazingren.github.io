@@ -1,6 +1,0 @@
-@inproceedings{song2021approximate,
-  title={Why Approximate Matrix Square Root Outperforms Accurate SVD in Global Covariance Pooling?},
-  author={Song, Yue and Sebe, Nicu and Wang, Wei},
-  booktitle={ICCV},
-  year={2021}
-}
