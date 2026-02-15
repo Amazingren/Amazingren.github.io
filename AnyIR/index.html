@@ -118,12 +118,12 @@
 
               <!-- Code Link. -->
               <span class="link-block">
-                <a href="https://amazingren.github.io/AnyIR/"
+                <a href="https://github.com/Amazingren/AnyIR"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
                   </span>
-                  <span>Code (Coming Soon)</span>
+                  <span>Code</span>
                   </a>
               </span>
               
@@ -264,7 +264,6 @@
 </div>
 
 
-
 <section class="section">
   <div class="container is-max-desktop">
     <!-- Abstract. -->
@@ -273,13 +272,13 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Restoring any degraded image efficiently via just one model has become increasingly significant and impactful, especially with the proliferation of mobile devices. 
-            Traditional solutions typically involve training dedicated models per degradation, resulting in inefficiency and redundancy. More recent approaches either introduce additional modules to learn visual prompts—significantly increasing model size—or incorporate cross-modal transfer from large language models trained on vast datasets, adding complexity to the system architecture. 
+            Restoring multiple degradations efficiently via just one model has become increasingly significant and impactful, especially with the proliferation of mobile devices. Traditional solutions typically involve training dedicated models per degradation, resulting in inefficiency and redundancy. More recent approaches either introduce additional modules to learn visual prompts, significantly increasing the size of the model, or incorporate cross-modal transfer from large language models trained on vast datasets, adding complexity to the system architecture. 
             In contrast, our approach, termed AnyIR, takes a unified path that leverages inherent similarity across various degradations to enable both efficient and comprehensive restoration through a joint embedding mechanism, without scaling up the model or relying on large language models.
             Specifically, we examine the sub-latent space of each input, identifying key components and reweighting them first in a gated manner. 
-            To fuse the intrinsic degradation awareness and the contextualized attention, a spatial-frequency parallel fusion strategy is proposed for enhancing spatial-aware local-global interactions and enriching the restoration details from the frequency perspective. 
-            Extensive benchmarking in the all-in-one restoration setting confirms AnyIR’s SOTA performance, reducing model complexity by around 82% in parameters and 85% in FLOPs. 
-            Our code will be available.
+            To unify intrinsic degradation awareness with contextualized attention, we propose a spatial–frequency parallel fusion strategy that strengthens spatially informed local–global interactions and enriches restoration fidelity from the frequency domain. 
+            Comprehensive evaluations across four all-in-one restoration benchmarks demonstrate that AnyIR attains state-of-the-art performance while reducing model parameters by 84\% and FLOPs by 80\% relative to the baseline. 
+            These results highlight the potential of AnyIR as an effective and lightweight solution for further all-in-one image restoration. 
+            Our code is be available via: https://github.com/Amazingren/AnyIR.
           </p>
         </div>
       </div>
