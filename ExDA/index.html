@@ -1,69 +1,403 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="description" content="ExDA: Rethinking Expressivity and Degradation-Awareness in Attention for All-in-One Blind Image Restoration">
-  <meta name="keywords" content="ExDA, all-in-one image restoration, blind image restoration, attention, ExDA">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ExDA</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Minimal Nerfies-style deps via CDN (no extra folders, per your constraints) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <title>ExDA</title>
+  <meta name="description" content="ExDA: Rethinking Expressivity and Degradation-Awareness in Attention for All-in-One Blind Image Restoration" />
+  <meta name="keywords" content="ExDA, all-in-one image restoration, blind image restoration, attention, ICLR 2026" />
+  <meta name="theme-color" content="#1f4fbd" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="ExDA: Rethinking Expressivity and Degradation-Awareness in Attention for All-in-One Blind Image Restoration" />
+  <meta property="og:description" content="ICLR 2026. ExDA improves blind all-in-one image restoration under mixed/unknown degradations with minimal overhead." />
+  <meta property="og:image" content="images/teaser.png" />
+  <meta property="og:url" content="https://amazingren.github.io/projects/ExDA/" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ExDA (ICLR 2026)" />
+  <meta name="twitter:description" content="Rethinking attention primitives for robust all-in-one blind image restoration." />
+  <meta name="twitter:image" content="images/teaser.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap" rel="stylesheet" />
 
   <style>
-    body { font-family: 'Noto Sans', 'Google Sans', sans-serif; }
-    .publication-title { line-height: 1.15; }
-    .author-block a { color: #3273dc; }
-    .figure { margin-top: 1.0rem; }
-    .figcap { margin-top: 0.5rem; font-size: 0.98rem; color: #4a4a4a; }
-    .soft-bg { background: #f5f5f5; }
-    .img-border { border: 1px solid rgba(0,0,0,0.08); border-radius: 10px; }
-    .tight { margin-top: -0.5rem; }
-    pre code { font-size: 0.9rem; }
+    :root {
+      --brand: #1f4fbd;
+      --brand-soft: #dfe9ff;
+      --text: #1b2430;
+      --muted: #556073;
+      --bg-soft: #f4f7fb;
+      --ink: #0f1726;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Space Grotesk", "Noto Sans", system-ui, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 500px at 85% -10%, rgba(31,79,189,0.14), transparent 60%),
+        radial-gradient(800px 380px at 8% 2%, rgba(26,182,145,0.12), transparent 64%),
+        #ffffff;
+    }
+
+    .container.is-max-desktop { max-width: 1024px; }
+
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(15,23,38,0.08);
+      backdrop-filter: blur(10px);
+      background: rgba(255,255,255,0.9);
+    }
+
+    .top-nav .container {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.7rem 0.75rem;
+    }
+
+    .nav-title {
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      color: var(--ink);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.45rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      font-size: 0.82rem;
+      padding: 0.32rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(15,23,38,0.12);
+      color: var(--ink);
+      transition: all 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+      border-color: var(--brand);
+      background: var(--brand);
+      text-decoration: none;
+    }
+
+    .hero { padding-top: 1rem; }
+    .hero-body { padding-top: 2.5rem; padding-bottom: 2rem; }
+
+    .publication-title {
+      font-family: "Newsreader", Georgia, serif;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+
+    .author-block a { color: var(--brand); text-decoration: none; }
+    .author-block a:hover { text-decoration: underline; }
+    .author-block sup {
+      font-size: 0.72em;
+      line-height: 0;
+      vertical-align: super;
+      color: #334155;
+      margin-left: 0.1em;
+    }
+
+    .badge-row {
+      margin-top: 0.9rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+
+    .badge-item {
+      border: 1px solid rgba(15,23,38,0.12);
+      background: rgba(255,255,255,0.76);
+      color: #1f2a3a;
+      border-radius: 999px;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.82rem;
+    }
+
+    .publication-links .button { margin: 0.25rem 0.15rem; }
+
+    .section { padding-top: 2.3rem; padding-bottom: 2.3rem; }
+    .tight { margin-top: -0.45rem; }
+    .soft-bg { background: var(--bg-soft); }
+
+    .section-title {
+      display: inline-block;
+      color: var(--ink);
+      border-bottom: 4px solid var(--brand-soft);
+      padding-bottom: 0.12rem;
+    }
+
+    .content.has-text-justified {
+      line-height: 1.76;
+      font-size: 1.02rem;
+      color: #243043;
+    }
+
+    .overview-grid {
+      margin-top: 1rem;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.7rem;
+    }
+
+    .overview-item {
+      border-radius: 12px;
+      border: 1px solid rgba(15,23,38,0.1);
+      background: rgba(255,255,255,0.84);
+      padding: 0.8rem;
+      text-align: left;
+    }
+
+    .overview-item .title-mini {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .overview-item .value-mini {
+      font-size: 0.95rem;
+      color: #172132;
+    }
+
+    .figure { margin-top: 1.15rem; }
+
+    .img-border {
+      border: 1px solid rgba(15,23,38,0.11);
+      border-radius: 12px;
+      box-shadow: 0 12px 30px rgba(15,23,38,0.08);
+      background: #fff;
+      cursor: zoom-in;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .img-border:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 35px rgba(15,23,38,0.14);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .figcap {
+      margin-top: 0.62rem;
+      font-size: 0.98rem;
+      color: var(--muted);
+    }
+
+    pre {
+      border-radius: 12px;
+      background: rgba(15,23,38,0.04);
+      padding: 1rem;
+      overflow-x: auto;
+      border: 1px solid rgba(15,23,38,0.08);
+    }
+
+    pre code {
+      font-size: 0.9rem;
+      color: #132033;
+    }
+
+    .code-actions {
+      margin-bottom: 0.65rem;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .top-link {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 50;
+      opacity: 0.95;
+    }
+
+    .top-link .button { box-shadow: 0 8px 24px rgba(0,0,0,0.16); }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      background: rgba(8,13,24,0.88);
+      z-index: 120;
+    }
+
+    .lightbox.open { display: flex; }
+
+    .lightbox img {
+      max-width: min(1200px, 95vw);
+      max-height: 88vh;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.18);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.45);
+      cursor: zoom-out;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (max-width: 900px) {
+      .overview-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .title.is-2 { font-size: 1.6rem; }
+      .section { padding-top: 1.7rem; padding-bottom: 1.7rem; }
+      .content.has-text-justified { font-size: 1rem; }
+      .top-nav .container { padding: 0.58rem 0.8rem; }
+      .nav-links { gap: 0.3rem; }
+      .nav-links a { font-size: 0.76rem; padding: 0.28rem 0.62rem; }
+    }
   </style>
 </head>
 
-<body>
+<body id="top">
+
+<nav class="top-nav" aria-label="Section navigation">
+  <div class="container is-max-desktop">
+    <span class="nav-title">ExDA</span>
+    <div class="nav-links">
+      <a href="#abstract">Abstract</a>
+      <a href="#motivation">Motivation</a>
+      <a href="#method">Method</a>
+      <a href="#qualitative">Results</a>
+      <a href="#BibTeX">BibTeX</a>
+    </div>
+  </div>
+</nav>
+
 <section class="hero">
   <div class="hero-body">
     <div class="container is-max-desktop">
       <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h1 class="title is-2 publication-title"><strong>ExDA: Rethinking Expressivity and Degradation-Awareness in Attention for All-in-One Blind Image Restoration</strong></h1>
+        <div class="column has-text-centered reveal">
+
+          <h1 class="title is-2 publication-title">
+            <strong>ExDA: Rethinking Expressivity and Degradation-Awareness in Attention for All-in-One Blind Image Restoration</strong>
+          </h1>
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><a href="https://amazingren.github.io/">Bin Ren</a></span>, <span class="author-block"><a href="https://runyiyang.github.io/">Runyi Yang</a></span>, <span class="author-block"><a href="https://vision.ee.ethz.ch/people-details.MjgwNTEx.TGlzdC8zMjg5LC0xOTcxNDY1MTc4.html">Qi Ma</a></span>, <span class="author-block"><a href="https://zhengxujosh.github.io/">Xu Zheng</a></span>, <span class="author-block"><a href="https://mengyuanliu.github.io/">Mengyuan Liu</a></span>, <span class="author-block"><a href="https://insait.ai/dr-danda-paudel/">Danda Pani Paudel</a></span>, <span class="author-block"><a href="https://vision.ee.ethz.ch/people-details.lucvgool.html">Luc Van Gool</a></span>, <span class="author-block"><a href="https://www.ritacucchiara.it/">Rita Cucchiara</a></span>, <span class="author-block"><a href="https://disi.unitn.it/~sebe/">Nicu Sebe</a></span>
+            <span class="author-block"><a href="https://amazingren.github.io/" rel="noopener noreferrer" target="_blank">Bin Ren</a><sup>1,2,*</sup></span>,
+            <span class="author-block"><a href="https://runyiyang.github.io/" rel="noopener noreferrer" target="_blank">Runyi Yang</a><sup>3,*</sup></span>,
+            <span class="author-block"><a href="https://qimaqi.github.io/" rel="noopener noreferrer" target="_blank">Qi Ma</a><sup>4</sup></span>,
+            <span class="author-block"><a href="https://zhengxujosh.github.io/" rel="noopener noreferrer" target="_blank">Xu Zheng</a><sup>5</sup></span>,
+            <span class="author-block"><a href="https://scholar.google.com/citations?user=woX_4AcAAAAJ&hl=en" rel="noopener noreferrer" target="_blank">Mengyuan Liu</a><sup>6,&#8224;</sup></span>,
+            <span class="author-block"><a href="https://scholar.google.ch/citations?user=W43pvPkAAAAJ&hl=en" rel="noopener noreferrer" target="_blank">Danda Pani Paudel</a><sup>3</sup></span>,
+            <span class="author-block"><a href="https://scholar.google.ch/citations?user=TwMib_QAAAAJ&hl=en" rel="noopener noreferrer" target="_blank">Luc Van Gool</a><sup>3</sup></span>,
+            <span class="author-block"><a href="https://scholar.google.ch/citations?user=OM3sZEoAAAAJ&hl=en" rel="noopener noreferrer" target="_blank">Rita Cucchiara</a><sup>7</sup></span>,
+            <span class="author-block"><a href="https://scholar.google.ch/citations?user=stFCYOAAAAAJ&hl=en" rel="noopener noreferrer" target="_blank">Nicu Sebe</a><sup>2</sup></span>
           </div>
 
-          <div class="is-size-6 publication-authors" style="margin-top: 0.75rem;">
-            <span class="author-block">MBZUAI; University of Trento; INSAIT (Sofia University)</span><br>
-            <span class="author-block">ETH Zürich; HKUST (GZ); Peking University; University of Modena and Reggio Emilia</span>
+          <div class="is-size-6 publication-authors" style="margin-top: 0.85rem;">
+            <span class="author-block"><sup>1</sup> Mohamed bin Zayed University of Artificial Intelligence, UAE</span>;
+            <span class="author-block"><sup>2</sup> University of Trento, IT</span>;<br />
+            <span class="author-block"><sup>3</sup> INSAIT Sofia University, "St. Kliment Ohridski", BG</span>;
+            <span class="author-block"><sup>4</sup> ETH Zurich, CH</span>;
+            <span class="author-block"><sup>5</sup> HKUST (GZ), CN</span>;<br />
+            <span class="author-block"><sup>6</sup> Peking University, CN</span>;
+            <span class="author-block"><sup>7</sup> University of Modena and Reggio Emilia, IT</span><br />
+            <span class="author-block"><sup>*</sup> Equal Contribution</span>;
+            <span class="author-block"><sup>&#8224;</sup> Corresponding Author</span>
           </div>
 
-          <div class="column has-text-centered" style="margin-top: 1rem;">
-            <div class="publication-links">
+          <div class="badge-row" aria-label="Paper highlights">
+            <span class="badge-item">ICLR 2026</span>
+            <span class="badge-item">All-in-One Blind IR</span>
+            <span class="badge-item">Minimal Overhead</span>
+            <span class="badge-item">Mixed and Unknown Degradations</span>
+          </div>
+
+          <div class="has-text-centered" style="margin-top: 1.05rem;">
+            <div class="publication-links" role="navigation" aria-label="Project links">
               <span class="link-block">
-                <a href="https://openreview.net/pdf?id=IBzmQVia88" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                <a href="https://openreview.net/pdf?id=IBzmQVia88"
+                   class="external-link button is-normal is-rounded is-dark"
+                   rel="noopener noreferrer" target="_blank"
+                   aria-label="Open the paper PDF in a new tab">
+                  <span class="icon" aria-hidden="true"><i class="fas fa-file-pdf"></i></span>
                   <span>Paper (PDF)</span>
                 </a>
               </span>
 
               <span class="link-block">
-                <a href="https://openreview.net/forum?id=IBzmQVia88" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon"><i class="fas fa-link"></i></span>
+                <a href="https://openreview.net/forum?id=IBzmQVia88"
+                   class="external-link button is-normal is-rounded is-dark"
+                   rel="noopener noreferrer" target="_blank"
+                   aria-label="Open the OpenReview page in a new tab">
+                  <span class="icon" aria-hidden="true"><i class="fas fa-link"></i></span>
                   <span>OpenReview</span>
                 </a>
               </span>
 
               <span class="link-block">
-                <a href="#" class="external-link button is-normal is-rounded is-dark is-static">
-                  <span class="icon"><i class="fab fa-github"></i></span>
-                  <span>Code (TBA)</span>
+                <a href="https://github.com/Amazingren/ExDA"
+                   class="external-link button is-normal is-rounded is-dark"
+                   rel="noopener noreferrer" target="_blank"
+                   aria-label="Open the code repository in a new tab">
+                  <span class="icon" aria-hidden="true"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
                 </a>
               </span>
+
+              <span class="link-block">
+                <a href="#BibTeX"
+                   class="external-link button is-normal is-rounded"
+                   style="border: 1px solid rgba(0,0,0,0.15);">
+                  <span class="icon" aria-hidden="true"><i class="fas fa-quote-right"></i></span>
+                  <span>BibTeX</span>
+                </a>
+              </span>
+            </div>
+          </div>
+
+          <div class="overview-grid reveal">
+            <div class="overview-item">
+              <p class="title-mini">Core Idea</p>
+              <p class="value-mini">Add nonlinear value transform + global token to attention.</p>
+            </div>
+            <div class="overview-item">
+              <p class="title-mini">Target</p>
+              <p class="value-mini">Robust all-in-one restoration under mixed, unknown degradations.</p>
+            </div>
+            <div class="overview-item">
+              <p class="title-mini">Outcome</p>
+              <p class="value-mini">Consistent visual gains across synthetic, weather, underwater, and medical settings.</p>
             </div>
           </div>
 
@@ -73,74 +407,114 @@
   </div>
 </section>
 
-<section class="section">
+<section class="section reveal">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-full-width">
-        <img src="images/teaser.png" class="img-border" style="width: 100%;">
-        <p class="figcap has-text-justified">
-          <b>Qualitative overview across diverse restoration settings.</b>
-          ExDA improves blind all-in-one restoration results under heterogeneous degradations,
-          consistently recovering sharper structures and cleaner textures while avoiding over-smoothing.
-          Red boxes highlight challenging regions.
-        </p>
+        <figure>
+          <img src="images/teaser.png"
+               class="img-border"
+               style="width: 100%;"
+               loading="eager"
+               decoding="async"
+               alt="Teaser figure: qualitative overview across diverse restoration settings." />
+          <figcaption class="figcap has-text-justified">
+            <b>Qualitative overview across diverse restoration settings.</b>
+            ExDA improves blind all-in-one restoration results under heterogeneous degradations,
+            consistently recovering sharper structures and cleaner textures while avoiding over-smoothing.
+            Red boxes highlight challenging regions.
+          </figcaption>
+        </figure>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section soft-bg">
+<section class="section soft-bg reveal" id="abstract">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3 tight">Abstract</h2>
+        <h2 class="title is-3 tight section-title">Abstract</h2>
         <div class="content has-text-justified">
-          <p>All-in-one image restoration (IR) aims to recover high-quality images from di- verse degradations, which in real-world settings are often mixed and unknown. Unlike single-task IR, this problem requires a model to approximate a family of heterogeneous inverse functions, making it fundamentally more challenging and practically important. Although recent focus has shifted toward large multimodal models, their robustness still depends on faithful low-level inputs, and the princi- ples that govern effective restoration remain underexplored. We revisit attention mechanisms through the lens of all-in-one IR and identify two overlooked bottle- necks in widely adopted Restormer-style backbones: (i) the value path remains 1 Published as a conference paper at ICLR 2026 purely linear, restricting outputs to the span of inputs and weakening expressivity, and (ii) the absence of an explicit global slot prevents attention from encoding degradation context. To address these issues, we propose two minimal, backbone- agnostic primitives: a nonlinear value transform that upgrades attention from a selector to a selector–transformer, and a global spatial token that provides an ex- plicit degradation-aware slot. Together, these additions improve restoration across synthetic, mixed, underwater, and medical benchmarks, with negligible overhead and consistent performance gains. Analyses with foundation model embeddings, spectral statistics, and separability measures further clarify their roles, positioning our study as a step toward rethinking attention primitives for robust all-in-one IR. Project page is at https://amazingren.github.io/projects/ExDA/.</p>
+          <p>
+            All-in-one image restoration (IR) aims to recover high-quality images from diverse degradations,
+            which in real-world settings are often mixed and unknown. Unlike single-task IR, this problem
+            requires a model to approximate a family of heterogeneous inverse functions, making it fundamentally
+            more challenging and practically important. Although recent focus has shifted toward large multimodal
+            models, their robustness still depends on faithful low-level inputs, and the principles that govern
+            effective restoration remain underexplored. We revisit attention mechanisms through the lens of all-in-one
+            IR and identify two overlooked bottlenecks in widely adopted Restormer-style backbones:
+            (i) the value path remains purely linear, restricting outputs to the span of inputs and weakening expressivity,
+            and (ii) the absence of an explicit global slot prevents attention from encoding degradation context.
+            To address these issues, we propose two minimal, backbone-agnostic primitives: a nonlinear value transform
+            that upgrades attention from a selector to a selector-transformer, and a global spatial token that provides
+            an explicit degradation-aware slot. Together, these additions improve restoration across synthetic, mixed,
+            underwater, and medical benchmarks, with negligible overhead and consistent performance gains. Analyses with
+            foundation model embeddings, spectral statistics, and separability measures further clarify their roles,
+            positioning our study as a step toward rethinking attention primitives for robust all-in-one IR.
+            Project page is at <a href="https://amazingren.github.io/projects/ExDA/" rel="noopener noreferrer" target="_blank">this link</a>.
+          </p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section">
+<section class="section reveal" id="motivation">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3 tight">Motivation</h2>
-        <img src="images/motivation.png" class="img-border" style="width: 100%;">
-        <p class="figcap has-text-justified">
-          <b>Why ExDA:</b> all-in-one restoration forces a single backbone to approximate many inverse problems.
-          ExDA revisits attention design to better capture degradation-dependent cues and improve expressivity without sacrificing stability.
-        </p>
+        <h2 class="title is-3 tight section-title">Motivation</h2>
+        <figure>
+          <img src="images/motivation.png"
+               class="img-border"
+               style="width: 100%;"
+               loading="lazy"
+               decoding="async"
+               alt="Motivation figure: why ExDA for all-in-one restoration under mixed degradations." />
+          <figcaption class="figcap has-text-justified">
+            <b>Why ExDA:</b> all-in-one restoration forces a single backbone to approximate many inverse problems.
+            ExDA revisits attention design to better capture degradation-dependent cues and improve expressivity without sacrificing stability.
+          </figcaption>
+        </figure>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section">
+<section class="section reveal" id="method">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3 tight">Method</h2>
-        <img src="images/framework.png" class="img-border" style="width: 100%;">
-        <p class="figcap has-text-justified">
-          <b>ExDA architecture.</b> Multi-scale encoder-decoder with ExDA blocks.
-          Each block enhances attention by improving (i) expressivity in the value pathway and (ii) degradation awareness through adaptive token operations,
-          enabling robust restoration under mixed and unknown corruptions.
-        </p>
+        <h2 class="title is-3 tight section-title">Method</h2>
+        <figure>
+          <img src="images/framework.png"
+               class="img-border"
+               style="width: 100%;"
+               loading="lazy"
+               decoding="async"
+               alt="Framework figure: ExDA architecture with encoder-decoder and ExDA blocks." />
+          <figcaption class="figcap has-text-justified">
+            <b>ExDA architecture.</b> Multi-scale encoder-decoder with ExDA blocks.
+            Each block enhances attention by improving (i) expressivity in the value pathway and (ii) degradation awareness through adaptive token operations,
+            enabling robust restoration under mixed and unknown corruptions.
+          </figcaption>
+        </figure>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section">
+<section class="section reveal" id="qualitative">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3 tight">More Qualitative Results</h2>
+        <h2 class="title is-3 tight section-title">More Qualitative Results</h2>
 
         <div class="figure">
-          <img src="images/quali_main.png" class="img-border" style="width: 100%;">
+          <img src="images/quali_main.png" class="img-border" style="width: 100%;"
+               loading="lazy" decoding="async"
+               alt="Qualitative comparisons on all-in-one restoration benchmarks." />
           <p class="figcap has-text-justified">
             <b>All-in-one restoration benchmarks.</b>
             Comparisons against representative all-in-one architectures and strong task-specific baselines
@@ -150,7 +524,9 @@
         </div>
 
         <div class="figure">
-          <img src="images/quali_deg3.png" class="img-border" style="width: 100%;">
+          <img src="images/quali_deg3.png" class="img-border" style="width: 100%;"
+               loading="lazy" decoding="async"
+               alt="Qualitative results under harder mixed or long-tail degradations (LHR/LHS)." />
           <p class="figcap has-text-justified">
             <b>LHR / LHS settings.</b> Under harder, mixed or long-tail degradations, ExDA keeps edges crisp and textures coherent,
             improving perceptual quality while tracking the ground truth appearance more closely.
@@ -158,7 +534,9 @@
         </div>
 
         <div class="figure">
-          <img src="images/quali_deg5.png" class="img-border" style="width: 100%;">
+          <img src="images/quali_deg5.png" class="img-border" style="width: 100%;"
+               loading="lazy" decoding="async"
+               alt="Comparisons with AirNet, PromptIR, and MoCE-IR." />
           <p class="figcap has-text-justified">
             <b>All-in-one comparisons with AirNet / PromptIR / MoCE-IR.</b>
             ExDA avoids under-restoration and suppresses residual noise or streaking artifacts, especially in high-frequency regions.
@@ -166,7 +544,9 @@
         </div>
 
         <div class="figure">
-          <img src="images/quali_cdd11.png" class="img-border" style="width: 100%;">
+          <img src="images/quali_cdd11.png" class="img-border" style="width: 100%;"
+               loading="lazy" decoding="async"
+               alt="Adverse weather qualitative results: dehaze, derain, desnow." />
           <p class="figcap has-text-justified">
             <b>Adverse weather (dehaze/derain/desnow).</b> ExDA better recovers scene contrast and structure,
             with fewer color shifts and less haloing than prior methods.
@@ -174,7 +554,9 @@
         </div>
 
         <div class="figure">
-          <img src="images/quali_weatherbench.png" class="img-border" style="width: 100%;">
+          <img src="images/quali_weatherbench.png" class="img-border" style="width: 100%;"
+               loading="lazy" decoding="async"
+               alt="WeatherBench-style conditions qualitative results." />
           <p class="figcap has-text-justified">
             <b>WeatherBench-style conditions.</b> ExDA improves visibility and texture fidelity for rain/snow-related corruptions,
             maintaining natural tones and reducing blotchy artifacts in flat regions.
@@ -182,7 +564,9 @@
         </div>
 
         <div class="figure">
-          <img src="images/quali_ad_weather.png" class="img-border" style="width: 100%;">
+          <img src="images/quali_ad_weather.png" class="img-border" style="width: 100%;"
+               loading="lazy" decoding="async"
+               alt="Additional adverse weather comparisons." />
           <p class="figcap has-text-justified">
             <b>Additional adverse weather comparisons.</b> ExDA shows clearer boundaries and more stable global illumination,
             particularly in challenging low-contrast areas highlighted by red boxes.
@@ -190,7 +574,9 @@
         </div>
 
         <div class="figure">
-          <img src="images/medical_mri_ct_pet.png" class="img-border" style="width: 100%;">
+          <img src="images/medical_mri_ct_pet.png" class="img-border" style="width: 100%;"
+               loading="lazy" decoding="async"
+               alt="Medical imaging results on MRI, CT, and PET." />
           <p class="figcap has-text-justified">
             <b>Medical imaging (MRI/CT/PET).</b>
             ExDA improves anatomical edge definition and suppresses noise while preserving clinically relevant contrast.
@@ -203,16 +589,23 @@
   </div>
 </section>
 
-<section class="section soft-bg" id="BibTeX">
+<section class="section soft-bg reveal" id="BibTeX">
   <div class="container is-max-desktop content">
-    <h2 class="title is-3">BibTeX</h2>
-    <pre><code>@inproceedings{ren2026exda,
+    <h2 class="title is-3 section-title">BibTeX</h2>
+    <div class="code-actions">
+      <button class="button is-small is-link is-light" id="copyBib" type="button">
+        <span class="icon"><i class="fas fa-copy"></i></span>
+        <span>Copy</span>
+      </button>
+    </div>
+    <pre><code id="bibtexBlock">@inproceedings{ren2026exda,
   title     = {ExDA: Rethinking Expressivity and Degradation-Awareness in Attention for All-in-One Blind Image Restoration},
   author    = {Bin Ren and Runyi Yang and Qi Ma and Xu Zheng and Mengyuan Liu and Danda Pani Paudel and Luc Van Gool and Rita Cucchiara and Nicu Sebe},
   booktitle = {International Conference on Learning Representations (ICLR)},
   year      = {2026},
   url       = {https://openreview.net/forum?id=IBzmQVia88}
 }</code></pre>
+    <p class="is-size-7 has-text-grey" id="copyHint">Tip: Click <b>Copy</b> to copy BibTeX.</p>
   </div>
 </section>
 
@@ -222,7 +615,7 @@
       <div class="column is-8">
         <div class="content has-text-centered">
           <p>
-            Template inspired by the Nerfies project-page style (Bulma-based). 
+            Template inspired by the Nerfies project-page style (Bulma-based).
             You can swap images in <code>images/</code> without touching the HTML.
           </p>
         </div>
@@ -230,6 +623,67 @@
     </div>
   </div>
 </footer>
+
+<div class="top-link">
+  <a class="button is-rounded is-link" href="#top" aria-label="Back to top">
+    <span class="icon" aria-hidden="true"><i class="fas fa-arrow-up"></i></span>
+  </a>
+</div>
+
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <img id="lightboxImg" src="" alt="Expanded figure" />
+</div>
+
+<script>
+  (function () {
+    var reveals = document.querySelectorAll('.reveal');
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    reveals.forEach(function (node) { observer.observe(node); });
+
+    var copyBtn = document.getElementById('copyBib');
+    var bib = document.getElementById('bibtexBlock');
+    var copyHint = document.getElementById('copyHint');
+    copyBtn.addEventListener('click', function () {
+      navigator.clipboard.writeText(bib.textContent).then(function () {
+        copyHint.textContent = 'Copied BibTeX to clipboard.';
+      }).catch(function () {
+        copyHint.textContent = 'Clipboard copy blocked. Please copy manually.';
+      });
+    });
+
+    var lightbox = document.getElementById('lightbox');
+    var lightboxImg = document.getElementById('lightboxImg');
+    document.querySelectorAll('.img-border').forEach(function (img) {
+      img.addEventListener('click', function () {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt || 'Expanded figure';
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      lightboxImg.src = '';
+    }
+
+    lightbox.addEventListener('click', closeLightbox);
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && lightbox.classList.contains('open')) {
+        closeLightbox();
+      }
+    });
+  })();
+</script>
 
 </body>
 </html>
