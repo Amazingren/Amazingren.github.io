@@ -118,6 +118,28 @@
       margin-left: 0.1em;
     }
 
+    .publication-affiliations {
+      margin-top: 0.85rem;
+      font-size: 0.86rem;
+      line-height: 1.5;
+      color: #2b3647;
+    }
+
+    .publication-affiliations .author-block {
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+
+    .publication-affiliations .author-block.aff-row {
+      display: block;
+      max-width: 940px;
+      margin: 0.06rem auto;
+    }
+
+    .publication-affiliations .author-notes {
+      margin-top: 0.32rem;
+    }
+
     .badge-row {
       margin-top: 0.9rem;
       display: flex;
@@ -283,6 +305,7 @@
       .top-nav .container { padding: 0.58rem 0.8rem; }
       .nav-links { gap: 0.3rem; }
       .nav-links a { font-size: 0.76rem; padding: 0.28rem 0.62rem; }
+      .publication-affiliations { font-size: 0.9rem; }
     }
   </style>
 </head>
@@ -308,7 +331,7 @@
       <div class="columns is-centered">
         <div class="column has-text-centered reveal">
 
-          <h1 class="title is-2 publication-title">
+          <h1 class="title is-3 publication-title">
             <strong>ExDA: Rethinking Expressivity and Degradation-Awareness in Attention for All-in-One Blind Image Restoration</strong>
           </h1>
 
@@ -317,23 +340,23 @@
             <span class="author-block"><a href="https://runyiyang.github.io/" rel="noopener noreferrer" target="_blank">Runyi Yang</a><sup>3,*</sup></span>,
             <span class="author-block"><a href="https://qimaqi.github.io/" rel="noopener noreferrer" target="_blank">Qi Ma</a><sup>4</sup></span>,
             <span class="author-block"><a href="https://zhengxujosh.github.io/" rel="noopener noreferrer" target="_blank">Xu Zheng</a><sup>5</sup></span>,
-            <span class="author-block"><a href="https://scholar.google.com/citations?user=woX_4AcAAAAJ&hl=en" rel="noopener noreferrer" target="_blank">Mengyuan Liu</a><sup>6,&#8224;</sup></span>,
+            <span class="author-block"><a href="https://scholar.google.com/citations?user=woX_4AcAAAAJ&hl=en" rel="noopener noreferrer" target="_blank">Mengyuan Liu</a><sup>6,7,&#8224;</sup></span>,
             <span class="author-block"><a href="https://scholar.google.ch/citations?user=W43pvPkAAAAJ&hl=en" rel="noopener noreferrer" target="_blank">Danda Pani Paudel</a><sup>3</sup></span>,<br />
             <span class="author-block"><a href="https://scholar.google.ch/citations?user=TwMib_QAAAAJ&hl=en" rel="noopener noreferrer" target="_blank">Luc Van Gool</a><sup>3</sup></span>,
-            <span class="author-block"><a href="https://scholar.google.ch/citations?user=OM3sZEoAAAAJ&hl=en" rel="noopener noreferrer" target="_blank">Rita Cucchiara</a><sup>7</sup></span>,
+            <span class="author-block"><a href="https://scholar.google.ch/citations?user=OM3sZEoAAAAJ&hl=en" rel="noopener noreferrer" target="_blank">Rita Cucchiara</a><sup>8</sup></span>,
             <span class="author-block"><a href="https://scholar.google.ch/citations?user=stFCYOAAAAAJ&hl=en" rel="noopener noreferrer" target="_blank">Nicu Sebe</a><sup>2</sup></span>
           </div>
 
-          <div class="is-size-6 publication-authors" style="margin-top: 0.85rem;">
+          <div class="publication-authors publication-affiliations">
             <span class="author-block"><sup>1</sup> Mohamed bin Zayed University of Artificial Intelligence, UAE</span>;
             <span class="author-block"><sup>2</sup> University of Trento, IT</span>;<br />
             <span class="author-block"><sup>3</sup> INSAIT Sofia University, "St. Kliment Ohridski", BG</span>;
             <span class="author-block"><sup>4</sup> ETH Zürich, CH</span>;
-            <span class="author-block"><sup>5</sup> HKUST (GZ), CN</span>;<br />
-            <span class="author-block"><sup>6</sup> Peking University, CN</span>;
-            <span class="author-block"><sup>7</sup> University of Modena and Reggio Emilia, IT</span><br />
-            <span class="author-block"><sup>*</sup> Equal Contribution</span>;
-            <span class="author-block"><sup>&#8224;</sup> Corresponding Author</span>
+            <span class="author-block"><sup>5</sup> HKUST (GZ), CN</span><br />
+            <span class="author-block aff-row"><sup>6</sup> State Key Laboratory of General Artificial Intelligence, Peking University, Shenzhen Graduate School, CN</span>
+            <span class="author-block aff-row"><sup>7</sup> Guangdong Provincial Key Laboratory of Ultra High Definition Immersive Media Technology, Peking University, Shenzhen Graduate School, CN</span>
+            <span class="author-block"><sup>8</sup> University of Modena and Reggio Emilia, IT</span><br />
+            <span class="author-block author-notes"><sup>*</sup> Equal Contribution; <sup>&#8224;</sup> Corresponding Author</span>
           </div>
 
           <div class="badge-row" aria-label="Paper highlights">
