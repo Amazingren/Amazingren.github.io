@@ -55,6 +55,21 @@
     /* 链接行（paper/code/bibtex）更紧凑 */
     .links a { margin-right: 6px; }
 
+    /* Year divider rows */
+    tr.year-divider td {
+      padding: 20px 0 6px;
+      font-size: 17px;
+      font-weight: 700;
+      color: #374151;
+      border-bottom: 2px solid #e5e7eb;
+      background: transparent !important;
+    }
+    [data-theme="dark"] tr.year-divider td {
+      color: #e2e8f0;
+      border-bottom-color: #374151;
+      background: transparent !important;
+    }
+
     /* ===== Mobile: stack thumbnail above text ===== */
     @media (max-width: 640px) {
       table, tbody, tr { display: block; }
@@ -79,8 +94,10 @@
     <table>
       <tbody>
 
+        <tr class="year-divider"><td colspan="2">2025</td></tr>
+
         <!-- ===== NeurIPS 2025 1 ===== -->
-        <tr class="featured-row">
+        <tr>
           <td style="width:25%;">
             <div class="thumb">
               <img src="image/neurips25_splats.png" alt="SceneSplat++ preview">
@@ -90,7 +107,7 @@
           <td style="width:75%;">
             <a href="https://arxiv.org/pdf/2506.08710?">
               <papertitle>
-                <span class="featured-badge">★ Featured</span><span class="badge conf">Conference</span>
+                <span class="badge conf">Conference</span>
                 SceneSplat++: A Large Dataset and Comprehensive Benchmark for Language Gaussian Splatting
               </papertitle>
             </a><br>
@@ -236,6 +253,8 @@
           </td>
         </tr>
 
+        <tr class="year-divider"><td colspan="2">2024</td></tr>
+
         <!-- ===== NeurIPS 2024 ===== -->
         <tr>
           <td style="width:25%;">
@@ -305,6 +324,8 @@
             </span>
           </td>
         </tr>
+
+        <tr class="year-divider"><td colspan="2">2023</td></tr>
 
         <!-- ===== ToMM 2023 ===== -->
         <tr>

@@ -57,12 +57,33 @@
       color:#111; text-decoration:none; box-shadow:0 1px 0 rgba(0,0,0,.03);
     }
     .btn:hover{ transform:translateY(-1px); box-shadow:0 3px 12px rgba(0,0,0,.08); }
+    /* Typing animation */
+    .typing-line {
+      font-size: 14px;
+      color: #6b7280;
+      margin: 2px 0 10px;
+      min-height: 22px;
+      letter-spacing: 0.01em;
+    }
+    .typing-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 0.9em;
+      background: currentColor;
+      margin-left: 2px;
+      vertical-align: text-bottom;
+      border-radius: 1px;
+      animation: blink .7s step-end infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
     /* Dark Mode */
     [data-theme="dark"] html,[data-theme="dark"] body{ background:#111827; color:#f3f4f6; }
     [data-theme="dark"] h1{ color:#f1f5f9; }
     [data-theme="dark"] .subtitle{ color:#cbd5e1; }
     [data-theme="dark"] .affil{ color:#9ca3af; }
     [data-theme="dark"] .lead{ color:#9ca3af; }
+    [data-theme="dark"] .typing-line{ color:#6b7280; }
     [data-theme="dark"] .avatar{ border-color:#374151; }
     [data-theme="dark"] .icon{
       background:#1f2937; border-color:#374151; color:#9ca3af;
@@ -103,7 +124,11 @@
       <!-- 文本 -->
       <h1>Bin Ren (任斌)</h1>
       <div class="subtitle">Postdoctoral Associate </div>
-      <div class="affil">MBZUAI, UAE </div>
+      <div class="affil">MBZUAI, UAE</div>
+
+      <p class="typing-line">
+        Working on&nbsp;<span id="typing-text"></span><span class="typing-cursor"></span>
+      </p>
 
       <!-- 社交图标（内置 SVG） -->
       <div class="icons">
@@ -148,6 +173,40 @@
     </div>
   </div>
 <script>
+/* Typing animation */
+(function(){
+  var topics = [
+    '3D Gaussian Splatting',
+    'World Models 🌍',
+    'Low-Level Vision',
+    'Multimodal Reasoning'
+  ];
+  var el = document.getElementById('typing-text');
+  var idx = 0, ch = 0, deleting = false;
+
+  function tick(){
+    var word = topics[idx];
+    if(deleting){
+      ch--;
+      el.textContent = word.slice(0, ch);
+    } else {
+      ch++;
+      el.textContent = word.slice(0, ch);
+    }
+    var delay = deleting ? 35 : 80;
+    if(!deleting && ch === word.length){
+      delay = 2200; deleting = true;
+    } else if(deleting && ch === 0){
+      deleting = false;
+      idx = (idx + 1) % topics.length;
+      delay = 350;
+    }
+    setTimeout(tick, delay);
+  }
+  setTimeout(tick, 900); /* small initial delay */
+})();
+
+/* Dark mode sync */
 window.addEventListener('message',function(e){
   if(e.data&&e.data.type==='theme'){
     document.documentElement.setAttribute('data-theme',e.data.theme);

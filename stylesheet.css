@@ -312,27 +312,6 @@ html { scroll-behavior: smooth; }
   transform: none;
 }
 
-/* ===== Featured Paper Row ===== */
-tr.featured-row {
-  box-shadow: inset 4px 0 0 #f59e0b;
-  background: #fffbeb !important;
-}
-.featured-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-  padding: 1px 6px;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  border-radius: 4px;
-  background: #f59e0b;
-  color: #fff !important;
-  margin-right: 5px;
-  vertical-align: middle;
-  text-decoration: none !important;
-}
 
 /* ===== Dark Mode — index.html & publications.html ===== */
 [data-theme="dark"] body {
@@ -369,7 +348,6 @@ tr.featured-row {
 [data-theme="dark"] .section-title { color: #f3f4f6; }
 [data-theme="dark"] tbody tr { background: #1f2937 !important; }
 [data-theme="dark"] tbody tr:nth-of-type(even) { background: #162032 !important; }
-[data-theme="dark"] tr.featured-row { background: #1c1a0f !important; box-shadow: inset 4px 0 0 #d97706; }
 [data-theme="dark"] .thumb { background: #283548; box-shadow: 0 2px 10px rgba(0,0,0,.4); }
 [data-theme="dark"] papertitle { color: #e2e8f0; }
 [data-theme="dark"] em { color: #9ca3af; }
