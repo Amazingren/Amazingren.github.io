@@ -4,6 +4,12 @@
   <meta charset="UTF-8" />
   <title>Research Overview</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script>
+    (function(){
+      var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
+      document.documentElement.setAttribute('data-theme',t);
+    })();
+  </script>
   <style>
     :root{
       --bg:#ffffff; --text:#1a1a1a; --muted:#6b7280;
@@ -16,6 +22,12 @@
         --stroke:#263042; --stroke-2:#2f3a4f;
         --accent:#60a5fa; --chip:#182132; --chip-hover:#1d2740;
       }
+    }
+    /* Class-based dark mode (synced from parent toggle) */
+    html[data-theme="dark"]{
+      --bg:#0b0f17; --text:#e5e7eb; --muted:#9aa4b2;
+      --stroke:#263042; --stroke-2:#2f3a4f;
+      --accent:#60a5fa; --chip:#182132; --chip-hover:#1d2740;
     }
     html,body{ margin:0; background:var(--bg); color:var(--text);
       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif; }
@@ -169,6 +181,13 @@
 
   render();
   window.addEventListener("resize", render);
+  window.addEventListener('message',function(e){
+    if(e.data&&e.data.type==='theme'){
+      document.documentElement.setAttribute('data-theme',e.data.theme);
+      localStorage.setItem('theme',e.data.theme);
+      render(); /* re-render so SVG picks up new CSS vars */
+    }
+  });
   </script>
 </body>
 </html>

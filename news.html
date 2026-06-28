@@ -3,6 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>News</title>
+  <script>
+    (function(){
+      var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
+      document.documentElement.setAttribute('data-theme',t);
+    })();
+  </script>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -56,6 +62,20 @@
     .news-container li strong {
       color: #b22222;
     }
+
+    /* Dark Mode */
+    [data-theme="dark"] body { background:#111827; }
+    [data-theme="dark"] .news-card {
+      background:#1f2937; border-color:#374151;
+      box-shadow:0 4px 12px rgba(0,0,0,.4);
+    }
+    [data-theme="dark"] .news-heading {
+      background:#162032; border-bottom-color:#374151; color:#f3f4f6;
+    }
+    [data-theme="dark"] .news-container { background:#1f2937; color:#d1d5db; }
+    [data-theme="dark"] .news-container li strong { color:#f87171; }
+    [data-theme="dark"] .news-container a { color:#60a5fa; }
+    [data-theme="dark"] .news-container a:hover { color:#fbbf24; }
   </style>
 </head>
 <body>
@@ -90,5 +110,13 @@
       </ul>
     </div>
   </div>
+<script>
+window.addEventListener('message',function(e){
+  if(e.data&&e.data.type==='theme'){
+    document.documentElement.setAttribute('data-theme',e.data.theme);
+    localStorage.setItem('theme',e.data.theme);
+  }
+});
+</script>
 </body>
 </html>

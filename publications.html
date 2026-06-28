@@ -5,6 +5,12 @@
   <!-- 所有链接默认新标签页打开，避免在 iframe 内被拦 -->
   <base target="_blank">
   <title>Selected Publications</title>
+  <script>
+    (function(){
+      var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
+      document.documentElement.setAttribute('data-theme',t);
+    })();
+  </script>
 
   <!-- 你的全站样式（若有） -->
   <link rel="stylesheet" href="stylesheet.css">
@@ -74,7 +80,7 @@
       <tbody>
 
         <!-- ===== NeurIPS 2025 1 ===== -->
-        <tr>
+        <tr class="featured-row">
           <td style="width:25%;">
             <div class="thumb">
               <img src="image/neurips25_splats.png" alt="SceneSplat++ preview">
@@ -84,7 +90,7 @@
           <td style="width:75%;">
             <a href="https://arxiv.org/pdf/2506.08710?">
               <papertitle>
-                <span class="badge conf">Conference</span>
+                <span class="featured-badge">★ Featured</span><span class="badge conf">Conference</span>
                 SceneSplat++: A Large Dataset and Comprehensive Benchmark for Language Gaussian Splatting
               </papertitle>
             </a><br>
@@ -407,6 +413,12 @@
       const h = document.documentElement.scrollHeight;
       if (window.parent && window.parent !== window) {
         try { window.parent.postMessage({ type: 'pub-iframe-height', height: h }, '*'); } catch(e){}
+      }
+    });
+    window.addEventListener('message', function(e){
+      if(e.data && e.data.type === 'theme'){
+        document.documentElement.setAttribute('data-theme', e.data.theme);
+        localStorage.setItem('theme', e.data.theme);
       }
     });
   </script>

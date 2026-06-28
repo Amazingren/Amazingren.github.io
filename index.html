@@ -17,10 +17,14 @@
   <meta name="keywords" content="Bin Ren, Computer Vision, Deep Learning, LLMs, Gaussian Splatting">
   <meta name="description" content="Bin Ren's homepage">
   
-  <style>
-    body {background-color: white;}
-  </style>
   <title>Bin Ren</title>
+  <script>
+    /* Prevent FOUC: apply saved theme before page renders */
+    (function(){
+      var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
+      document.documentElement.setAttribute('data-theme',t);
+    })();
+  </script>
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
   <link rel="icon" type="image/jpg" href="image/bulb.jpg">
 </head>
@@ -38,6 +42,10 @@
       <a href="#activities">Activities</a>
       <a href="#services">Services</a>
     </div>
+    <button class="theme-btn" id="theme-toggle" aria-label="Toggle dark mode">
+      <svg id="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg id="icon-sun"  width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
   </div>
 </nav>
   <table style="width:100%;max-width:1100px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
@@ -50,13 +58,12 @@
   function resizeIframe(el){
     try{
       const doc = el.contentWindow.document;
-      // 取页面真实高度，考虑 transform 造成的覆盖，这里加一点安全余量
-      const h = Math.max(
-        doc.body?.scrollHeight || 0,
-        doc.documentElement?.scrollHeight || 0
-      ) + 4;
+      const h = Math.max(doc.body?.scrollHeight||0, doc.documentElement?.scrollHeight||0) + 4;
       el.style.height = h + 'px';
     }catch(e){}
+    /* Send current theme to the newly-loaded iframe */
+    const t = document.documentElement.getAttribute('data-theme') || 'light';
+    try{ el.contentWindow.postMessage({type:'theme',theme:t},'*'); }catch(e){}
   }
 </script>
 
@@ -74,6 +81,7 @@
 <tr>
   <td style="padding:0.1%; width:100%; vertical-align:top;">
     <a class="section-anchor" id="about"></a>
+    <div class="anim-fadeup">
     <p class="justify-text">
       I am a Postdoctoral Associate at MBZUAI, mentored by 
       <a href="https://scholar.google.com/citations?user=M59O9lkAAAAJ&hl=en">Prof. Dr. <strong>Salman Khan</strong></a> and working closely with 
@@ -101,6 +109,7 @@
       <strong>Scene Understanding (3D)</strong>,
       and <strong>Multimodal Reasoning</strong> for various interesting applications.
     </p>
+    </div><!-- end anim-fadeup -->
 
   </td>
 </tr>
@@ -108,6 +117,7 @@
 <!-- logos -->
 <tr>
   <td style="padding:0; width:100%;">
+    <div class="anim-fadeup">
     <div class="logo-flex">
       <a href="https://mbzuai.ac.ae/"><img src="image/mbzuai_logo.png" alt="MBZUAI"></a>
       <a href="https://ethz.ch/en.html"><img src="image/eth_logo.png" alt="ETH Zürich"></a>
@@ -116,6 +126,7 @@
       <a href="https://english.pku.edu.cn/"><img src="image/pku.png" alt="Peking University"></a>
       <a href="https://en.csu.edu.cn/"><img src="image/csu.png" alt="Central South University"></a>
     </div>
+    </div><!-- end anim-fadeup -->
   </td>
 </tr>
 </tbody></table><!-- end inner layout table -->
@@ -123,7 +134,7 @@
 
 <a class="section-anchor" id="research"></a>
 <!-- Research Overview -->
-<div style="overflow-x:auto; -webkit-overflow-scrolling:touch; margin: 32px 0;">
+<div class="anim-fadeup" style="overflow-x:auto; -webkit-overflow-scrolling:touch; margin: 32px 0;">
   <iframe class="auto-iframe" id="research-frame" src="research.html"
           style="border:none; display:block; width:100%; min-width:520px;" scrolling="no"
           onload="resizeIframe(this)"></iframe>
@@ -132,7 +143,7 @@
 
 <a class="section-anchor" id="news"></a>
 <!-- News -->
-<div style="margin: 8px 0;">
+<div class="anim-fadeup" style="margin: 8px 0;">
   <iframe src="news.html" style="border:none; display:block; width:100%;" scrolling="no"
           onload="resizeIframe(this)"></iframe>
 </div>
@@ -140,7 +151,7 @@
 
 <a class="section-anchor" id="publications"></a>
 <!-- Selected Publications -->
-<div style="margin: 30px 0;">
+<div class="anim-fadeup" style="margin: 30px 0;">
   <iframe class="auto-iframe" id="pub-frame" src="publications.html"
           width="100%" style="border:none; display:block;" scrolling="no"
           onload="resizeIframe(this)"></iframe>
@@ -149,25 +160,27 @@
 
 <a class="section-anchor" id="activities"></a>
 <!-- Activities -->
-<h2 class="section-heading">Activities</h2>
-<ul style="line-height:1.7; padding-left:20px;">
-  <li><strong>2025/03:</strong> I joined the Learning over Time Spring School, in Siena, Italy!</li>
-  <li><strong>2023/09:</strong> I joined the ELLIS Summer School on Large-Scale AI for Research and Industry, in Modena, Italy!</li>
-  <li><strong>2022/07:</strong> I joined the ICVSS2022, in Sicily, Italy!</li>
-  <li><strong>2022/07:</strong> I joined The first Italian AI&Society Ph.D. Summer School, in Pisa, Italy.</li>
-</ul>
+<div class="anim-fadeup">
+  <h2 class="section-heading">Activities</h2>
+  <ul style="line-height:1.7; padding-left:20px;">
+    <li><strong>2025/03:</strong> I joined the Learning over Time Spring School, in Siena, Italy!</li>
+    <li><strong>2023/09:</strong> I joined the ELLIS Summer School on Large-Scale AI for Research and Industry, in Modena, Italy!</li>
+    <li><strong>2022/07:</strong> I joined the ICVSS2022, in Sicily, Italy!</li>
+    <li><strong>2022/07:</strong> I joined The first Italian AI&Society Ph.D. Summer School, in Pisa, Italy.</li>
+  </ul>
+</div>
 
 
 <a class="section-anchor" id="services"></a>
 <!-- Academic Services -->
-<div style="margin: 8px 0 40px;">
+<div class="anim-fadeup" style="margin: 8px 0 40px;">
   <iframe src="services.html" style="border:none; display:block; width:100%;" scrolling="no"
           onload="resizeIframe(this)"></iframe>
 </div>
 
 
 <!-- copyright -->
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;background-color:PapayaWhip"><tbody>
+        <table class="footer-bar" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;background-color:PapayaWhip"><tbody>
           <tr>
 	   <td style="text-align:center">
 	     <p> Web template &#169; <a href="https://github.com/jonbarron/website" target="_blank" rel="external nofollow noopener noreferrer">this</a>. &nbsp All content &#169; Bin Ren<br> 
@@ -179,6 +192,51 @@
       </td>
     </tr>
   </table>
+<script>
+/* ===== Dark Mode Toggle ===== */
+(function(){
+  var root = document.documentElement;
+  var btn  = document.getElementById('theme-toggle');
+  var moon = document.getElementById('icon-moon');
+  var sun  = document.getElementById('icon-sun');
+
+  function syncIcons(t){
+    moon.style.display = t==='dark' ? 'none' : '';
+    sun.style.display  = t==='dark' ? ''     : 'none';
+  }
+
+  function applyTheme(t){
+    root.setAttribute('data-theme', t);
+    localStorage.setItem('theme', t);
+    syncIcons(t);
+    document.querySelectorAll('iframe').forEach(function(f){
+      try{ f.contentWindow.postMessage({type:'theme',theme:t},'*'); }catch(e){}
+    });
+  }
+
+  /* Sync icons with the theme already applied (FOUC prevention ran first) */
+  syncIcons(root.getAttribute('data-theme') || 'light');
+
+  btn.addEventListener('click', function(){
+    applyTheme(root.getAttribute('data-theme')==='dark' ? 'light' : 'dark');
+  });
+})();
+
+/* ===== Scroll-in Animations ===== */
+(function(){
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.08});
+  document.querySelectorAll('.anim-fadeup').forEach(function(el){
+    observer.observe(el);
+  });
+})();
+</script>
 </body>
 
 </html>
