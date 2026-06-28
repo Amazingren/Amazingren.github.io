@@ -95,10 +95,12 @@
   function render(){
     svg.selectAll("*").remove();
 
-    // 尺寸
-    const width = Math.min(1100, Math.max(820, document.documentElement.clientWidth - 40));
-    const dx = 28;         // 垂直行距
-    const dy = 230;        // 水平列距
+    // 尺寸（响应式）
+    const vw = document.documentElement.clientWidth;
+    const mobile = vw < 640;
+    const width = Math.min(1100, Math.max(mobile ? 520 : 820, vw - 40));
+    const dx = mobile ? 20 : 28;
+    const dy = mobile ? 155 : 230;
     const tree = d3.tree().nodeSize([dx, dy]);
 
     const root = d3.hierarchy(data);
@@ -113,7 +115,7 @@
     svg.attr("viewBox", [0, 0, width, height]);
 
     const g = svg.append("g")
-      .attr("transform", `translate(${margin.left - 120},${margin.top - x0})`);
+      .attr("transform", `translate(${margin.left - (mobile ? 90 : 120)},${margin.top - x0})`);
 
     // 连接线
     const linkSel = g.append("g").attr("class", "link")

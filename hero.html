@@ -9,8 +9,14 @@
     html,body{ margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif; color:#111; }
     /* 全屏宽的封面 */
     .hero-bleed{ width:100vw; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw); }
-    .cover{ width:100%; height:clamp(220px, 36vw, 460px); }
+    .cover{ width:100%; height:clamp(200px, 34vw, 440px); position:relative; overflow:hidden; }
     .cover img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .cover::after{
+      content:'';
+      position:absolute; inset:0;
+      background:linear-gradient(to bottom, transparent 55%, rgba(0,0,0,0.18) 100%);
+      pointer-events:none;
+    }
     /* 内部内容仍居中 */
     .inner{ max-width:var(--max); margin:0 auto; padding:0 20px; position:relative; }
     /* 卡片上移覆盖一点封面；为了 iframe 高度准确，这里额外加底部内边距 */
@@ -45,7 +51,15 @@
       color:#111; text-decoration:none; box-shadow:0 1px 0 rgba(0,0,0,.03);
     }
     .btn:hover{ transform:translateY(-1px); box-shadow:0 3px 12px rgba(0,0,0,.08); }
-    @media (max-width:600px){ h1{font-size:24px;} }
+    @media (max-width:600px){
+      h1{ font-size:22px; }
+      .avatar{ width:130px; height:130px; }
+      :root{ --avatar-size:130px; }
+      .subtitle{ font-size:14px; }
+      .affil{ font-size:13px; }
+      .icons{ gap:10px; }
+      .icon{ width:40px; height:40px; }
+    }
   </style>
 </head>
 <body>

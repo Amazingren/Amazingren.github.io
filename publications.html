@@ -19,7 +19,7 @@
     table { width:100%; border-collapse: separate; border-spacing: 0; }
     tbody tr td { padding: 12px 14px; } /* 比原来更紧凑 */
     tbody tr:nth-of-type(even) {
-      background: #fff1d3; /* 淡黄 */
+      background: #f0f7ff; /* 淡蓝 */
     }
     tbody tr:nth-of-type(even) td:first-child { border-top-left-radius: 10px; border-bottom-left-radius: 10px; }
     tbody tr:nth-of-type(even) td:last-child  { border-top-right-radius: 10px; border-bottom-right-radius: 10px; }
@@ -48,6 +48,16 @@
 
     /* 链接行（paper/code/bibtex）更紧凑 */
     .links a { margin-right: 6px; }
+
+    /* ===== Mobile: stack thumbnail above text ===== */
+    @media (max-width: 640px) {
+      table, tbody, tr { display: block; }
+      td { display: block; width: 100% !important; padding: 6px 8px; }
+      tbody tr:nth-of-type(even) td:first-child { border-radius: 10px 10px 0 0; }
+      tbody tr:nth-of-type(even) td:last-child  { border-radius: 0 0 10px 10px; }
+      .thumb { aspect-ratio: 16 / 9; max-width: 300px; margin: 0 auto 4px; }
+      tbody tr { margin-bottom: 20px; }
+    }
   </style>
 </head>
 
@@ -250,7 +260,7 @@
             <span class="links">
               <a href="https://proceedings.neurips.cc/paper_files/paper/2024/file/0e0a6539d1270ae8cd3a722eaff247ab-Paper-Conference.pdf">paper</a> /
               <a href="https://github.com/Amazingren/SemanIR">code</a> /
-              <a href="bib/ren_accv24_pointcmae.txt">bibtex</a>
+              <a href="bib/ren_neurips24_semanir.txt">bibtex</a>
             </span>
           </td>
         </tr>

@@ -26,23 +26,20 @@
 </head>
 
 
-<script>
-  // 让同域 iframe 自动长高，避免内部滚动条
-  function resizeIframe(el){
-    try{
-      if (!el || !el.contentWindow) return;
-      const doc = el.contentWindow.document;
-      if (!doc) return;
-      const h = Math.max(
-        doc.body ? doc.body.scrollHeight : 0,
-        doc.documentElement ? doc.documentElement.scrollHeight : 0
-      );
-      el.style.height = h + 'px';
-    }catch(e){ /* 同域才有效，跨域会报错，忽略即可 */ }
-  }
-</script>
-
-<body>
+<body id="top">
+<nav id="topnav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="#top">Bin Ren</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#research">Research</a>
+      <a href="#news">News</a>
+      <a href="#publications">Publications</a>
+      <a href="#activities">Activities</a>
+      <a href="#services">Services</a>
+    </div>
+  </div>
+</nav>
   <table style="width:100%;max-width:1100px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
     <tr style="padding:0px">
       <td style="padding:0px">
@@ -73,14 +70,15 @@
 
 
 
-<!-- Bio（text-only, no photo/links duplicated） -->
+<!-- Bio -->
 <tr>
   <td style="padding:0.1%; width:100%; vertical-align:top;">
+    <a class="section-anchor" id="about"></a>
     <p class="justify-text">
       I am a Postdoctoral Associate at MBZUAI, mentored by 
       <a href="https://scholar.google.com/citations?user=M59O9lkAAAAJ&hl=en">Prof. Dr. <strong>Salman Khan</strong></a> and working closely with 
-      <a href="https://scholar.google.com/citations?user=M59O9lkAAAAJ&hl=en">Prof. Dr. <strong>Fahad Shahbaz Khan</strong></a> on World Model🌍.
-      I achived my Ph.D. degree in Artificial Intelligence from the 
+      <a href="https://scholar.google.com/citations?user=zvaeYnUAAAAJ&hl=en">Prof. Dr. <strong>Fahad Shahbaz Khan</strong></a> on World Model🌍.
+      I achieved my Ph.D. degree in Artificial Intelligence from the 
       <a href="https://www.phd-ai.it/">Italian National Artificial Intelligence Program</a>
       co-organized by <a href="https://www.unitn.it/en">the University of Trento, Italy</a> and 
       <a href="https://www.unipi.it/index.php/english">the University of Pisa, Italy</a> under the joint supervision of
@@ -108,92 +106,63 @@
 </tr>
 
 <!-- logos -->
-<table style="width:80%; border:0; border-spacing:0; border-collapse:separate; margin: 0 auto;">
-  <tbody>
-    <tr>
-      <td style="padding:15px; width:13.33%; vertical-align:middle;">
-        <a href="https://mbzuai.ac.ae/">
-          <img src="image/mbzuai_logo.png" alt="MBZUAI" style="max-width:100%; height:auto; border:0;">
-        </a>
-      </td>
+<tr>
+  <td style="padding:0; width:100%;">
+    <div class="logo-flex">
+      <a href="https://mbzuai.ac.ae/"><img src="image/mbzuai_logo.png" alt="MBZUAI"></a>
+      <a href="https://ethz.ch/en.html"><img src="image/eth_logo.png" alt="ETH Zürich"></a>
+      <a href="https://www.unipi.it/index.php/english"><img src="image/unipi.png" alt="University of Pisa"></a>
+      <a href="https://www.unitn.it/en"><img src="image/unitn.png" alt="University of Trento"></a>
+      <a href="https://english.pku.edu.cn/"><img src="image/pku.png" alt="Peking University"></a>
+      <a href="https://en.csu.edu.cn/"><img src="image/csu.png" alt="Central South University"></a>
+    </div>
+  </td>
+</tr>
+</tbody></table><!-- end inner layout table -->
 
-      <!--
-      <td style="padding:15px; width:13.33%; vertical-align:middle;">
-        <a href="https://insait.ai/">
-          <img src="image/insait_logo.png" alt="INSAIT" style="max-width:100%; height:auto; border:0;">
-        </a>
-      </td>
-      -->
 
-      <td style="padding:15px; width:13.33%; vertical-align:middle;">
-        <a href="https://ethz.ch/en.html">
-          <img src="image/eth_logo.png" alt="ETH Zürich" style="max-width:100%; height:auto; border:0;">
-        </a>
-      </td>
-
-      <td style="padding:15px; width:13.33%; vertical-align:middle;">
-        <a href="https://www.unipi.it/index.php/english">
-          <img src="image/unipi.png" alt="University of Pisa" style="max-width:100%; height:auto; border:0;">
-        </a>
-      </td>
-
-      <td style="padding:15px; width:13.33%; vertical-align:middle;">
-        <a href="https://www.unitn.it/en">
-          <img src="image/unitn.png" alt="University of Trento" style="max-width:100%; height:auto; border:0;">
-        </a>
-      </td>
-
-      <td style="padding:15px; width:13.33%; vertical-align:middle;">
-        <a href="https://english.pku.edu.cn/">
-          <img src="image/pku.png" alt="Peking University" style="max-width:100%; height:auto; border:0;">
-        </a>
-      </td>
-
-      <td style="padding:15px; width:13.33%; vertical-align:middle;">
-        <a href="https://en.csu.edu.cn/">
-          <img src="image/csu.png" alt="Central South University" style="max-width:100%; height:auto; border:0;">
-        </a>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-        
-<!-- Research Overview（不滚动，高度自适应） -->
-<div style="text-align:center; margin: 32px 0;">
+<a class="section-anchor" id="research"></a>
+<!-- Research Overview -->
+<div style="overflow-x:auto; -webkit-overflow-scrolling:touch; margin: 32px 0;">
   <iframe class="auto-iframe" id="research-frame" src="research.html"
-          width="100%" style="border:none; display:block;" scrolling="no"
+          style="border:none; display:block; width:100%; min-width:520px;" scrolling="no"
           onload="resizeIframe(this)"></iframe>
 </div>
 
 
+<a class="section-anchor" id="news"></a>
 <!-- News -->
-<div style="text-align:center;">
-  <iframe src="news.html" width="90%" height="300" style="border:none;"></iframe>
+<div style="margin: 8px 0;">
+  <iframe src="news.html" style="border:none; display:block; width:100%;" scrolling="no"
+          onload="resizeIframe(this)"></iframe>
 </div>
 
 
-<!-- Selected Publications（不滚动，高度自适应） -->
-<div style="text-align:center; margin: 30px 0;">
+<a class="section-anchor" id="publications"></a>
+<!-- Selected Publications -->
+<div style="margin: 30px 0;">
   <iframe class="auto-iframe" id="pub-frame" src="publications.html"
           width="100%" style="border:none; display:block;" scrolling="no"
           onload="resizeIframe(this)"></iframe>
 </div>
 
 
+<a class="section-anchor" id="activities"></a>
 <!-- Activities -->
-<h2 style="margin-top:40px; font-size:22px; font-weight:bold;">Activities</h2>
-<ul style="font-size:16px; line-height:1.6;">
-  <li><strong>2025/03:</strong> I will join the Learning over Time Spring School, in Siena, Italy!</li>
-  <li><strong>2023/09:</strong> I will join the ELLIS Summer School on Large-Scale AI for Research and Industry, in Modena, Italy!</li>
+<h2 class="section-heading">Activities</h2>
+<ul style="line-height:1.7; padding-left:20px;">
+  <li><strong>2025/03:</strong> I joined the Learning over Time Spring School, in Siena, Italy!</li>
+  <li><strong>2023/09:</strong> I joined the ELLIS Summer School on Large-Scale AI for Research and Industry, in Modena, Italy!</li>
   <li><strong>2022/07:</strong> I joined the ICVSS2022, in Sicily, Italy!</li>
   <li><strong>2022/07:</strong> I joined The first Italian AI&Society Ph.D. Summer School, in Pisa, Italy.</li>
 </ul>
 
 
+<a class="section-anchor" id="services"></a>
 <!-- Academic Services -->
-<div style="text-align:center; margin: 40px 0;">
-  <iframe src="services.html" width="80%" height="260" style="border:none;"></iframe>
+<div style="margin: 8px 0 40px;">
+  <iframe src="services.html" style="border:none; display:block; width:100%;" scrolling="no"
+          onload="resizeIframe(this)"></iframe>
 </div>
 
 

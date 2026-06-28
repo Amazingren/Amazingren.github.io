@@ -81,12 +81,12 @@ tr,
 p,
 a {
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 14px
+  font-size: 15px
 }
 
 strong {
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 heading {
@@ -173,4 +173,109 @@ span.highlight {
 
 .badge.conf {
   background-color: #f97316; /* 橙色 */
+}
+
+/* ===== Smooth scroll ===== */
+html { scroll-behavior: smooth; }
+
+/* ===== Sticky Nav ===== */
+#topnav {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+}
+.nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  height: 48px;
+}
+.nav-brand {
+  font-weight: 700;
+  font-size: 16px;
+  color: #111 !important;
+  text-decoration: none !important;
+  margin-right: auto;
+  white-space: nowrap;
+}
+.nav-brand:hover { color: #1772d0 !important; }
+.nav-links {
+  display: flex;
+  gap: 2px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.nav-links::-webkit-scrollbar { display: none; }
+.nav-links a {
+  padding: 6px 11px;
+  border-radius: 6px;
+  font-size: 13.5px;
+  color: #374151 !important;
+  white-space: nowrap;
+  text-decoration: none !important;
+  transition: background .15s, color .15s;
+}
+.nav-links a:hover {
+  background: #f3f4f6;
+  color: #111 !important;
+}
+
+/* ===== Logo flex row ===== */
+.logo-flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 4px 12px;
+  padding: 20px 0;
+}
+.logo-flex a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 8px;
+  border-radius: 8px;
+  transition: background .15s;
+}
+.logo-flex a:hover { background: #f3f4f6; }
+.logo-flex img {
+  max-height: 44px;
+  width: auto;
+  max-width: 110px;
+  display: block;
+}
+
+/* ===== Section headings ===== */
+/* offset scrolled-to anchors so sticky nav doesn't cover them */
+.section-anchor {
+  display: block;
+  margin-top: -60px;
+  padding-top: 60px;
+  visibility: hidden;
+  pointer-events: none;
+}
+.section-heading {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 8px 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #e5e7eb;
+  color: #111;
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 680px) {
+  body, td, th, tr, p, a { font-size: 13px; }
+  strong { font-size: 13px; }
+  .nav-links a { padding: 5px 8px; font-size: 12px; }
+  .logo-flex img { max-height: 34px; max-width: 80px; }
+  .section-heading { font-size: 19px; }
+  .justify-text { font-size: 13px; }
 }
