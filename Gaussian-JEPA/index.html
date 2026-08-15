@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Gaussian-JEPA: joint-embedding predictive learning for object-level 3D Gaussian Splatting representations.">
+  <meta name="theme-color" content="#faf9f5">
+  <link rel="canonical" href="https://amazingren.github.io/Gaussian-JEPA/">
+  <meta property="og:title" content="Gaussian-JEPA">
+  <meta property="og:description" content="Joint-embedding predictive learning for 3D Gaussian splats.">
+  <meta property="og:image" content="https://amazingren.github.io/Gaussian-JEPA/assets/teaser.png">
+  <meta property="og:image:alt" content="Gaussian-JEPA motivation and learning paradigm">
+  <meta property="og:url" content="https://amazingren.github.io/Gaussian-JEPA/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Gaussian-JEPA">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Gaussian-JEPA">
+  <meta name="twitter:description" content="Joint-embedding predictive learning for 3D Gaussian splats.">
+  <meta name="twitter:image" content="https://amazingren.github.io/Gaussian-JEPA/assets/teaser.png">
+  <title>Gaussian-JEPA</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script>
+    (() => {
+      try {
+        const saved = localStorage.getItem("gaussian-jepa-theme");
+        const theme = saved || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        document.documentElement.dataset.theme = theme;
+      } catch (_) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="wordmark" href="#top" aria-label="Gaussian-JEPA home">
+      <span class="mark" aria-hidden="true"></span>
+      Gaussian-JEPA
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="#method">Method</a>
+      <a href="#evidence">Evidence</a>
+      <a href="#results">Results</a>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="Use dark theme" aria-pressed="false" title="Use dark theme">
+      <svg class="theme-icon theme-icon-moon" aria-hidden="true" viewBox="0 0 24 24">
+        <path d="M20.2 15.1A8.4 8.4 0 0 1 8.9 3.8 8.5 8.5 0 1 0 20.2 15.1Z"/>
+      </svg>
+      <svg class="theme-icon theme-icon-sun" aria-hidden="true" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="3.5"/>
+        <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+      </svg>
+    </button>
+  </header>
+
+  <main id="top">
+    <section class="hero section-shell">
+      <p class="eyebrow">Object-level 3D Gaussian representation learning</p>
+      <h1>Gaussian-JEPA</h1>
+      <p class="hero-title">Joint-Embedding Predictive Learning for 3D Gaussian Splats</p>
+      <div class="author-block" aria-label="Authors and affiliations">
+        <p class="authors">
+          <span class="author-line">
+            <span class="author-name">Bin Ren<sup>1</sup>,</span>
+            <span class="author-name">Qi Ma<sup>2</sup>,</span>
+            <span class="author-name">Yue Li<sup>3</sup>,</span>
+            <span class="author-name">Zongyan Han<sup>1</sup>,</span>
+            <span class="author-name">Yidi Li<sup>4</sup>,</span>
+            <span class="author-name">Yuqian Fu<sup>5</sup>,</span>
+          </span>
+          <span class="author-line">
+            <span class="author-name">Rao Muhammad Anwer<sup>1</sup>,</span>
+            <span class="author-name">Theo Gevers<sup>3</sup>,</span>
+            <span class="author-name">Fahad Shahbaz Khan<sup>1</sup>,</span>
+            <span class="author-name">Salman Khan<sup>1</sup></span>
+          </span>
+        </p>
+        <p class="affiliations">
+          <span title="Mohamed bin Zayed University of Artificial Intelligence, UAE"><sup>1</sup>MBZUAI</span>
+          <span title="ETH Zürich, Switzerland"><sup>2</sup>ETH Zürich</span>
+          <span title="University of Amsterdam, the Netherlands"><sup>3</sup>University of Amsterdam</span>
+          <span title="Taiyuan University of Technology, China"><sup>4</sup>Taiyuan University of Technology</span>
+          <span title="King Abdullah University of Science and Technology, Saudi Arabia"><sup>5</sup>KAUST</span>
+        </p>
+      </div>
+      <p class="hero-copy">
+        <strong>TL;DR:</strong> Gaussian-JEPA learns reusable features directly from 3D Gaussian assets.
+        It predicts latent representations of held-out Gaussian token blocks from
+        visible context, without reconstructing raw Gaussian attributes.
+      </p>
+      <div class="actions" aria-label="Project links">
+        <span class="button muted" title="Added when the public manuscript is available">Paper soon</span>
+        <a class="button primary" href="https://github.com/Amazingren/Gaussian-JEPA">Code</a>
+      </div>
+      <div class="fact-row" aria-label="Model summary">
+        <span><strong>1K</strong> Gaussians</span>
+        <span><strong>64</strong> local tokens</span>
+        <span><strong>4</strong> target scales</span>
+        <span><strong>14</strong> input attributes</span>
+      </div>
+    </section>
+
+    <section class="visual-section section-shell" aria-labelledby="motivation-title">
+      <div class="section-heading">
+        <p class="eyebrow">Motivation</p>
+        <h2 id="motivation-title">One object admits different Gaussian observations.</h2>
+        <p>
+          Dense Gaussian assets exceed a practical encoder budget. Independent
+          fixed-budget sampling therefore changes the primitive realization,
+          although the underlying object is unchanged.
+        </p>
+      </div>
+      <figure class="paper-figure teaser-figure">
+        <picture>
+          <source srcset="assets/teaser.webp" type="image/webp">
+          <img src="assets/teaser.png" width="3097" height="1927" fetchpriority="high" decoding="async" alt="Stochastic Gaussian resampling and a comparison between Gaussian-MAE reconstruction and Gaussian-JEPA latent prediction">
+        </picture>
+        <figcaption>
+          Attribute reconstruction supervises one sampled realization.
+          Gaussian-JEPA instead predicts block-indexed latent targets from context.
+        </figcaption>
+      </figure>
+      <p class="figure-scroll-hint" aria-hidden="true">Swipe horizontally to inspect the figure →</p>
+    </section>
+
+    <section class="contrast-band" aria-label="Learning objective comparison">
+      <div class="section-shell contrast-grid">
+        <article>
+          <p class="card-index">Reconstruction</p>
+          <h3>Recover Gaussian attributes</h3>
+          <p>Coordinates, opacity, scale, rotation, and appearance are decoded in input space.</p>
+        </article>
+        <div class="contrast-arrow" aria-hidden="true">→</div>
+        <article class="accent-card">
+          <p class="card-index">Gaussian-JEPA</p>
+          <h3>Predict hidden representations</h3>
+          <p>Visible context predicts stop-gradient features of spatial target blocks at multiple scales.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="method" class="section-shell content-section">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="eyebrow">Method</p>
+          <h2>Multi-scale targets, shared predictive dynamics.</h2>
+        </div>
+        <p>
+          A 1K-Gaussian observation is grouped into 64 local tokens. Four
+          non-overlapping targets cover 32 tokens with heterogeneous spatial
+          support; the exact complement forms the shared context.
+        </p>
+      </div>
+      <figure class="paper-figure framework-figure">
+        <picture>
+          <source srcset="assets/framework.webp" type="image/webp">
+          <img src="assets/framework.png" width="1916" height="876" loading="lazy" decoding="async" alt="Gaussian-JEPA grouping, target construction, context encoder, EMA target encoder, predictor, and latent objectives">
+        </picture>
+        <figcaption>
+          The online encoder observes the shared context. For each block, a
+          shared EMA encoder supplies targets, while complementary projections and
+          feature-space grounding define the latent objective.
+        </figcaption>
+      </figure>
+      <p class="figure-scroll-hint" aria-hidden="true">Swipe horizontally to inspect the figure →</p>
+      <div class="method-points">
+        <article>
+          <span>01</span>
+          <h3>Gaussian tokenization</h3>
+          <p>All geometry and appearance attributes are encoded; xyz defines local neighborhoods.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Heterogeneous targets</h3>
+          <p>Blocks of 11, 9, 7, and 5 groups provide local-to-coarse predictive supervision.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Feature-space objective</h3>
+          <p>Prediction and grounding operate on learned targets rather than raw Gaussian attributes.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="evidence" class="evidence-section">
+      <div class="section-shell">
+        <div class="section-heading split-heading">
+          <div>
+            <p class="eyebrow">Gaussian-specific evidence</p>
+            <h2>Evaluate what reconstruction accuracy does not show.</h2>
+          </div>
+          <p>
+            Frozen representations are tested under independent resampling and
+            spatially partial observations. A shared completion decoder then
+            measures whether partial features support complete Gaussian prediction.
+          </p>
+        </div>
+        <div class="evidence-grid">
+          <article class="evidence-card">
+            <div class="metric-line"><span>Mean embedding drift</span><strong>−29.3%</strong></div>
+            <h3>Resampling consistency</h3>
+            <p>Lower drift across independent 1K samples while retaining instance retrieval.</p>
+            <img src="assets/resampling_consistency.png" width="552" height="270" loading="lazy" decoding="async" alt="CDF of embedding drift for Gaussian-MAE and Gaussian-JEPA">
+          </article>
+          <article class="evidence-card">
+            <div class="metric-line"><span>R@1 AUC</span><strong>+10.92</strong></div>
+            <h3>Partial observations</h3>
+            <p>Stronger partial-to-complete retrieval as spatial evidence is removed.</p>
+            <img src="assets/partial_observation.png" width="559" height="269" loading="lazy" decoding="async" alt="Retrieval under increasing missing Gaussian groups">
+          </article>
+        </div>
+        <article class="completion-card">
+          <div class="completion-copy">
+            <p class="eyebrow">Renderable completion</p>
+            <h3>Frozen features support more coherent missing geometry.</h3>
+            <p>
+              Given the same partial 512-Gaussian input, identical decoders
+              predict complete 1K-Gaussian representations. Gaussian-JEPA
+              improves Chamfer distance, F-score, and render-space metrics.
+            </p>
+            <dl>
+              <div><dt>Chamfer ↓</dt><dd>0.0678</dd></div>
+              <div><dt>F<sub>1%</sub> ↑</dt><dd>7.42</dd></div>
+              <div><dt>SSIM ↑</dt><dd>0.7469</dd></div>
+            </dl>
+          </div>
+          <picture>
+            <source srcset="assets/completion.webp" type="image/webp">
+            <img src="assets/completion.png" width="3546" height="1980" loading="lazy" decoding="async" alt="Qualitative Gaussian shape completion comparison">
+          </picture>
+        </article>
+      </div>
+    </section>
+
+    <section id="results" class="section-shell content-section">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="eyebrow">Semantic transfer</p>
+          <h2>Competitive features on standard downstream tasks.</h2>
+        </div>
+        <p>
+          Gaussian methods use a matched 1K-Gaussian pretraining and transfer
+          budget. Frozen probing isolates the quality of the pretrained encoder.
+        </p>
+      </div>
+      <div class="results-layout">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Evaluation</th><th>Gaussian-MAE</th><th>Gaussian-JEPA</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>MN10 · Full</td><td>94.16</td><td><strong>94.94</strong></td></tr>
+              <tr><td>MN40 · Full</td><td>92.54</td><td><strong>92.63</strong></td></tr>
+              <tr><td>MN10 · Linear</td><td>93.50</td><td><strong>93.72</strong></td></tr>
+              <tr><td>MN40 · Linear</td><td>88.97</td><td><strong>90.47</strong></td></tr>
+            </tbody>
+          </table>
+          <div class="seg-result">
+            <span>ShapeNet-Part</span>
+            <strong>84.5 <small>class mIoU</small></strong>
+            <strong>86.1 <small>instance mIoU</small></strong>
+          </div>
+        </div>
+        <figure class="qualitative-figure">
+          <picture>
+            <source srcset="assets/partseg.webp" type="image/webp">
+            <img src="assets/partseg.png" width="3573" height="1541" loading="lazy" decoding="async" alt="Part segmentation representation visualizations">
+          </picture>
+          <figcaption>Qualitative structure learned by point- and Gaussian-based encoders.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="institution-section" aria-labelledby="institution-title">
+      <div class="section-shell">
+        <p id="institution-title" class="institution-label">Author affiliations</p>
+        <div class="institution-grid">
+          <a class="institution-logo institution-mbzuai" href="https://mbzuai.ac.ae/" target="_blank" rel="noreferrer" aria-label="Mohamed bin Zayed University of Artificial Intelligence">
+            <span class="institution-number" aria-hidden="true">1</span>
+            <img src="assets/institutions/mbzuai.png" alt="Mohamed bin Zayed University of Artificial Intelligence">
+          </a>
+          <a class="institution-logo institution-eth" href="https://ethz.ch/" target="_blank" rel="noreferrer" aria-label="ETH Zurich">
+            <span class="institution-number" aria-hidden="true">2</span>
+            <img src="assets/institutions/eth.svg" alt="ETH Zurich">
+          </a>
+          <a class="institution-logo institution-uva" href="https://www.uva.nl/en" target="_blank" rel="noreferrer" aria-label="University of Amsterdam">
+            <span class="institution-number" aria-hidden="true">3</span>
+            <img src="assets/institutions/uva-cropped.jpg" alt="University of Amsterdam">
+          </a>
+          <a class="institution-logo institution-tyut" href="https://www.tyut.edu.cn/" target="_blank" rel="noreferrer" aria-label="Taiyuan University of Technology">
+            <span class="institution-number" aria-hidden="true">4</span>
+            <img src="assets/institutions/tyut.jpg" alt="Taiyuan University of Technology">
+          </a>
+          <a class="institution-logo institution-kaust" href="https://www.kaust.edu.sa/" target="_blank" rel="noreferrer" aria-label="King Abdullah University of Science and Technology">
+            <span class="institution-number" aria-hidden="true">5</span>
+            <img src="assets/institutions/kaust.svg" alt="King Abdullah University of Science and Technology">
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="citation-section section-shell">
+      <div>
+        <p class="eyebrow">Citation</p>
+        <h2>Gaussian-JEPA</h2>
+        <p>Please cite this work as below. Archival metadata will be updated with the public manuscript.</p>
+      </div>
+      <div class="citation-code">
+        <button class="copy-button" type="button" data-copy-target="citation-bibtex">Copy BibTeX</button>
+        <pre><code id="citation-bibtex">@misc{gaussian_jepa,
+  title   = {Gaussian-JEPA: Joint-Embedding Predictive Learning
+             for 3D Gaussian Splats},
+  author  = {Ren, Bin and Ma, Qi and Li, Yue and Han, Zongyan
+             and Li, Yidi and Fu, Yuqian and Anwer, Rao Muhammad
+             and Gevers, Theo and Khan, Fahad Shahbaz
+             and Khan, Salman},
+  year    = {2026},
+  note    = {Project page and code release}
+}</code></pre>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="section-shell footer-inner">
+      <p>Gaussian-JEPA · Research Project</p>
+      <p>Built on ShapeSplat / Gaussian-MAE and Point-MAE.</p>
+    </div>
+  </footer>
+  <script>
+    (() => {
+      const toggle = document.querySelector(".theme-toggle");
+      if (!toggle) return;
+      const sync = () => {
+        const dark = document.documentElement.dataset.theme === "dark";
+        toggle.setAttribute("aria-pressed", String(dark));
+        toggle.setAttribute("aria-label", dark ? "Use light theme" : "Use dark theme");
+        toggle.title = dark ? "Use light theme" : "Use dark theme";
+        const themeColor = document.querySelector('meta[name="theme-color"]');
+        if (themeColor) themeColor.content = dark ? "#101714" : "#faf9f5";
+      };
+      toggle.addEventListener("click", () => {
+        const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+        document.documentElement.dataset.theme = next;
+        try { localStorage.setItem("gaussian-jepa-theme", next); } catch (_) {}
+        sync();
+      });
+      sync();
+
+      const copyButton = document.querySelector(".copy-button");
+      const citation = document.getElementById(copyButton?.dataset.copyTarget || "");
+      if (copyButton && citation) {
+        copyButton.addEventListener("click", async () => {
+          try {
+            await navigator.clipboard.writeText(citation.textContent);
+            copyButton.textContent = "Copied";
+            window.setTimeout(() => { copyButton.textContent = "Copy BibTeX"; }, 1600);
+          } catch (_) {
+            copyButton.textContent = "Select and copy";
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
