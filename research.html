@@ -110,31 +110,43 @@
     // 尺寸（响应式）
     const vw = document.documentElement.clientWidth;
     const mobile = vw < 640;
-    const width = Math.min(1100, Math.max(mobile ? 520 : 820, vw - 40));
-    const dx = mobile ? 20 : 28;
-    const dy = mobile ? 155 : 230;
-    const tree = d3.tree().nodeSize([dx, dy]);
 
     const root = d3.hierarchy(data);
     root.each(d => d.id = ++nodeId);
-    tree(root);
 
-    // 高度自适应
-    let x0 = Infinity, x1 = -x0;
-    root.each(d => { if (d.x > x1) x1 = d.x; if (d.x < x0) x0 = d.x; });
-    const height = Math.max(440, x1 - x0 + margin.top + margin.bottom + 40);
+    let width, height, tx, ty, linkPath;
+    if (mobile) {
+      // 手机：缩进式树（每个节点占一行），不会横向溢出
+      const indent = 18, rowH = 30;
+      let i = 0;
+      root.eachBefore(d => { d.x = i++ * rowH; d.y = d.depth * indent; });
+      width = vw;
+      height = i * rowH + margin.top + margin.bottom;
+      tx = 18; ty = margin.top + rowH / 2;
+      linkPath = d => `M${d.source.y},${d.source.x}V${d.target.x}H${d.target.y}`;
+    } else {
+      const tree = d3.tree().nodeSize([28, 230]);
+      tree(root);
+      // 高度自适应
+      let x0 = Infinity, x1 = -x0;
+      root.each(d => { if (d.x > x1) x1 = d.x; if (d.x < x0) x0 = d.x; });
+      width = Math.min(1100, Math.max(820, vw - 40));
+      height = Math.max(440, x1 - x0 + margin.top + margin.bottom + 40);
+      tx = margin.left - 120; ty = margin.top - x0;
+      linkPath = d3.linkHorizontal().x(d => d.y).y(d => d.x);
+    }
 
     svg.attr("viewBox", [0, 0, width, height]);
 
     const g = svg.append("g")
-      .attr("transform", `translate(${margin.left - (mobile ? 90 : 120)},${margin.top - x0})`);
+      .attr("transform", `translate(${tx},${ty})`);
 
     // 连接线
     const linkSel = g.append("g").attr("class", "link")
       .selectAll("path")
       .data(root.links())
       .join("path")
-      .attr("d", d3.linkHorizontal().x(d => d.y).y(d => d.x));
+      .attr("d", linkPath);
 
     // 节点
     const node = g.append("g")

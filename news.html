@@ -43,6 +43,11 @@
       font-size: 12px;
     }
 
+    /* 手机：卡片左右对称 */
+    @media (max-width: 680px) {
+      .news-card { width: auto; }
+    }
+
     /* 兼容旧浏览器：预留滚动条宽度 */
     @supports not (scrollbar-gutter: stable) {
       .news-container { padding-right: 28px; }
