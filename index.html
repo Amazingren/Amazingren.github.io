@@ -9,7 +9,6 @@
 
   gtag('config', 'G-4NVT6KB8YN');
 </script>
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="author" content="Bin Ren">
@@ -193,13 +192,18 @@
 </div>
 
 
+<!-- Visitor Map (MapMyVisitors) -->
+<div class="anim-fadeup visitor-map" id="visitor-map" hidden>
+  <div class="visitor-map-caption">🌍 Where visitors come from</div>
+  <div class="visitor-map-frame" id="visitor-map-frame"></div>
+</div>
+
+
 <!-- copyright -->
         <table class="footer-bar" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;background-color:PapayaWhip"><tbody>
           <tr>
 	   <td style="text-align:center">
-	     <p> Web template &#169; <a href="https://github.com/jonbarron/website" target="_blank" rel="external nofollow noopener noreferrer">this</a>. &nbsp All content &#169; Bin Ren<br> 
-	     <span id="busuanzi_container_site_pv">This page has been visited <span id="busuanzi_value_site_pv"></span>&nbsp;times </span> 
-	    <span id="busuanzi_container_site_uv">by <span id="busuanzi_value_site_uv"></span></span>&nbsp;people.</p>
+	     <p> Web template &#169; <a href="https://github.com/jonbarron/website" target="_blank" rel="external nofollow noopener noreferrer">this</a>. &nbsp All content &#169; Bin Ren</p>
            </td>
           </tr>
         </tbody></table>
@@ -234,6 +238,32 @@
   btn.addEventListener('click', function(){
     applyTheme(root.getAttribute('data-theme')==='dark' ? 'light' : 'dark');
   });
+})();
+
+/* ===== Visitor Map (MapMyVisitors) ===== */
+(function(){
+  var TOKEN = '';  /* the d=... value from the MapMyVisitors embed code */
+  if(!TOKEN) return;
+  var box   = document.getElementById('visitor-map');
+  var frame = document.getElementById('visitor-map-frame');
+  box.hidden = false;
+
+  /* colours follow the site theme: light card / dark card */
+  function load(){
+    var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    var s = document.createElement('script');
+    s.id  = 'mapmyvisitors';
+    s.src = 'https://mapmyvisitors.com/map.js?d=' + TOKEN + '&w=a&t=n&' +  /* t=n: dots only, no counter text */
+            (dark ? 'co=1f2937&cl=4b5563&ct=d1d5db' : 'co=ffffff&cl=d1d5db&ct=4b5563');
+    frame.innerHTML = '';
+    frame.appendChild(s);
+  }
+
+  /* load only after the page has finished, so the map never delays it */
+  if(document.readyState === 'complete') load();
+  else window.addEventListener('load', load);
+
+  new MutationObserver(load).observe(document.documentElement, {attributes:true, attributeFilter:['data-theme']});
 })();
 
 /* ===== Scroll-in Animations ===== */

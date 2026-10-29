@@ -270,6 +270,27 @@ html { scroll-behavior: smooth; }
   color: #111;
 }
 
+/* ===== Visitor map ===== */
+.visitor-map {
+  max-width: 380px;
+  margin: 0 auto 36px;
+  text-align: center;
+}
+.visitor-map-caption {
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 8px;
+}
+.visitor-map-frame {
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05);
+}
+[data-theme="dark"] .visitor-map-caption { color: #9ca3af; }
+[data-theme="dark"] .visitor-map-frame { border-color: #374151; background: #1f2937; box-shadow: none; }
+
 /* ===== Mobile ===== */
 @media (max-width: 680px) {
   body, td, th, tr, p, a { font-size: 13px; }
