@@ -46,6 +46,7 @@
       <svg id="icon-sun"  width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
     </button>
   </div>
+  <div class="progress-bar" aria-hidden="true"></div>
 </nav>
   <table style="width:100%;max-width:1100px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
     <tr style="padding:0px">
@@ -196,7 +197,7 @@
         <table class="footer-bar" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;background-color:PapayaWhip"><tbody>
           <tr>
 	   <td style="text-align:center">
-	     <p> Web template &#169; <a href="https://github.com/jonbarron/website" target="_blank" rel="external nofollow noopener noreferrer">this</a>. &nbsp All content &#169; Bin Ren</p>
+	     <p> Web template &#169; <a href="https://github.com/jonbarron/website" target="_blank" rel="external nofollow noopener noreferrer">this</a>. &nbsp All content &#169; Bin Ren<span id="last-updated"></span></p>
            </td>
           </tr>
         </tbody></table>
@@ -232,6 +233,53 @@
     applyTheme(root.getAttribute('data-theme')==='dark' ? 'light' : 'dark');
   });
 })();
+
+/* ===== Nav: highlight the section being read ===== */
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
+  var bar   = document.querySelector('.nav-links');
+  var items = links.map(function(a){ return { link: a, anchor: document.getElementById(a.getAttribute('href').slice(1)) }; })
+                   .filter(function(it){ return it.anchor; });
+  var current = null, ticking = false, pinned = null;
+
+  function update(){
+    ticking = false;
+    var y = 90, active = null;
+    items.forEach(function(it){ if (it.anchor.getBoundingClientRect().top + 60 <= y) active = it.link; });
+    /* the last sections are short: at the very bottom, light up the last one */
+    if (innerHeight + scrollY >= document.documentElement.scrollHeight - 4) active = items[items.length - 1].link;
+    /* a link the visitor just clicked wins until they scroll by themselves */
+    if (pinned) active = pinned;
+    if (active === current) return;
+    if (current) current.classList.remove('active');
+    if (active) {
+      active.classList.add('active');
+      /* phones: keep the highlighted link visible in the scrollable nav */
+      var lr = active.getBoundingClientRect(), br = bar.getBoundingClientRect();
+      if (lr.left < br.left || lr.right > br.right) bar.scrollLeft += lr.left - br.left - 8;
+    }
+    current = active;
+  }
+  addEventListener('scroll', function(){ if (!ticking) { ticking = true; requestAnimationFrame(update); } }, {passive: true});
+  links.forEach(function(a){ a.addEventListener('click', function(){ pinned = a; requestAnimationFrame(update); }); });
+  ['wheel', 'touchstart', 'keydown'].forEach(function(t){
+    addEventListener(t, function(){ pinned = null; }, {passive: true});
+  });
+  addEventListener('load', update);
+})();
+
+/* ===== Footer: last updated (date of the latest commit) ===== */
+addEventListener('load', function(){
+  fetch('https://api.github.com/repos/Amazingren/Amazingren.github.io/commits?per_page=1')
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(c){
+      if (!c || !c[0]) return;
+      var d = new Date(c[0].commit.committer.date);
+      document.getElementById('last-updated').textContent =
+        'Last updated: ' + d.toLocaleDateString('en-US', {year: 'numeric', month: 'short', day: 'numeric'});
+    })
+    .catch(function(){});
+});
 
 /* ===== Scroll-in Animations ===== */
 (function(){

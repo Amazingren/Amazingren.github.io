@@ -68,6 +68,27 @@
       color: #b22222;
     }
 
+    /* NEW badge (added by script for recent items) */
+    .new-badge {
+      display: inline-block;
+      margin: 0 3px 0 5px;
+      padding: 0 5px;
+      border-radius: 4px;
+      background: #e11d48;
+      color: #fff;
+      font-size: 9px;
+      font-weight: 700;
+      line-height: 15px;
+      letter-spacing: .04em;
+      vertical-align: 1px;
+      animation: new-glow 2.4s ease-in-out infinite;
+    }
+    @keyframes new-glow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(225,29,72,0); }
+      50%      { box-shadow: 0 0 0 3px rgba(225,29,72,.18); }
+    }
+    @media (prefers-reduced-motion: reduce) { .new-badge { animation: none; } }
+
     /* Dark Mode */
     [data-theme="dark"] body { background:#111827; }
     [data-theme="dark"] .news-card {
@@ -118,6 +139,16 @@
     </div>
   </div>
 <script>
+/* mark news from this month or last month as NEW */
+(function(){
+  var now = new Date(), nowM = now.getFullYear() * 12 + now.getMonth();
+  document.querySelectorAll('.news-container li').forEach(function(li){
+    var m = li.innerHTML.match(/(\d{4})\/(\d{2}):/);
+    if (!m || nowM - (+m[1] * 12 + (+m[2] - 1)) > 1) return;
+    li.innerHTML = li.innerHTML.replace(m[0], m[1] + '/' + m[2] + '<span class="new-badge">NEW</span>:');
+  });
+})();
+
 window.addEventListener('message',function(e){
   if(e.data&&e.data.type==='theme'){
     document.documentElement.setAttribute('data-theme',e.data.theme);
