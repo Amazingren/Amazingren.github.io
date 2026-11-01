@@ -192,10 +192,10 @@
 </div>
 
 
-<!-- Visitor Map (MapMyVisitors) -->
-<div class="anim-fadeup visitor-map" id="visitor-map" hidden>
-  <div class="visitor-map-caption">🌍 Where visitors come from</div>
-  <div class="visitor-map-frame" id="visitor-map-frame"></div>
+<!-- Journey Globe -->
+<div class="anim-fadeup" style="margin: 0 0 32px;">
+  <iframe src="journey.html" loading="lazy" title="My academic journey" style="border:none; display:block; width:100%;" scrolling="no"
+          onload="resizeIframe(this)"></iframe>
 </div>
 
 
@@ -238,32 +238,6 @@
   btn.addEventListener('click', function(){
     applyTheme(root.getAttribute('data-theme')==='dark' ? 'light' : 'dark');
   });
-})();
-
-/* ===== Visitor Map (MapMyVisitors) ===== */
-(function(){
-  var TOKEN = '';  /* the d=... value from the MapMyVisitors embed code */
-  if(!TOKEN) return;
-  var box   = document.getElementById('visitor-map');
-  var frame = document.getElementById('visitor-map-frame');
-  box.hidden = false;
-
-  /* colours follow the site theme: light card / dark card */
-  function load(){
-    var dark = document.documentElement.getAttribute('data-theme') === 'dark';
-    var s = document.createElement('script');
-    s.id  = 'mapmyvisitors';
-    s.src = 'https://mapmyvisitors.com/map.js?d=' + TOKEN + '&w=a&t=n&' +  /* t=n: dots only, no counter text */
-            (dark ? 'co=1f2937&cl=4b5563&ct=d1d5db' : 'co=ffffff&cl=d1d5db&ct=4b5563');
-    frame.innerHTML = '';
-    frame.appendChild(s);
-  }
-
-  /* load only after the page has finished, so the map never delays it */
-  if(document.readyState === 'complete') load();
-  else window.addEventListener('load', load);
-
-  new MutationObserver(load).observe(document.documentElement, {attributes:true, attributeFilter:['data-theme']});
 })();
 
 /* ===== Scroll-in Animations ===== */
